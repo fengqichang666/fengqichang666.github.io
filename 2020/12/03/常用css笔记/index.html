@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2020 | 前端知识点记录</title>
+  <title>常用css笔记 | 前端知识点记录</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,7 +59,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -167,87 +167,111 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>每一个不曾起舞的日子都是对生命的辜负。</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/12/03/常用css笔记/">常用css笔记</a></h4>
-                            
-                            <p><time datetime="2020-12-03T05:52:50.000Z"><a href="/2020/12/03/常用css笔记/">2020-12-03</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/05/24/原型链/">原型链</a></h4>
-                            
-                            <p><time datetime="2020-05-24T02:40:00.000Z"><a href="/2020/05/24/原型链/">2020-05-24</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/05/20/一道有意思的JavaScript 面试题/">一个很有意思的 JavaScript 面试题</a></h4>
-                            
-                            <p><time datetime="2020-05-20T01:11:56.000Z"><a href="/2020/05/20/一道有意思的JavaScript 面试题/">2020-05-20</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2020-12-03T05:52:50.000Z" itemprop="datePublished">
+          2020-12-03
+      </time>
+    
+    
+    | 
+    <a href='/tags/比较频繁用到的css/'>比较频繁用到的css</a>
+    
+    
+</span>
+                <h1>常用css笔记</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p><strong>1.css 一行文本超出…</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">overflow:hidden;</span><br><span class="line">text-overflow:ellipsis;&#x2F;&#x2F;省略点</span><br><span class="line">white-space:nowrap;&#x2F;&#x2F;不让内容换行</span><br></pre></td></tr></table></figure>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>虽然还没想好写点什么，但是总觉得这里放句话比较和谐。</p>
+<p><strong>2.多行文本超出显示…</strong>(Safari Opera Chrome写法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display:-webkit-box;</span><br><span class="line">-webkit-box-orient:vertical;</span><br><span class="line">-webkit-line-clamp:3;</span><br><span class="line">overflow:hidden;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.IOS 手机容器滚动条滑动不流畅</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">overflow: auto;</span><br><span class="line">-webkit-overflow-scrolling: touch;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.修改滚动条样式</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">::-webkit-scrollbar  &#x2F;&#x2F;滚动条整体部分	</span><br><span class="line">::-webkit-scrollbar-thumb &#x2F;&#x2F;滚动条里面的小方块</span><br><span class="line">::-webkit-scrollbar-track &#x2F;&#x2F;滚动条的轨道</span><br><span class="line">::-webkit-scrollbar-button &#x2F;&#x2F;滚动条的轨道的两端按钮</span><br><span class="line">::-webkit-scrollbar-track-piece &#x2F;&#x2F;内层轨道，滚动条中间部分</span><br><span class="line">::-webkit-scrollbar-corner &#x2F;&#x2F;边角，即两个滚动条的交汇处</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.使用 css 写出一个三角形角标</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">  width: 0;</span><br><span class="line">  height: 0;</span><br><span class="line">  border: 5px solid #transparent; </span><br><span class="line">  border-top-color: red;</span><br><span class="line">&#125;&#x2F;&#x2F;元素宽高设置为 0，通过 &#96;border&#96; 属性来设置，让其它三个方向的 &#96;border&#96; 颜色为透明或者和背景色保持一致，剩余一条 &#96;border&#96; 的颜色设置为需要的颜色。</span><br></pre></td></tr></table></figure>
+
+<p><strong>6.水平垂直居中</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">1.定位  + margin</span><br><span class="line">div &#123;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    left: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">	&#125;</span><br><span class="line">2.定位+css3  </span><br><span class="line">div &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    top: 50%;</span><br><span class="line">    right: 50%;</span><br><span class="line">   	transform: translate(-50%, -50%);</span><br><span class="line">	&#125;</span><br><span class="line">3.flex布局 父级控制子集居中</span><br><span class="line">.parent &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">	&#125;</span><br><span class="line">4.已知宽高</span><br><span class="line"> .div&#123;</span><br><span class="line">	    width: 200px; </span><br><span class="line">	    height: 100px;</span><br><span class="line">	    position: absolute; </span><br><span class="line">	    left: 50%; </span><br><span class="line">	    top: 50%;</span><br><span class="line">	    margin-top: -50px;    &#x2F;* 高度的一半 *&#x2F;</span><br><span class="line">	    margin-left: -100px;    &#x2F;* 宽度的一半 *&#x2F;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2020/05/24/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+        原型链 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
