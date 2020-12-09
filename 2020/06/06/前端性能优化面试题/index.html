@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>前端性能优化面试题总结 | 前端知识点记录</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="前端知识点记录">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="前端知识点记录" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">前端知识点记录</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2020-06-06T07:33:46.000Z" itemprop="datePublished">
+          2020-06-06
+      </time>
+    
+    
+    | 
+    <a href='/tags/前端性能优化面试题/'>前端性能优化面试题</a>
+    
+    
+</span>
+                <h1>前端性能优化面试题总结</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="渲染优化"><a href="#渲染优化" class="headerlink" title="渲染优化"></a>渲染优化</h1><p>渲染优化是前端优化中一个很重要的部分，一个好的首屏时间能给用户带来很好的体验，这里要说的一点是关于首屏时间的定义，不同的团队对首屏时间定义不一样，有的团队认为首屏时间就是白屏时间，是从页面加载到第一个画面出现的时间。但是当说到用户体验的时候，仅仅是这样还达不到效果，所以有的前端团队认为，首屏时间应该是从页面加载到用户可以进行正常的页面操作时间，那么就依照后者来进行说明</p>
+<h2 id="js-css-加载顺序"><a href="#js-css-加载顺序" class="headerlink" title="js css 加载顺序"></a>js css 加载顺序</h2><p>说渲染优化之前，需要说一个小插曲，就是比较经典的一道问题”浏览器地址栏输入url发生了什么”，理解了这个才可以更清楚js,css加载顺序对渲染的影响</p>
+<h3 id="地址栏输入url-发生了什么"><a href="#地址栏输入url-发生了什么" class="headerlink" title="地址栏输入url 发生了什么"></a>地址栏输入url 发生了什么</h3><p>这个问题经常被人提起，有人回答比较简洁点，有人可能回答的比较详细，下面就说一下主要流程</p>
+<ul>
+<li>首先会进行 url 解析，根据 dns 系统进行 ip 查找</li>
+<li>根据 ip 就可以找到服务器，然后浏览器和服务器会进行 TCP 三次握手建立连接，如果此时是 https 的话，还会建立 TLS 连接以及协商加密算法，这里就会出现另一个需要注意的问题”https 和 http 的区别”（下文会讲到）</li>
+<li>连接建立之后浏览器开始发送请求获取文件，此时这里还会出现一种情况就是缓存，建立连接后是走缓存还是直接重新获取，需要看后台设置，所以这里会有一个关注的问题”浏览器缓存机制”，缓存等会在讲，现在就当没有缓存，直接去获取文件</li>
+<li>首先获取 html 文件，构建 DOM 树，这个过程是边下载边解析，并不是等 html 文件全部下载完了，再去解析 html，这样比较浪费时间，而是下载一点解析一点</li>
+<li>好了解析到 html 头部时候，又会出现一种问题，css,js 放到哪里了？不同的位置会造成渲染的不同，此时就会出现另一个需要关注的问题”css,js 位置应该放哪里?为什么”，先按照正确的位置来说明(css 放头部,js 放尾部)</li>
+<li>解析到了 html 头部发现有 css 文件，此时下载 css 文件，css 文件也是一边下载一边解析的，构建的是 CSSOM 树，当 DOM 树和 CSSOM 树全部构建完之后，浏览器会把 DOM 树和 CSSOM 树构建成渲染树。</li>
+<li>样式计算, 上面最后一句”DOM 树和 CSSOM 树会一起构建成渲染树”说的有点笼统，其实还有更细一点的操作，但是一般回答到上面应该就可以了，现在接上面说一下构造渲染树的时候还做了哪些事情。第一个就是样式计算，DOM树 和 CSSOM树有了之后，浏览器开始样式计算，主要是为 DOM 树上的节点找到对应的样式</li>
+<li>构建布局树，样式计算完之后就开始构建布局树。主要是为 DOM 树上的节点找到页面上对应位置以及一些”display:none”元素的隐藏。</li>
+<li>构建分层树，布局树完成后浏览器还需要建立分层树，主要是为了满足滚动条，z-index，position 这些复杂的分层操作</li>
+<li>将分层树图块化，利用光栅找到视图窗口下的对应的位图。主要是因为一个页面可能有几屏那么长，一下渲染出来比较浪费，所以浏览器会找到视图窗口对应的图块，将这部分的图块进行渲染</li>
+<li>最终渲染进程将整个页面渲染出来，在渲染的过程中会还出现重排和重绘，这也是比较爱问的问题”重排重绘为什么会影响渲染，如何避免?”</li>
+<li>以上过程大概讲解了一下从 url 到页面渲染的整个过程，其实涉及到了几个需要关注的问题，下面来具体讲讲</li>
+</ul>
+<h3 id="js-css-顺序对前端优化影响"><a href="#js-css-顺序对前端优化影响" class="headerlink" title="js css 顺序对前端优化影响"></a>js css 顺序对前端优化影响</h3><p>上面说到了整个渲染流程，但是没有说到 css 和 js 对渲染的影响。渲染树的构成必须要 DOM 树和 CSSOM 树的，所以尽快的构建 CSSOM 树是一个重要的优化手段，如果 css 文件放在尾部，那么整个过程就是一个串行的过程先解析了 dom，再去解析 css。所以 css 一般都是放在头部，这样 DOM 树和 CSSOM 树的构建是同步进行的。</p>
+<p>再来看 js，因为 js 的运行会阻止 DOM 树的渲染的，所以一旦的 js 放在了头部，而且也没有异步加载这些操作的话，js 一旦一直在运行，DOM 树就一直构建不出来，那么页面就会一直出现白屏界面，所以一般会把 js 文件放在尾部。当然放到尾部也不是就没有问题了，只是问题相对较小，放到尾部的 js 文件如果过大，运行时间长，代码加载时，就会有大量耗时的操作造成页面不可点击，这就是另一个问题，但这肯定比白屏要好，白屏是什么页面都没有，这种是页面有了只是操作不流畅。</p>
+<p>js 脚本放在尾部还有一个原因，有时候 js 代码会有操作 dom 节点的情况，如果放在头部执行，DOM树还没有构建，拿不到 DOM 节点但是你又去使用就会出现报错情况，错误没处理好的话页面会直接崩掉</p>
+<h3 id="重排重绘为什么会影响渲染，如何避免"><a href="#重排重绘为什么会影响渲染，如何避免" class="headerlink" title="重排重绘为什么会影响渲染，如何避免?"></a>重排重绘为什么会影响渲染，如何避免?</h3><p>重排和重绘为什么会影响渲染，哪个影响更大，如何避免是经常被问到的一道题目，先来说一下重绘</p>
+<ul>
+<li><p>重绘</p>
+<p>重绘指的是不影响界面布局的操作，比如更改颜色，那么根据上面的渲染讲解知道，重绘之后只需要在重复进行一下样式计算，就可以直接渲染了，对浏览器渲染的影响相对较小</p>
+</li>
+<li><p>重排</p>
+<p>重排指的是影响界面布局的操作，比如改变宽高，隐藏节点等。对于重排就不是一个重新计算样式那么简单了，因为改变了布局，根据上面的渲染流程来看涉及到的阶段有样式计算，布局树重新生成，分层树重新生成，所以重排对浏览器的渲染影响是比较高的</p>
+</li>
+<li><p>避免方法</p>
+</li>
+<li><ul>
+<li>js 尽量减少对样式的操作，能用 css 完成的就用 css</li>
+<li>对 dom 操作尽量少，能用 createDocumentFragment 的地方尽量用</li>
+<li>如果必须要用 js 操作样式，能合并尽量合并不要分多次操作</li>
+<li>resize 事件 最好加上防抖，能尽量少触发就少触发</li>
+<li>加载图片的时候，提前写好宽高</li>
+</ul>
+</li>
+</ul>
+<h3 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h3><p>浏览器缓存是比较常见的问题，从浏览器缓存的方式，缓存的实现， 缓存在哪里这几个点来说明</p>
+<h4 id="缓存方式"><a href="#缓存方式" class="headerlink" title="缓存方式"></a>缓存方式</h4><p>经常说的浏览器缓存有两种，一种是强制缓存，一种是协商缓存，因为下面有具体实现讲解，所以这里就说一下概念</p>
+<ul>
+<li><p>协商缓存</p>
+<p>协商缓存意思是文件已经被缓存了，但是否从缓存中读取是需要和服务器进行协商，具体如何协商要看请求头/响应头的字段设置，下面会说到。需要注意的是协商缓存还是发了请求的</p>
+</li>
+<li><p>强制缓存</p>
+<p>强制缓存就是文件直接从缓存中获取，不需要发送请求</p>
+</li>
+</ul>
+<h4 id="缓存实现"><a href="#缓存实现" class="headerlink" title="缓存实现"></a>缓存实现</h4><ul>
+<li>强制缓存</li>
+</ul>
+<p>强制缓存在 http1.0 的时候用的是 Expires，是响应头里面的一个字段表示的是文件过期时间。是一个绝对时间，正因为是绝对时间所以在某些情况下，服务器的时区和浏览器时区不一致的时候就会导致缓存失效。为了解决这个问题，HTPP1.1 引入了一个新的响应头 cache-control 它的可选值如下</p>
+<h5 id="cache-control"><a href="#cache-control" class="headerlink" title="cache-control"></a>cache-control</h5><ul>
+<li>max-age: 缓存过期时间，是一个相对时间</li>
+<li>public: 表示客户端和代理服务器都会缓存</li>
+<li>private: 表示只在客户端缓存</li>
+<li>no-cache: 协商缓存标识符，表示文件会被缓存但是需要和服务器协商</li>
+<li>no-store: 表示文件不会被缓存</li>
+</ul>
+<p>HTTP1.1 利用的就是 max-age:600 来强制缓存，因为是相对时间，所以不会出现 Expires 问题</p>
+<ul>
+<li><p>协商缓存</p>
+<p>协商缓存是利用 Last-Modified/if-Modified-Since,Etag/if-None-Match 这两对请求、响应头。</p>
+<h5 id="Last-Modified-if-Modified-Since"><a href="#Last-Modified-if-Modified-Since" class="headerlink" title="Last-Modified/if-Modified-Since"></a>Last-Modified/if-Modified-Since</h5><h5 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h5><p>由于 Last-Modified 的时间粒度是秒，有的文件在 1s 内可能被改动多次。这种方式在这种特殊情况下还是会失效，所以HTTP1.1又引入了 Etag 字段。这个字段是根据文件内容生成一个标记符比如”W/“5f9583bd-10a8””，然后再和 If-None-Match 进行对比就能更准确的知道文件有没有被改动过</p>
+</li>
+<li><ul>
+<li>浏览器第一次发送请求获取文件缓存下来，服务器响应头返回一个 if-Modified-Since，记录被改动的时间</li>
+<li>浏览器第二次发送请求的时候会带上一个 Last-Modified 请求头，时间就是 if-Modified-Since 返回的值。然后服务器拿到这个字段和自己内部设置的时间进行对比，时间相同表示没有修改，就直接返回 304 从缓存里面获取文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="缓存在哪里"><a href="#缓存在哪里" class="headerlink" title="缓存在哪里"></a>缓存在哪里</h4><p>知道了缓存方式和实现，再来说一下缓存存在哪个地方，打开掘金可以看到如下的信息 。缓存的来源有两个地方 from dist cache,from memeory cache<img src="https://mmbiz.qpic.cn/mmbiz_png/YBFV3Da0Nwt3kgiaBlrMnLBKrLicmicmgH2n8oBZ5CqroL8MTbGF1L17VnpWXG7EJAbha0vBje92iaJPvTIicjWyo7A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h5 id="form-memory-cache"><a href="#form-memory-cache" class="headerlink" title="form memory cache"></a>form memory cache</h5><p>这个是缓存在内存里面，优点是快速，但是具有时效性，当关闭 tab 时候缓存就会失效。</p>
+<h5 id="from-dist-cache"><a href="#from-dist-cache" class="headerlink" title="from dist cache"></a>from dist cache</h5><p>这个是缓存在磁盘里面，虽然慢但是还是比请求快，优点是缓存可以一直被保留，即使关闭 tab 页，也会一直存在</p>
+<h5 id="何时缓存在memory-合适缓存在dist？"><a href="#何时缓存在memory-合适缓存在dist？" class="headerlink" title="何时缓存在memory,合适缓存在dist？"></a>何时缓存在memory,合适缓存在dist？</h5><p>这个问题网上很少找的到标准答案，大家一致的说法是js,图片文件浏览器会自动保存在memory中，css文件因为不常修改保存在dist里面，可以打开掘金网站，很大一部分文件都是按照这个规则来的，但是也有少数js文件也是缓存在dist里面。所以他的存放机制到底是什么样了？带着这个疑问查了好多文章，虽然最后没有确切找到答案，但是一个知乎的回答可以给提供思路，下面引用一个知乎回答者一段话</p>
+<ul>
+<li>第一个现象(以图片为例)：访问-&gt; 200 -&gt; 退出浏览器再进来-&gt; 200(from disk cache) -&gt; 刷新 -&gt; 200(from memory cache)。总结: 会不会是chrome很聪明的判断既然已经从disk拿来了， 第二次就内存拿吧 快。（笑哭)</li>
+<li>第二个现象(以图片为例)：只要图片是base64 看都是from memroy cache。总结: 解析渲染图片这么费劲的事情，还是做一次然后放到内存吧。用的时候直接拿</li>
+<li>第三个现象(以js css为例)：个人在做静态测试的发现，大型的js css文件都是直接disk cache。结: chrome会不会说 去 你这么大太占地方了。你就去硬盘里呆着吧。慢就慢点吧。</li>
+<li>第四个现象：隐私模式下，几乎都是 from memroy cache。总结: 隐私模式 是吧。不能暴露你东西，还是放到内存吧。你关，死。</li>
+</ul>
+<p>上面几点是虽然很幽默，但是却可以从中找到一部分答案，但是觉得另一个知乎回答更赞同</p>
+<blockquote>
+<p>浏览器运行的时候也是由几个进程协作的，所以操作系统为了节省内存，会把一部分内存里的资源交换回磁盘的交换区，当然交换是有策略的，比如最常用的就是LRU。</p>
+</blockquote>
+<p>什么时候存dist，什么时候存memoey都是在浏览器控制下的，memory不够了可能就会考虑去存dist了，所以经过上面所说自己总结结果如下</p>
+<ul>
+<li>大一点的文件会缓存在dist里面，因为内存也是有限的，磁盘的空间更大</li>
+<li>小一点文件js,图片存的是memory</li>
+<li>css文件一般存在dist</li>
+<li>特殊情况memory大小是有限制的，浏览器也会根据自己的内置算法，把一部分js文件存到dist里面</li>
+</ul>
+<h3 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h3><p>说到https和http的区别，可以说一下https服务器和客户端连接的差异，以及https特定的加密算法协商，甚至可能还要说到对称加密，非对称加密和证书等，篇幅很长，请看之前单独写的一篇https详解，里面讲的非常详细。</p>
+<h2 id="请求优化"><a href="#请求优化" class="headerlink" title="请求优化"></a>请求优化</h2><p>讲请求优化的之前先来总结下上面说到的js, css文件顺序优化，为了让渲染更快，需要把js放到尾部，css放到头部，然后还要注意在书写js的时候尽量减少重排，重绘。书写html,css的时候尽量简洁，不要冗余，目的是为了更快的构建DOM树和CSSOM树。好了下面在来说说请求优化，请求优化可以从请求数量和请求时间两方面入手</p>
+<h3 id="减少请求数量"><a href="#减少请求数量" class="headerlink" title="减少请求数量"></a>减少请求数量</h3><ul>
+<li>将小图片打包成base64</li>
+<li>利用雪碧图融合多个小图片</li>
+<li>利用缓存上面已经说到过</li>
+</ul>
+<h3 id="减少请求时间"><a href="#减少请求时间" class="headerlink" title="减少请求时间"></a>减少请求时间</h3><ul>
+<li>将js，css，html等文件能压缩的尽量压缩，减少文件大小，加快下载速度</li>
+<li>利用webpack打包根据路由进行懒加载，不要初始就加载全部，那样文件会很大</li>
+<li>能升级到高版本的http就升级到高版本（这个回答是套话），为什么高版本能提高速度具体看上面说的那篇https文章</li>
+<li>建立内部CDN能更快速的获取文件</li>
+</ul>
+<h1 id="webpack优化"><a href="#webpack优化" class="headerlink" title="webpack优化"></a>webpack优化</h1><p>介绍了渲染优化，现在来看看webpack优化，自己平常写demo给团队做培训的时候都是自己手写webpack配置，虽然也就几十行，但每次都能让巩固webpack的基本配置，下面直接说一下webpack优化手段有哪些</p>
+<h2 id="基础配置优化"><a href="#基础配置优化" class="headerlink" title="基础配置优化"></a>基础配置优化</h2><ul>
+<li>extensions 这个配置是属于resolve里面的，经常用来对文件后缀进行扩展,写法如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions: [&#39;.ts&#39;, &#39;.tsx&#39;, &#39;.js&#39;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个配置表示webpack会根据extensions去寻找文件后缀名，所以如果的项目主要用ts写的话，那就可以.tsx和.ts写前面，目的是为了让webpack能够快速解析</p>
+<ul>
+<li>alias 这个配置也是属于resolve里面的，是用来映射路劲，能减少打包时间的主要原因是能够让webpack快速的解析文件路径，找到对应的文件，配置如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  alias: &#123;</span><br><span class="line">    Components: path.resolve(__dirname, &#39;.&#x2F;src&#x2F;components&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>noParse</li>
+</ul>
+<p>noParse表示不需要解析的文件，有的文件可能是来自第三方的文件，被 providePlugin引入作为windows上的变量来使用，这样的文件相对比较大，并且已经是被打包过的，所以把这种文件排除在外是很有必要的，配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  noParse: [&#x2F;proj4\.js&#x2F;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>exclude</li>
+</ul>
+<p>某些loader会有这样一个属性，目的是指定loader作用的范围，exclude表示排除某些文件不需要babel-loader处理，loader的作用范围小了，打包速度自然就快了，用babel-loader举一个简单例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: &#x2F;\.js$&#x2F;,</span><br><span class="line">    loader: &quot;babel-loader&quot;,</span><br><span class="line">    exclude: path.resolve(__dirname, &#39;node_modules&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>devtool</li>
+</ul>
+<p>这个配置是一个调试项，不同的配置展示效果不一样，打包大小和打包速度也不一样，比如开发环境下cheap-source-map肯定比source-map快，至于为什么，强烈推荐自己之前写的这一篇讲解devtool的文章：webpack devtools篇讲的非常详细。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    devtool: &#39;cheap-source-map&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>.eslintignore</p>
+<p>这个虽不是webpack配置但是对打包速度优化还是很有用的，在的实践中eslint检查对打包的速度影响很大，但是很多情况不能没有这个eslint检查，eslint检查如果仅仅在vs里面开启的话，可能不怎么保险。</p>
+<p>因为有可能你vs中的eslint插件突然关闭了或者某些原因vs不能检查了，只能靠webpack构建去帮你拦住错误代码的提交，即使这样还不能确保万无一失，因为你可能某一次提交代码很急没有启动服务，直接盲改提交上去了。这个时候只能通过最后一道屏障给你保护，就是在CI的时候。比如也会是在jenkins构建的时候帮你进行eslint检查，三道屏障确保了最终出的镜像是不会有问题的。</p>
+<p>所以eslint是很重要的，不能删掉，在不能删掉的情况下怎么让检查的时间更少了，就可以通过忽略文件，让不必要的文件禁止eslint,只对需要的文件eslint可以很大程度提高打包速度</p>
+<h2 id="loader-plugins优化"><a href="#loader-plugins优化" class="headerlink" title="loader,plugins优化"></a>loader,plugins优化</h2><p>上述说了几个基础配置优化，应该还有其他的基础配置，今后遇到了再继续添加，现在在来讲讲利用某些loader,plugins来提高打包速度的例子</p>
+<ul>
+<li>cache-loader</li>
+</ul>
+<p>这个loader就是在第一次打包的时候会缓存打包的结果，在第二次打包的时候就会直接读取缓存的内容，从而提高打包效率。但是也需要合理利用，要记住一点你加的每一个loader，plugins都会带来额外的打包时间。这个额外时间比他带来的减少时间多，那么一味的增加这个loader就没意义，所以cache-loader最好用在耗时比较大的loader上，配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: &#x2F;\.vue$&#x2F;,</span><br><span class="line">      use: [</span><br><span class="line">        &#39;cache-loader&#39;,</span><br><span class="line">        &#39;vue-loader&#39;</span><br><span class="line">      ],</span><br><span class="line">      include: path.resolve(__dirname, &#39;.&#x2F;src&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>webpack-parallel-uglify-plugin, uglifyjs-webpack-plugin, terser-webpack-plugin</li>
+</ul>
+<p>在上面的渲染优化中已经知道，文件越小渲染的速度是越快的。所以在配置webpack时候经常会用到压缩，但是压缩也是需要消耗时间的，所以经常会用到上面三个插件之一来开启并行压缩，减少压缩时间，用webpack4推荐使用的terse-webpack-plugin做例子来说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">  minimizer: [</span><br><span class="line">      new TerserPlugin(&#123;</span><br><span class="line">        parallel: true,</span><br><span class="line">        cache: true</span><br><span class="line">      &#125;)</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>happypack, parallel-webpack, thread-loader</li>
+</ul>
+<p>这几个loader/plugin和上面一样也是开启并行的，只不过是开启并行构建。由于happypack的作者说自己的兴趣已经不再js上了，所以已经没有维护了，并推荐如果使用的是webpack4的话，就去使用thread-loader。基本配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   test: &#x2F;\.js$&#x2F;,</span><br><span class="line">   use: [</span><br><span class="line">     &#123;</span><br><span class="line">       loader: &quot;thread-loader&quot;,</span><br><span class="line">       options: threadLoaderOptions</span><br><span class="line">     &#125;,</span><br><span class="line">     &quot;babel-loader&quot;,</span><br><span class="line">   ],</span><br><span class="line">   exclude: &#x2F;node_modules&#x2F;,</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DllPlugin,webpack.DllReferencePlugin</li>
+</ul>
+<p>上面说的几个并行插件理论上是可以增加构建速度，网上很多文章都是这么说的，但是在实际的过程中使用，发现有时候不仅没提升反而还降低了打包速度，网速查阅给的理由是可能你的电脑核数本来就低，或者当时你CPU运行已经很高了，再去开启多进程导致构建速度降低。</p>
+<p>上面说的几个并行插件可能在某些情况下达不到你想要的效果，然而在团队优化webpack性能经验来看，这次所说的两个插件是很明显并且每次都能提高打包速度的。原理就是先把第三方依赖先打包一次生成一个js文件，然后真正打包项目代码时候，会根据映射文件直接从打包出来的js文件获取所需要的对象，而不用再去打包第三方文件。只不过这种情况打包配置稍微麻烦点，需要写一个webpack.dll.js。大致如下</p>
+<p>webpack.dll.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line">const webpack &#x3D; require(&#39;webpack&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        library: [&quot;vue&quot;, &quot;moment&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &#39;[name].dll.js&#39;,</span><br><span class="line">        path: path.resolve(__dirname, &#39;json-dll&#39;),</span><br><span class="line">        library: &#39;[name]&#39;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    plugins: [</span><br><span class="line">        new webpack.DllPlugin(&#123;</span><br><span class="line">            path: &#39;.&#x2F;json-dll&#x2F;library.json&#39;,</span><br><span class="line">            name: &#39;[name].json&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack.dev.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> new AddAssetHtmlWebpack(&#123;</span><br><span class="line">    filepath: path.resolve(__dirname, &#39;.&#x2F;json-dll&#x2F;library.dll.js&#39;)</span><br><span class="line"> &#125;),</span><br><span class="line"></span><br><span class="line">new webpack.DllReferencePlugin(&#123;</span><br><span class="line">     manifest: require(&quot;.&#x2F;json-dll&#x2F;library.json&quot;)</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他优化配置"><a href="#其他优化配置" class="headerlink" title="其他优化配置"></a>其他优化配置</h2><p>这些插件就简单的介绍下，在的个人项目中已经使用过，自感觉还可以，具体使用可以查阅npm或者github</p>
+<ul>
+<li>webpack-bundle-analyzer</li>
+</ul>
+<p>这个插件可以用可视化帮分析打包体积，从而来采用合适的优化方式去改进的webpack配置</p>
+<ul>
+<li>speed-measure-webpack-plugin</li>
+</ul>
+<p>这个插件可以告诉打包时候每一个loader或者plugin花费了多少时间，从而对耗时比较长的plugin和loader做优化</p>
+<ul>
+<li>friendly-errors-webpack-plugin</li>
+</ul>
+<p>这个插件可以帮优化打包日志，打包时候经常看到很长一个日志信息，有的时候是不需要的，也不会去看所以可以用这个插件来简化</p>
+<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><p>这是最后一部分代码优化了，这里的代码性能优化只说在工作中感受到的，至于其他的比较小的优化点比如createDocumentFragment使用可以查查其他文章</p>
+<blockquote>
+<p>能不操作dom不要操作dom，哪怕有时候需要改设计</p>
+</blockquote>
+<p>很多情况下都能用css还原设计稿，但是有些时候单单从css没法还原，尤其组件还不是你写的时候，比如团队用的就是antd,有时候的产品设计单从css上没法实现，只能动用js，删除，增加节点在配合样式才能完成。</p>
+<p>由于又是一个做大数据的公司，这个时候就会出现性能问题，最开始写代码时候，产品说什么就是什么，说什么都会想办法搞出来，不管用什么方法。后来到客户现场大数据请况下，性能缺点立马暴露的出来。</p>
+<p>所以代码优化的原则之一认为是能不写的代码就不写，当然这是要从性能角度出发，通过性能分析给产品说出理由，并且最好还能提供更好的解决方案，这个才是需要考虑的。</p>
+<blockquote>
+<p>如果用的是react 一定用写shouldComponentUpdate这个生命周期函数，不然打印的时候你会发现，你自己都迷糊为什么执行了这么多遍</p>
+</blockquote>
+<blockquote>
+<p>将复杂的比对，变成简单比对</p>
+</blockquote>
+<p>这句话是什么意思了？就拿shouldComponentUpdate举例子，用这个函数没问题，但是可以做的更好，在工作中经常这么写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextPrpops) &#123;</span><br><span class="line">  return JSON.stringify(nextPrpops.data) !&#x3D;&#x3D; JSON.stringify(this.props.data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果这是一个分页表格，data是每一页数据，数据改变了重新渲染，在小数据场景下这本身是没有问题。但是如果在大数据的场景下可能会有问题，可能有人有疑问，既然做了分页怎么还会有大数据了，因为的产品是做大数据分析日志的，一页十条日志，有的日志可能非常的长，也就是说就算是10条数据比对起来也是很耗时，所以当时想法能不能找到其他的替代变量来表示数据变了？比如下面这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextPrpops) &#123;</span><br><span class="line">  return nextPrpops.data[0].id !&#x3D;&#x3D; this.props.data[0].id</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一条的id不一样就表示数据变化了行不行，显然在某种情况下是存在的，也有人会说可能会出现id一样，那如果换成下面这种了?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextPrpops) &#123;</span><br><span class="line">  return nextPrpops.current !&#x3D;&#x3D; this.props.current</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将data的比对转换成了current的比对，因为页数变了，数据基本都是变了，对于自己日志的展示来说基本不存在两页数据是一模一样的，如果有那可能是后台问题。然后在好好思考这个问题，即使存在了两页数据一摸一样，顶多就是这个表格不重新渲染，但是两页数据一摸一样不重新渲染是不是也没有问题，因为数据是一样的。或者如果你还是不放心，那下面这种会不会好点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">this.setState(&#123;</span><br><span class="line">  data,</span><br><span class="line">  requestId: guid()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">shouldComponentUpdate(nextPrpops) &#123;</span><br><span class="line">  return nextPrpops.requestId !&#x3D;&#x3D; this.props.requestId</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给一个requestId跟宗data，后面就只比对requestId。上面的写法可能都有问题，但是主要是想说的是在写代码时候可以想想是不是可以”将复杂的比对，变成简单比对”</p>
+<blockquote>
+<p>学习数据结构和算法，一定会在你的工作中派上用场</p>
+</blockquote>
+<p>经常会听到学习数据结构和算法没有什么大的用处，因为工作基本用不上。这句话之前觉得没错，现在看来错的很严重。所学的每一样技能，都会在将来的人生中派上用场。之前写完代码就丢了不去优化所以觉得算法没意义，又难又容易忘记。但现在要求自己做完需求，开启mock，打开perfermance进行大数据量的测试，看着那些标红的火焰图和肉眼可见的卡顿，就明白了算法和数据结构的重要性，因为此时你只能从它身上获取优化，平时你很排斥它，到优化的时候你是那么想拥有它。拿自己之前写的代码举例，由于公司代码是保密的就把变量换一下，伪代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data.filter((&#123;id&#125;) &#x3D;&gt; &#123;</span><br><span class="line">  return selectedIds.includes(id);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>就是这样几行代码，逻辑就是筛选出data里面已经被勾选的数据。基本上很多人都可能这么写，因为看团队里面都是这么写的。产品当时已经限制data最多200数据，所以写完完全没压力，性能没影响。但是秉着对性能优化的原则（主要是被现场环境搞怕了~~~），开启了mock服务，将数据调到了2万条再去测试，代码弊端就暴露出来了，界面进入卡顿，重新选择的时候也会卡顿。然后就开始了优化，当时具体的思路如下</p>
+<p>按照现在的代码来看，这是一个两层循环的暴力搜索时间复杂度为O(n^2)。所以想着能不能降一下复杂度至少是O(nlogn)，看了一下代码只能从selectedIds.includes(id)这句入手，于是想着可不可以用二分，但是立马被否定因为二分是需要有序的，这数组都是字符串怎么二分。</p>
+<p>安静了一下之后，回想起看过的算法课程和书籍以及做的算法题，改变暴力搜索的方法基本都是</p>
+<p>1：上指针</p>
+<p>2：数组升维</p>
+<p>3：利用hash表</p>
+<p>前两者被否定了因为觉得还没那么复杂，于是利用hash表思想解决这个问题，因为js里面有一个天然的hash表结构就是对象。知道hash表的查询是O(1)的，所以将代码改写如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const ids &#x3D; &#123;&#125;;</span><br><span class="line">selectedIds.forEach(id &#x3D;&gt; ids[id] &#x3D; 1);</span><br><span class="line"></span><br><span class="line">data.filter((&#123;id&#125;) &#x3D;&gt; &#123;</span><br><span class="line">  return !!ids[id];</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>将从selectedIds查询变成从ids查询，这样时间复杂度就从O(n^2)变成了O(n)了，这段代码增加了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const ids &#x3D; &#123;&#125;;</span><br><span class="line">selectedIds.forEach(id &#x3D;&gt; ids[id] &#x3D; 1);</span><br></pre></td></tr></table></figure>
+
+<p>其实增加了一个selectedIds遍历也是一个O(n)的复杂度，总来说复杂度是O(2n),但是从时间复杂度长期期望来看还是一个O(n)的时间复杂度，只不过额外增加了一个对象，所以这也是一个典型的空间换时间的例子，但是也不要担心，ids用完之后垃圾回收机制会把他回收的。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2020/05/30/%E5%B8%B8%E7%94%A8css%E7%AC%94%E8%AE%B0/">
+        常用css笔记 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

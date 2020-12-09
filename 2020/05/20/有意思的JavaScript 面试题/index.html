@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>一个很有意思的 JavaScript 面试题 | 前端知识点记录</title>
+  <title>有意思的 JavaScript 面试题 | 前端知识点记录</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -183,7 +183,7 @@
     
     
 </span>
-                <h1>一个很有意思的 JavaScript 面试题</h1>
+                <h1>有意思的 JavaScript 面试题</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
@@ -667,6 +667,30 @@
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>后续我把这题的难度再稍微加大一点点(附上答案)，在Foo函数里面加多一个公有方法getName，对于下面这题如果用在面试题上那通过率可能就更低了，因为难度又大了一点，又多了两个坑，但是明白了这题的原理就等同于明白了上面所有的知识点了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">function Foo() &#123;</span><br><span class="line">this.getName &#x3D; function() &#123;</span><br><span class="line">console.log(3);</span><br><span class="line">return &#123;</span><br><span class="line">getName: getName &#x2F;&#x2F;这个就是第六问中涉及的构造函数的返回值问题</span><br><span class="line">&#125;</span><br><span class="line">&#125;; &#x2F;&#x2F;这个就是第六问中涉及到的，JS构造函数公有方法和原型链方法的优先级</span><br><span class="line">getName &#x3D; function() &#123;</span><br><span class="line">console.log(1);</span><br><span class="line">&#125;;</span><br><span class="line">return this</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName &#x3D; function() &#123;</span><br><span class="line">console.log(2);</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.getName &#x3D; function() &#123;</span><br><span class="line">console.log(6);</span><br><span class="line">&#125;;</span><br><span class="line">var getName &#x3D; function() &#123;</span><br><span class="line">console.log(4);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function getName() &#123;</span><br><span class="line">console.log(5);</span><br><span class="line">&#125; &#x2F;&#x2F;答案：</span><br><span class="line">Foo.getName(); &#x2F;&#x2F;2</span><br><span class="line">getName(); &#x2F;&#x2F;4</span><br><span class="line">console.log(Foo())</span><br><span class="line">Foo().getName(); &#x2F;&#x2F;1</span><br><span class="line">getName(); &#x2F;&#x2F;1</span><br><span class="line">new Foo.getName(); &#x2F;&#x2F;2</span><br><span class="line">new Foo().getName(); &#x2F;&#x2F;3</span><br><span class="line">&#x2F;&#x2F;多了一问</span><br><span class="line">new Foo().getName().getName(); &#x2F;&#x2F;3 1</span><br><span class="line">new new Foo().getName(); &#x2F;&#x2F;3</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="题目2"><a href="#题目2" class="headerlink" title="题目2"></a>题目2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function Parent() &#123;</span><br><span class="line">            this.a &#x3D; 1;</span><br><span class="line">            this.b &#x3D; [1, 2, this.a];</span><br><span class="line">            this.c &#x3D; &#123; demo: 5 &#125;;</span><br><span class="line">            this.show &#x3D; function () &#123;</span><br><span class="line">                console.log(this.a , this.b , this.c.demo );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        function Child() &#123;</span><br><span class="line">            this.a &#x3D; 2;</span><br><span class="line">            this.change &#x3D; function () &#123;</span><br><span class="line">                this.b.push(this.a);</span><br><span class="line">                this.a &#x3D; this.b.length;</span><br><span class="line">                this.c.demo &#x3D; this.a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Child.prototype &#x3D; new Parent();</span><br><span class="line">        var parent &#x3D; new Parent();</span><br><span class="line">        var child1 &#x3D; new Child();</span><br><span class="line">        var child2 &#x3D; new Child();</span><br><span class="line">        child1.a &#x3D; 11;</span><br><span class="line">        child2.a &#x3D; 12;</span><br><span class="line">        parent.show(); &#x2F;&#x2F;1  [1, 2, 1] 5</span><br><span class="line">        child1.show();  &#x2F;&#x2F;11  [1, 2, 1] 5</span><br><span class="line">        child2.show();  &#x2F;&#x2F;12 [1, 2, 1] 5</span><br><span class="line">        child1.change();</span><br><span class="line">        child2.change();</span><br><span class="line">        parent.show(); &#x2F;&#x2F;1  [1, 2, 1] 5</span><br><span class="line">        child1.show(); &#x2F;&#x2F;5  [1, 2, 1, 11, 12] 5 </span><br><span class="line">        child2.show(); &#x2F;&#x2F;6 [1, 2, 1, 11, 12]  5</span><br></pre></td></tr></table></figure>
+
+<h3 id="考察知识点"><a href="#考察知识点" class="headerlink" title="考察知识点"></a>考察知识点</h3><ol>
+<li>this的指向</li>
+<li>原型(prototype)以及原型链</li>
+<li>继承</li>
+<li>引用</li>
+</ol>
+<h3 id="理解帮助"><a href="#理解帮助" class="headerlink" title="理解帮助"></a>理解帮助</h3><ol>
+<li>每一个构造函数，都有一个原型[[prototype]]属性 指向构造函数的原型对象</li>
+<li>每一个实例生成的时候，都会在内存中产生一块新的堆内存</li>
+<li>每一实例都有一个隐式原型<strong>proto</strong> 指向构造函数的原型对象</li>
+<li>this的指向 取决于this调用时的位置, 在这道题中， 也可以简单理解为， 谁调用方法， this就指向哪个对象</li>
+<li>数组和字面量对象 都是 引用</li>
+<li>原型链的查找规则： 就近原则</li>
+</ol>
+<ul>
+<li>当实例上存在属性时， 用实例上的</li>
+<li>如果实例不存在，顺在原型链，往上查找，如果存在，就使用原型链的</li>
+<li>如果原型链都不存在，就用Object原型对象上的</li>
+<li>如果Object原型对象都不存在， 就是undefined</li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
