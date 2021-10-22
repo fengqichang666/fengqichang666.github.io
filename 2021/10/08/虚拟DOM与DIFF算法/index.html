@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>虚拟DOM与DIFF算法 | 前端知识点记录</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="前端知识点记录">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="前端知识点记录" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">前端知识点记录</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-10-08T08:57:02.000Z" itemprop="datePublished">
+          2021-10-08
+      </time>
+    
+</span>
+                <h1>虚拟DOM与DIFF算法</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="虚拟DOM-Virtual-DOM"><a href="#虚拟DOM-Virtual-DOM" class="headerlink" title="虚拟DOM(Virtual DOM)"></a>虚拟DOM(Virtual DOM)</h2><h3 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h3><p>一句话总结虚拟DOM就是一个用来描述真实DOM的**javaScript对象 ** 包含tag，props，children三个属性。。。</p>
+<p><code>真实DOM</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class&#x3D;&quot;list&quot;&gt;</span><br><span class="line">    &lt;li&gt;a&lt;&#x2F;li&gt;</span><br><span class="line">    &lt;li&gt;b&lt;&#x2F;li&gt;</span><br><span class="line">    &lt;li&gt;c&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>对应的虚拟DOM</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let vnode &#x3D; h(&#39;ul.list&#39;, [</span><br><span class="line">  h(&#39;li&#39;,&#39;a&#39;),</span><br><span class="line">  h(&#39;li&#39;,&#39;b&#39;),</span><br><span class="line">  h(&#39;li&#39;,&#39;c&#39;),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">console.log(vnode)</span><br></pre></td></tr></table></figure>
+
+<h4 id="控制台打印出来的Vnode"><a href="#控制台打印出来的Vnode" class="headerlink" title="控制台打印出来的Vnode:"></a>控制台打印出来的<strong>Vnode</strong>:</h4><img src="D:\blog\source\images\640.webp" style="zoom: 50%;" />
+
+<p><strong>h函数就是vue中的createElement方法，这个函数作用就是创建虚拟dom，追踪dom变化的</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">function h(tag,props,...children)&#123;&#x2F;&#x2F;h函数，返回一个虚拟dom对象</span><br><span class="line">    return &#123;</span><br><span class="line">        tag,</span><br><span class="line">        props:props || &#123;&#125;,</span><br><span class="line">        children:children.flat()&#x2F;&#x2F;扁平化数组，降至一维数组</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;源码</span><br><span class="line">export function h (sel: string): VNode</span><br><span class="line">export function h (sel: string, data: VNodeData | null): VNode</span><br><span class="line">export function h (sel: string, children: VNodeChildren): VNode</span><br><span class="line">export function h (sel: string, data: VNodeData | null, children: VNodeChildren): VNode</span><br><span class="line">export function h (sel: any, b?: any, c?: any): VNode &#123;</span><br><span class="line">  var data: VNodeData &#x3D; &#123;&#125;</span><br><span class="line">  var children: any</span><br><span class="line">  var text: any</span><br><span class="line">  var i: number</span><br><span class="line">    ...</span><br><span class="line">  return vnode(sel, data, children, text, undefined) &#x2F;&#x2F;最终返回一个vnode函数</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; vnode函数</span><br><span class="line">export function vnode (sel: string | undefined,</span><br><span class="line">  data: any | undefined,</span><br><span class="line">  children: Array&lt;VNode | string&gt; | undefined,</span><br><span class="line">  text: string | undefined,</span><br><span class="line">  elm: Element | Text | undefined): VNode &#123;</span><br><span class="line">  const key &#x3D; data &#x3D;&#x3D;&#x3D; undefined ? undefined : data.key</span><br><span class="line">  return &#123; sel, data, children, text, elm, key &#125; &#x2F;&#x2F;最终生成Vnode对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>h函数</code>先生成一个<code>vnode</code>函数,然后<code>vnode</code>函数再生成一个<code>Vnode</code>对象(虚拟DOM对象)</p>
+<p><strong>最终html代码会被编译成h函数的渲染形式。返回的是一个虚拟DOM对象，通过diff算法，来追踪自己要如何改变真实DOM。</strong></p>
+<p>createElment参数（也就是h函数）：createElment函数接受三个参数，分别是：</p>
+<pre><code> 参数一：tag（标签名）、组件的选项对象、函数（必选）；
+
+ 参数二：一个对象，标签的属性对应的数据（可选）；
+
+ 参数三：子级虚拟节点，字符串形式或数组形式，子级虚拟节点也需要使用createElement构建。</code></pre>
+<h3 id="为什么要使用虚拟DOM"><a href="#为什么要使用虚拟DOM" class="headerlink" title="为什么要使用虚拟DOM"></a>为什么要使用虚拟DOM</h3><ul>
+<li><p>MVVM框架解决视图和状态同步问题</p>
+</li>
+<li><p>模板引擎可以简化视图操作,没办法跟踪状态</p>
+</li>
+<li><p>虚拟DOM跟踪状态变化</p>
+</li>
+<li><p>参考github上<strong>virtual-dom</strong>[1]的动机描述</p>
+</li>
+<li><ul>
+<li>虚拟DOM可以维护程序的状态,跟踪上一次的状态</li>
+<li>通过比较前后两次状态差异更新真实DOM</li>
+</ul>
+</li>
+<li><p>跨平台使用</p>
+</li>
+<li><ul>
+<li>浏览器平台渲染DOM</li>
+<li>服务端渲染SSR(Nuxt.js/Next.js),前端是vue向,后者是react向</li>
+<li>原生应用(Weex/React Native)</li>
+<li>小程序(mpvue/uni-app)等</li>
+</ul>
+</li>
+<li><p>真实DOM的属性很多，创建DOM节点开销很大</p>
+</li>
+<li><p>虚拟DOM只是普通JavaScript对象，描述属性并不需要很多，创建开销很小</p>
+</li>
+<li><p><strong>复杂视图情况下提升渲染性能</strong>(操作dom性能消耗大,减少操作dom的范围可以提升性能)</p>
+</li>
+</ul>
+<p><strong>复杂视图情况下提升渲染性能</strong>,因为<code>虚拟DOM+Diff算法</code>可以精准找到DOM树变更的地方,减少DOM的操作(重排重绘)</p>
+<h2 id="Diff算法"><a href="#Diff算法" class="headerlink" title="Diff算法"></a>Diff算法</h2><p>diff 算法首先要明确一个概念就是 Diff 的对象是虚拟DOM（virtual dom），更新真实 DOM 是 Diff 算法的结果。</p>
+<ul>
+<li><code>init()</code>设置模块.创建<code>patch()</code>函数</li>
+<li>使用<code>h()</code>函数创建JavaScript对象<code>(Vnode)</code>描述<code>真实DOM</code></li>
+<li><code>patch()</code>比较<code>新旧两个Vnode</code></li>
+<li>把变化的内容更新到<code>真实DOM树</code></li>
+</ul>
+<h3 id="init函数"><a href="#init函数" class="headerlink" title="init函数"></a>init函数</h3><p>init函数时设置模块,然后创建patch()函数,我们先通过场景案例来有一个直观的体现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import &#123;init&#125; from &#39;snabbdom&#x2F;build&#x2F;package&#x2F;init.js&#39;</span><br><span class="line">import &#123;h&#125; from &#39;snabbdom&#x2F;build&#x2F;package&#x2F;h.js&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 1.导入模块</span><br><span class="line">import &#123;styleModule&#125; from &quot;snabbdom&#x2F;build&#x2F;package&#x2F;modules&#x2F;style&quot;;</span><br><span class="line">import &#123;eventListenersModule&#125; from &quot;snabbdom&#x2F;build&#x2F;package&#x2F;modules&#x2F;eventListeners&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2.注册模块</span><br><span class="line">const patch &#x3D; init([</span><br><span class="line">  styleModule,</span><br><span class="line">  eventListenersModule</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3.使用h()函数的第二个参数传入模块中使用的数据(对象)</span><br><span class="line">let vnode &#x3D; h(&#39;div&#39;, [</span><br><span class="line">  h(&#39;h1&#39;, &#123;style: &#123;backgroundColor: &#39;red&#39;&#125;&#125;, &#39;Hello world&#39;),</span><br><span class="line">  h(&#39;p&#39;, &#123;on: &#123;click: eventHandler&#125;&#125;, &#39;Hello P&#39;)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">function eventHandler() &#123;</span><br><span class="line">  alert(&#39;疼,别摸我&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const app &#x3D; document.querySelector(&#39;#app&#39;)</span><br><span class="line"></span><br><span class="line">patch(app,vnode)</span><br></pre></td></tr></table></figure>
+
+<p>当init使用了导入的模块就能够在h函数中用这些模块提供的api去创建<code>虚拟DOM(Vnode)对象</code>;在上文中就使用了<code>样式模块</code>以及<code>事件模块</code>让创建的这个虚拟DOM具备样式属性以及事件属性,最终通过<code>patch函数</code>对比<code>两个虚拟dom</code>(会先把app转换成虚拟dom),更新视图;</p>
+<h3 id="patch函数-核心"><a href="#patch函数-核心" class="headerlink" title="patch函数(核心)"></a>patch函数(核心)</h3><ul>
+<li>pactch(oldVnode,newVnode)</li>
+<li>把新节点中变化的内容渲染到真实DOM,最后返回新节点作为下一次处理的旧节点(核心)</li>
+<li>对比新旧<code>VNode</code>是否相同节点(节点的key和sel相同)</li>
+<li>如果不是相同节点,删除之前的内容,重新渲染</li>
+<li>如果是相同节点,再判断新的<code>VNode</code>是否有<code>text</code>,如果有并且和<code>oldVnode</code>的<code>text</code>不同直接更新文本内容<code>(patchVnode)</code></li>
+<li>如果新的VNode有children,判断子节点是否有变化<code>(updateChildren,最麻烦,最难实现)</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">return function patch(oldVnode: VNode | Element, vnode: VNode): VNode &#123;    </span><br><span class="line">    let i: number, elm: Node, parent: Node</span><br><span class="line">    const insertedVnodeQueue: VNodeQueue &#x3D; []</span><br><span class="line">    &#x2F;&#x2F; cbs.pre就是所有模块的pre钩子函数集合</span><br><span class="line">    for (i &#x3D; 0; i &lt; cbs.pre.length; ++i) cbs.pre[i]()</span><br><span class="line">    &#x2F;&#x2F; isVnode函数时判断oldVnode是否是一个虚拟DOM对象</span><br><span class="line">    if (!isVnode(oldVnode)) &#123;</span><br><span class="line">        &#x2F;&#x2F; 若不是即把Element转换成一个虚拟DOM对象</span><br><span class="line">        oldVnode &#x3D; emptyNodeAt(oldVnode)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; sameVnode函数用于判断两个虚拟DOM是否是相同的,源码见补充1;</span><br><span class="line">    if (sameVnode(oldVnode, vnode)) &#123;</span><br><span class="line">        &#x2F;&#x2F; 相同则运行patchVnode对比两个节点,关于patchVnode后面会重点说明(核心)</span><br><span class="line">        patchVnode(oldVnode, vnode, insertedVnodeQueue)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        elm &#x3D; oldVnode.elm! &#x2F;&#x2F; !是ts的一种写法代码oldVnode.elm肯定有值</span><br><span class="line">        &#x2F;&#x2F; parentNode就是获取父元素</span><br><span class="line">        parent &#x3D; api.parentNode(elm) as Node</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; createElm是用于创建一个dom元素插入到vnode中(新的虚拟DOM)</span><br><span class="line">        createElm(vnode, insertedVnodeQueue)</span><br><span class="line"></span><br><span class="line">        if (parent !&#x3D;&#x3D; null) &#123;</span><br><span class="line">            &#x2F;&#x2F; 把dom元素插入到父元素中,并且把旧的dom删除</span><br><span class="line">            api.insertBefore(parent, vnode.elm!, api.nextSibling(elm))&#x2F;&#x2F; 把新创建的元素放在旧的dom后面</span><br><span class="line">            removeVnodes(parent, [oldVnode], 0, 0)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (i &#x3D; 0; i &lt; insertedVnodeQueue.length; ++i) &#123;</span><br><span class="line">        insertedVnodeQueue[i].data!.hook!.insert!(insertedVnodeQueue[i])</span><br><span class="line">    &#125;</span><br><span class="line">    for (i &#x3D; 0; i &lt; cbs.post.length; ++i) cbs.post[i]()</span><br><span class="line">    return vnode</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="补充1-sameVnode函数"><a href="#补充1-sameVnode函数" class="headerlink" title="补充1: sameVnode函数"></a>补充1: sameVnode函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sameVnode(vnode1: VNode, vnode2: VNode): boolean &#123; 通过key和sel选择器判断是否是相同节点</span><br><span class="line">    return vnode1.key &#x3D;&#x3D;&#x3D; vnode2.key &amp;&amp; vnode1.sel &#x3D;&#x3D;&#x3D; vnode2.sel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="patchVnode"><a href="#patchVnode" class="headerlink" title="patchVnode"></a>patchVnode</h3><ul>
+<li>第一阶段触发<code>prepatch</code>函数以及<code>update</code>函数(都会触发prepatch函数,两者不完全相同才会触发update函数)</li>
+<li>第二阶段,真正对比新旧<code>vnode</code>差异的地方</li>
+<li>第三阶段,触发<code>postpatch</code>函数更新节点</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function patchVnode(oldVnode: VNode, vnode: VNode, insertedVnodeQueue: VNodeQueue) &#123;</span><br><span class="line">    const hook &#x3D; vnode.data?.hook</span><br><span class="line">    hook?.prepatch?.(oldVnode, vnode)</span><br><span class="line">    const elm &#x3D; vnode.elm &#x3D; oldVnode.elm!</span><br><span class="line">    const oldCh &#x3D; oldVnode.children as VNode[]</span><br><span class="line">    const ch &#x3D; vnode.children as VNode[]</span><br><span class="line">    if (oldVnode &#x3D;&#x3D;&#x3D; vnode) return</span><br><span class="line">    if (vnode.data !&#x3D;&#x3D; undefined) &#123;</span><br><span class="line">        for (let i &#x3D; 0; i &lt; cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)</span><br><span class="line">        vnode.data.hook?.update?.(oldVnode, vnode)</span><br><span class="line">    &#125;</span><br><span class="line">    if (isUndef(vnode.text)) &#123; &#x2F;&#x2F; 新节点的text属性是undefined</span><br><span class="line">        if (isDef(oldCh) &amp;&amp; isDef(ch)) &#123; &#x2F;&#x2F; 当新旧节点都存在子节点</span><br><span class="line">            if (oldCh !&#x3D;&#x3D; ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue) &#x2F;&#x2F;并且他们的子节点不相同执行updateChildren函数,后续会重点说明(核心)</span><br><span class="line">        &#125; else if (isDef(ch)) &#123; &#x2F;&#x2F; 只有新节点有子节点</span><br><span class="line">            &#x2F;&#x2F; 当旧节点有text属性就会把&#39;&#39;赋予给真实dom的text属性</span><br><span class="line">            if (isDef(oldVnode.text)) api.setTextContent(elm, &#39;&#39;) </span><br><span class="line">            &#x2F;&#x2F; 并且把新节点的所有子节点插入到真实dom中</span><br><span class="line">            addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)</span><br><span class="line">        &#125; else if (isDef(oldCh)) &#123; &#x2F;&#x2F; 清除真实dom的所有子节点</span><br><span class="line">            removeVnodes(elm, oldCh, 0, oldCh.length - 1)</span><br><span class="line">        &#125; else if (isDef(oldVnode.text)) &#123; &#x2F;&#x2F; 把&#39;&#39;赋予给真实dom的text属性</span><br><span class="line">            api.setTextContent(elm, &#39;&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if (oldVnode.text !&#x3D;&#x3D; vnode.text) &#123; &#x2F;&#x2F;若旧节点的text与新节点的text不相同</span><br><span class="line">        if (isDef(oldCh)) &#123; &#x2F;&#x2F; 若旧节点有子节点,就把所有的子节点删除</span><br><span class="line">            removeVnodes(elm, oldCh, 0, oldCh.length - 1)</span><br><span class="line">        &#125;</span><br><span class="line">        api.setTextContent(elm, vnode.text!) &#x2F;&#x2F; 把新节点的text赋予给真实dom</span><br><span class="line">    &#125;</span><br><span class="line">    hook?.postpatch?.(oldVnode, vnode) &#x2F;&#x2F; 更新视图</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:\blog\source\images\Diff.webp"></p>
+<h3 id="updateChildren-核中核-判断子节点的差异"><a href="#updateChildren-核中核-判断子节点的差异" class="headerlink" title="updateChildren(核中核:判断子节点的差异)"></a>updateChildren(核中核:判断子节点的差异)</h3><p>  这个函数分为三个部分,<code>部分1:声明变量</code>,<code>部分2:同级别节点比较</code>,<code>部分3:循环结束的收尾工作</code></p>
+<ul>
+<li><p><code>同级别节点比较</code>的<code>五种</code>情况:</p>
+</li>
+<li><ol>
+<li><code>oldStartVnode/newStartVnode</code>(旧开始节点/新开始节点)相同</li>
+<li><code>oldEndVnode/newEndVnode</code>(旧结束节点/新结束节点)相同</li>
+<li><code>oldStartVnode/newEndVnode</code>(旧开始节点/新结束节点)相同</li>
+<li><code>oldEndVnode/newStartVnode</code>(旧结束节点/新开始节点)相同</li>
+<li><code>特殊情况当1,2,3,4的情况都不符合</code>的时候就会执行,在<code>oldVnodes</code>里面寻找跟<code>newStartVnode</code>一样的节点然后位移到<code>oldStartVnode</code>,若没有找到在就<code>oldStartVnode</code>创建一个</li>
+</ol>
+</li>
+<li><p>执行过程是一个循环,在每次循环里,只要执行了上述的情况的五种之一就会结束一次循环</p>
+</li>
+<li><p><code>循环结束的收尾工作</code>:直到oldStartIdx&gt;oldEndIdx || newStartIdx&gt;newEndIdx(代表旧节点或者新节点已经遍历完)</p>
+</li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2021/09/24/%E8%AF%A6%E8%A7%A3mixins%E6%B7%B7%E5%85%A5%E4%BD%BF%E7%94%A8/">
+        详解mixins混入使用 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

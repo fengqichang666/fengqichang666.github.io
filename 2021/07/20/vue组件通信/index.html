@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>vue组件通信 | 前端知识点记录</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="前端知识点记录">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="前端知识点记录" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">前端知识点记录</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-07-20T03:00:15.000Z" itemprop="datePublished">
+          2021-07-20
+      </time>
+    
+</span>
+                <h1>vue组件通信</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="方法一、props-emit"><a href="#方法一、props-emit" class="headerlink" title="方法一、props/$emit"></a>方法一、<code>props</code>/<code>$emit</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">父传子</span><br><span class="line">父组件调用子组件</span><br><span class="line"> &lt;Son :ptos&#x3D;&quot;ptos&quot;&gt;&lt;&#x2F;Son&gt;</span><br><span class="line"> </span><br><span class="line"> import Son from &#39;@&#x2F;views&#x2F;Children.vue&#39;</span><br><span class="line"> components:&#123;</span><br><span class="line">    Son</span><br><span class="line">  &#125;</span><br><span class="line"> 子组件接收</span><br><span class="line"> props:&#123;</span><br><span class="line">        ptos:&#123;</span><br><span class="line">            type:String,</span><br><span class="line">            require:true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> 如果需要根据父组件传值实时刷新子组件</span><br><span class="line"> data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            a:&#39;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> created()&#123;</span><br><span class="line">     this.a&#x3D;this.ptos;</span><br><span class="line"> &#125;,</span><br><span class="line"> watch:&#123;</span><br><span class="line">     ptos(newval,oldval)&#123;</span><br><span class="line">     	this.a&#x3D;newval</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">子传父</span><br><span class="line">父组件</span><br><span class="line"> &lt;Son :ptos&#x3D;&quot;ptos&quot; @zdysj&#x3D;&#39;zdysj&#39;&gt;&lt;&#x2F;Son&gt;</span><br><span class="line"> </span><br><span class="line"> zdysj(e)&#123;</span><br><span class="line">      console.log(e);&#x2F;&#x2F;e代表&#39;接收的子组件传的值&#39;</span><br><span class="line">    &#125;</span><br><span class="line"> 子</span><br><span class="line"> &lt;el-button @click&#x3D;&quot;stop&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;el-button&gt;</span><br><span class="line"> </span><br><span class="line"> stop()&#123;</span><br><span class="line">   this.$emit(&#39;zdysj&#39;,&#39;子传父&#39;);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二-事件总线（EventBus）"><a href="#方法二-事件总线（EventBus）" class="headerlink" title="方法二 事件总线（EventBus）"></a>方法二 事件总线（EventBus）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.使用js或者空vue实例组件</span><br><span class="line">新建一个 eventBus.js  </span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">export const EventBus &#x3D; new Vue()</span><br><span class="line">新建一个 eventBus.vue</span><br><span class="line">&lt;tempalte&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import Vue from &#39;vue&#39;;</span><br><span class="line">    export default new Vue(&#123;</span><br><span class="line">        data () &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">父子组件引入</span><br><span class="line">import &#123;EventBus&#125; from &#39;@&#x2F;eventBus.js&#39;</span><br><span class="line">父</span><br><span class="line">mounted()&#123;</span><br><span class="line">    EventBus.$on(&#39;zdysjed&#39;,(&#123;a&#125;)&#x3D;&gt;&#123;</span><br><span class="line">      console.log(a);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">子</span><br><span class="line">stop()&#123;</span><br><span class="line">      EventBus.$emit(&#39;zdysjed&#39;,&#123;a:&#39;eventBus&#39;&#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法三、vuex与localStorage"><a href="#方法三、vuex与localStorage" class="headerlink" title="方法三、vuex与localStorage"></a>方法三、vuex与localStorage</h2><h2 id="方法四、-attrs-listeners"><a href="#方法四、-attrs-listeners" class="headerlink" title="方法四、$attrs/$listeners"></a>方法四、<code>$attrs</code>/<code>$listeners</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">多级组件嵌套需要传递数据时，通常使用的方法是通过vuex。但如果仅仅是传递数据，而不做中间处理，使用 vuex 处理，未免有点大材小用。</span><br><span class="line">$attrs  可以通过 v-bind&#x3D;&quot;$attrs&quot; 传入内部组件</span><br><span class="line">接收除了props声明外的所有绑定属性（class、style除外）</span><br><span class="line">    &lt;Son a&#x3D;&#39;a&#39; b&#x3D;&#39;b&#39;&gt;&lt;&#x2F;Son&gt; </span><br><span class="line">    &lt;SonSon v-bind&#x3D;&quot;$attrs&quot;&gt;&lt;&#x2F;SonSon&gt;</span><br><span class="line">    子组件通过this.$attrs直接获取</span><br><span class="line">$listeners  可以通过 v-on&#x3D;&quot;$listeners&quot; 传入内部组件</span><br><span class="line">接收除了带有.native事件修饰符的所有事件监听器</span><br><span class="line">可以使用 $emit触发 parent.vue 的函数。</span><br><span class="line">$emit(&quot;事件名&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法五、provide-inject"><a href="#方法五、provide-inject" class="headerlink" title="方法五、provide/inject"></a>方法五、provide/inject</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> 父组件</span><br><span class="line"> provide()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">      provide:this.datas</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">后代组件获取 不仅限与子组件</span><br><span class="line">  inject:[&quot;datas&quot;]</span><br><span class="line">cosole.log(this.datas)</span><br><span class="line"></span><br><span class="line">使用2.6最新API Vue.observable 优化响应式 provide</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">  provide() &#123;</span><br><span class="line">    this.theme &#x3D; Vue.observable(&#123;</span><br><span class="line">      color: &quot;blue&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">    return &#123;</span><br><span class="line">      theme: this.theme</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  inject: &#123;</span><br><span class="line">    theme: &#123;</span><br><span class="line">      &#x2F;&#x2F;函数式组件取值不一样</span><br><span class="line">      default: () &#x3D;&gt; (&#123;&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法六、-parent-children与-ref"><a href="#方法六、-parent-children与-ref" class="headerlink" title="方法六、$parent / $children与 ref"></a>方法六、<code>$parent</code> / <code>$children</code>与 <code>ref</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;Son ref&#x3D;&quot;sonRef&quot;&gt;&lt;&#x2F;Son&gt; </span><br><span class="line">使用this.$refs.sonRef能更快的获取操作子组件属性值或函数</span><br><span class="line">$refs不能在created生命周期中使用 因为在组件创建时候 该ref还没有绑定元素</span><br><span class="line"></span><br><span class="line">$children获取某个子组件的属性值或函数</span><br><span class="line">可以使用$children[i].paramsName 来获取某个子组件的属性值或函数，$children返回的是一个子组件数组</span><br><span class="line"></span><br><span class="line">$parent获取修改父组件的数据内容</span><br><span class="line">this.$parent.datas</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>常见使用场景可以分为三类：</p>
+<ul>
+<li>父子通信：</li>
+</ul>
+<p>父向子传递数据是通过 props，子向父是通过 events（<code>$emit</code>）；通过父链 / 子链也可以通信（<code>$parent</code> / <code>$children</code>）；ref 也可以访问组件实例；provide / inject API；<code>$attrs/$listeners</code></p>
+<ul>
+<li>兄弟通信：</li>
+</ul>
+<p>Bus；Vuex</p>
+<ul>
+<li>跨级通信：</li>
+</ul>
+<p>Bus；Vuex；provide / inject API、<code>$attrs/$listeners</code></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2021/09/24/Vue%E4%B8%ADextend-mixins-extends%E4%BB%A5%E5%8F%8AVue-use%E7%9A%84install%E5%92%8CVue-nextTick/" style="float: left;">
+        ← Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/07/15/%E6%A0%B7%E5%BC%8F%E6%B8%85%E5%8D%95%E6%95%B4%E7%90%86/">
+        样式清单整理 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
