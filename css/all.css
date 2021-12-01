@@ -3540,3 +3540,6 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+a{
+	z-index: 10;
+}
