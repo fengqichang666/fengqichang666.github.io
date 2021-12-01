@@ -154,7 +154,7 @@ h1 span {
 	top: -2px
 }
 section {
-	background-color: #fff;
+	background-color: transparent;
 	position: relative;
 	padding-top: 60px;
 	z-index: 4;
