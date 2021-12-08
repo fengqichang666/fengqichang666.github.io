@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>vue中可能会用到的 | 前端知识点记录</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="前端知识点记录">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="前端知识点记录" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">前端知识点记录</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-12-08T07:23:24.000Z" itemprop="datePublished">
+          2021-12-08
+      </time>
+    
+</span>
+                <h1>vue中可能会用到的</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h3 id="监听数组内对象某属性改变"><a href="#监听数组内对象某属性改变" class="headerlink" title="监听数组内对象某属性改变"></a>监听数组内对象某属性改变</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">computed:&#123;</span><br><span class="line">	watchInputData()&#123; return this.listMenu[4].value &#125;&#x2F;&#x2F;下标可以是变量</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">      watchInputData(newval,oldval) &#123;</span><br><span class="line">        &#x2F;&#x2F;这里即可监听到</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">2.</span><br><span class="line">created()&#123;</span><br><span class="line">	this.$watch(()&#x3D;&gt;this.listMenu[4].value,function(newval,oldval)&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="vue输入框防抖"><a href="#vue输入框防抖" class="headerlink" title="vue输入框防抖"></a>vue输入框防抖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1.设置v-throttle自定义指令</span><br><span class="line">Vue.directive(&#39;throttle&#39;, &#123;</span><br><span class="line">  bind: (el, binding) &#x3D;&gt; &#123;</span><br><span class="line">    let throttleTime &#x3D; binding.value; &#x2F;&#x2F; 防抖时间</span><br><span class="line">    if (!throttleTime) &#123; &#x2F;&#x2F; 用户若不设置防抖时间，则默认2s</span><br><span class="line">      throttleTime &#x3D; 2000;</span><br><span class="line">    &#125;</span><br><span class="line">    let cbFun;</span><br><span class="line">    el.addEventListener(&#39;click&#39;, event &#x3D;&gt; &#123;</span><br><span class="line">      if (!cbFun) &#123; &#x2F;&#x2F; 第一次执行</span><br><span class="line">        cbFun &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">          cbFun &#x3D; null;</span><br><span class="line">        &#125;, throttleTime);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        event &amp;&amp; event.stopImmediatePropagation();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, true);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 2.为button标签设置v-throttle自定义指令</span><br><span class="line">&lt;button @click&#x3D;&quot;sayHello&quot; v-throttle&gt;提交&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">const LazyLoad &#x3D; &#123;</span><br><span class="line">    &#x2F;&#x2F; install方法</span><br><span class="line">    install(Vue,options)&#123;</span><br><span class="line">       &#x2F;&#x2F; 代替图片的loading图</span><br><span class="line">        let defaultSrc &#x3D; options.default;</span><br><span class="line">        Vue.directive(&#39;lazy&#39;,&#123;</span><br><span class="line">            bind(el,binding)&#123;</span><br><span class="line">                LazyLoad.init(el,binding.value,defaultSrc);</span><br><span class="line">            &#125;,</span><br><span class="line">            inserted(el)&#123;</span><br><span class="line">                &#x2F;&#x2F; 兼容处理</span><br><span class="line">                if(&#39;IntersectionObserver&#39; in window)&#123;</span><br><span class="line">                    LazyLoad.observe(el);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    LazyLoad.listenerScroll(el);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 初始化</span><br><span class="line">    init(el,val,def)&#123;</span><br><span class="line">        &#x2F;&#x2F; data-src 储存真实src</span><br><span class="line">        el.setAttribute(&#39;data-src&#39;,val);</span><br><span class="line">        &#x2F;&#x2F; 设置src为loading图</span><br><span class="line">        el.setAttribute(&#39;src&#39;,def);</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 利用IntersectionObserver监听el</span><br><span class="line">    observe(el)&#123;</span><br><span class="line">        let io &#x3D; new IntersectionObserver(entries &#x3D;&gt; &#123;</span><br><span class="line">            let realSrc &#x3D; el.dataset.src;</span><br><span class="line">            if(entries[0].isIntersecting)&#123;</span><br><span class="line">                if(realSrc)&#123;</span><br><span class="line">                    el.src &#x3D; realSrc;</span><br><span class="line">                    el.removeAttribute(&#39;data-src&#39;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        io.observe(el);</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 监听scroll事件</span><br><span class="line">    listenerScroll(el)&#123;</span><br><span class="line">        let handler &#x3D; LazyLoad.throttle(LazyLoad.load,300);</span><br><span class="line">        LazyLoad.load(el);</span><br><span class="line">        window.addEventListener(&#39;scroll&#39;,() &#x3D;&gt; &#123;</span><br><span class="line">            handler(el);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 加载真实图片</span><br><span class="line">    load(el)&#123;</span><br><span class="line">        let windowHeight &#x3D; document.documentElement.clientHeight</span><br><span class="line">        let elTop &#x3D; el.getBoundingClientRect().top;</span><br><span class="line">        let elBtm &#x3D; el.getBoundingClientRect().bottom;</span><br><span class="line">        let realSrc &#x3D; el.dataset.src;</span><br><span class="line">        if(elTop - windowHeight&lt;0&amp;&amp;elBtm &gt; 0)&#123;</span><br><span class="line">            if(realSrc)&#123;</span><br><span class="line">                el.src &#x3D; realSrc;</span><br><span class="line">                el.removeAttribute(&#39;data-src&#39;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 节流</span><br><span class="line">    throttle(fn,delay)&#123;</span><br><span class="line">        let timer; </span><br><span class="line">        let prevTime;</span><br><span class="line">        return function(...args)&#123;</span><br><span class="line">            let currTime &#x3D; Date.now();</span><br><span class="line">            let context &#x3D; this;</span><br><span class="line">            if(!prevTime) prevTime &#x3D; currTime;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            </span><br><span class="line">            if(currTime - prevTime &gt; delay)&#123;</span><br><span class="line">                prevTime &#x3D; currTime;</span><br><span class="line">                fn.apply(context,args);</span><br><span class="line">                clearTimeout(timer);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            timer &#x3D; setTimeout(function()&#123;</span><br><span class="line">                prevTime &#x3D; Date.now();</span><br><span class="line">                timer &#x3D; null;</span><br><span class="line">                fn.apply(context,args);</span><br><span class="line">            &#125;,delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">export default LazyLoad;</span><br></pre></td></tr></table></figure>
+
+<h3 id="一键-Copy的功能"><a href="#一键-Copy的功能" class="headerlink" title="一键 Copy的功能"></a>一键 Copy的功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Message &#125; from &#39;ant-design-vue&#39;;</span><br><span class="line"></span><br><span class="line">const vCopy &#x3D; &#123; &#x2F;&#x2F;</span><br><span class="line">  &#x2F;*</span><br><span class="line">    bind 钩子函数，第一次绑定时调用，可以在这里做初始化设置</span><br><span class="line">    el: 作用的 dom 对象</span><br><span class="line">    value: 传给指令的值，也就是我们要 copy 的值</span><br><span class="line">  *&#x2F;</span><br><span class="line">  bind(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value; &#x2F;&#x2F; 用一个全局属性来存传进来的值，因为这个值在别的钩子函数里还会用到</span><br><span class="line">    el.handler &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      if (!el.$value) &#123;</span><br><span class="line">      &#x2F;&#x2F; 值为空的时候，给出提示，我这里的提示是用的 ant-design-vue 的提示，你们随意</span><br><span class="line">        Message.warning(&#39;无复制内容&#39;);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F; 动态创建 textarea 标签</span><br><span class="line">      const textarea &#x3D; document.createElement(&#39;textarea&#39;);</span><br><span class="line">      &#x2F;&#x2F; 将该 textarea 设为 readonly 防止 iOS 下自动唤起键盘，同时将 textarea 移出可视区域</span><br><span class="line">      textarea.readOnly &#x3D; &#39;readonly&#39;;</span><br><span class="line">      textarea.style.position &#x3D; &#39;absolute&#39;;</span><br><span class="line">      textarea.style.left &#x3D; &#39;-9999px&#39;;</span><br><span class="line">      &#x2F;&#x2F; 将要 copy 的值赋给 textarea 标签的 value 属性</span><br><span class="line">      textarea.value &#x3D; el.$value;</span><br><span class="line">      &#x2F;&#x2F; 将 textarea 插入到 body 中</span><br><span class="line">      document.body.appendChild(textarea);</span><br><span class="line">      &#x2F;&#x2F; 选中值并复制</span><br><span class="line">      textarea.select();</span><br><span class="line">      &#x2F;&#x2F; textarea.setSelectionRange(0, textarea.value.length);</span><br><span class="line">      const result &#x3D; document.execCommand(&#39;Copy&#39;);</span><br><span class="line">      if (result) &#123;</span><br><span class="line">        Message.success(&#39;复制成功&#39;);</span><br><span class="line">      &#125;</span><br><span class="line">      document.body.removeChild(textarea);</span><br><span class="line">    &#125;;</span><br><span class="line">    &#x2F;&#x2F; 绑定点击事件，就是所谓的一键 copy 啦</span><br><span class="line">    el.addEventListener(&#39;click&#39;, el.handler);</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 当传进来的值更新的时候触发</span><br><span class="line">  componentUpdated(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 指令与元素解绑的时候，移除事件绑定</span><br><span class="line">  unbind(el) &#123;</span><br><span class="line">    el.removeEventListener(&#39;click&#39;, el.handler);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default vCopy;</span><br></pre></td></tr></table></figure>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2021/12/08/vue%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6css%E4%BF%AE%E6%94%B9/">
+        vue第三方组件css修改 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
