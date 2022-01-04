@@ -182,11 +182,11 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require: node 和 es6 都支持的引入</span><br><span class="line">export &#x2F; import : 只有es6 支持的导出引入</span><br><span class="line">module.exports &#x2F; exports: 只有 node 支持的导出</span><br></pre></td></tr></table></figure>
+      		<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ES6标准发布后，module成为标准，标准的使用是以export指令导出接口，以import引入模块，但是在我们一贯的node模块中，我们采用的是CommonJS规范，使用require引入模块，使用module.exports导出接口。</span><br><span class="line">require: node 和 es6 都支持的引入</span><br><span class="line">export &#x2F; import : 只有es6 支持的导出引入</span><br><span class="line">module.exports &#x2F; exports: 只有 node 支持的导出</span><br></pre></td></tr></table></figure>
 
 <p>#node模块</p>
 <blockquote>
-<p><code>Node</code>里面的模块系统遵循的是<code>CommonJS</code>规范。</p>
+<p><code>Node</code>里面的模块系统遵循的是<code>CommonJS</code>规范。<code>requirejs</code>遵循<code>AMD</code>，<code>seajs</code>遵循<code>CMD</code></p>
 <p><code>CommonJS</code>定义的模块分为: 模块标识(<code>module</code>)、模块定义(<code>exports</code>) 、模块引用(<code>require</code>)</p>
 </blockquote>
 <p>在一个node执行一个文件时，会给这个文件内生成一个 <code>exports</code>和<code>module</code>对象，<br>而<code>module</code>又有一个<code>exports</code>属性。都指向一块{}内存区域。</p>
@@ -195,6 +195,11 @@
 </blockquote>
 <p>其实<code>require</code>导出的内容是<code>module.exports</code>的指向的内存块内容，并不是<code>exports</code>的。</p>
 <p>简而言之，区分他们之间的区别就是 <code>exports</code> 只是 <code>module.exports</code>的引用，辅助后者添加内容用的。</p>
+<p>CommonJS与requirejs  （使用一个define函数来提供模块的闭包，其他可以完全一致）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">导出</span><br><span class="line">&#x2F;&#x2F; a.js</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; -------- node -----------</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  a : function() &#123;&#125;,</span><br><span class="line">  b : &#39;xxx&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ----------- AMD or CMD ----------------</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">  module.exports &#x3D; &#123;</span><br><span class="line">    a : function() &#123;&#125;,</span><br><span class="line">    b : &#39;xxx&#39;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">导入</span><br><span class="line">&#x2F;&#x2F; b.js</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ------------ node ---------</span><br><span class="line">var m &#x3D; require(&#39;.&#x2F;a&#39;);</span><br><span class="line">m.a();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ------------ AMD or CMD -------------</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">   var m &#x3D; require(&#39;.&#x2F;a&#39;);</span><br><span class="line">   m.a();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="ES中的模块导出导入"><a href="#ES中的模块导出导入" class="headerlink" title="ES中的模块导出导入"></a>ES中的模块导出导入</h1><h3 id="export-和-export-default"><a href="#export-和-export-default" class="headerlink" title="export 和 export default"></a>export 和 export default</h3><blockquote>
 <ol>
 <li>export与export default均可用于导出常量、函数、文件、模块等</li>
