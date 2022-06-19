@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>git merge --no-ff 与--ff 和--squash的区别 | 前端知识点记录</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="前端知识点记录">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="前端知识点记录" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">前端知识点记录</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2022-06-19T03:18:58.000Z" itemprop="datePublished">
+          2022-06-19
+      </time>
+    
+</span>
+                <h1>git merge --no-ff 与--ff 和--squash的区别</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>推荐在合并分支时，，加上 <code>--no-ff</code> 参数，会生成一个新的commit，用于查看这次合并的差异了：<code>--no-ff</code> 在这的作用是禁止快进式合并。</p>
+<p>Git 合并两个分支时，如果顺着一个分支走下去可以到达另一个分支的话，那么 Git 在合并两者时，只会简单地把指针右移，叫做“快进”（fast-forward），比如下图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          A---B---C feature</span><br><span class="line">         &#x2F;</span><br><span class="line">D---E---F master</span><br></pre></td></tr></table></figure>
+
+<p>要把 feature 合并（直接merge）到 master 中，结果就会变成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          A---B---C feature</span><br><span class="line">         &#x2F;         master</span><br><span class="line">D---E---F </span><br></pre></td></tr></table></figure>
+
+<p>因为 feature 就在 master 的下游，所以直接移动了 master 的指针，master 和 feature 都指向了 C。而如果执行了 <code>git merge --no-ff feature</code> 的话，是下面的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          A---B---C feature</span><br><span class="line">         &#x2F;         \</span><br><span class="line">D---E---F-----------G master</span><br></pre></td></tr></table></figure>
+
+<p>由于 <code>--no-ff</code> 禁止了快进，所以会生成一个新的提交，master 指向 G。</p>
+<p>从合并后的代码来看，结果其实是一样的，区别就在于 <code>--no-ff</code> 会让 Git 生成一个新的提交对象。为什么要这样？通常我们把 master 作为主分支，上面存放的都是比较稳定的代码，提交频率也很低，而 feature 是用来开发特性的，上面会存在许多零碎的提交，快进式合并会把 feature 的提交历史混入到 master 中，搅乱 master 的提交历史。所以如果你根本不在意提交历史，也不爱管 master 干不干净，那么 <code>--no-ff</code> 其实没什么用。不过，如果某一次 master 出现了问题，你需要回退到上个版本的时候，比如上例，你就会发现退一个版本到了 B，而不是想要的 F，因为 feature 的历史合并进了 master 里。</p>
+<h2 id="图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程"><a href="#图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程" class="headerlink" title="图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程"></a>图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程</h2><h3 id="从master分支-切出-b1分支-制造两次提交："><a href="#从master分支-切出-b1分支-制造两次提交：" class="headerlink" title="从master分支 切出 b1分支  制造两次提交："></a>从master分支 切出 b1分支  制造两次提交：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">commit1:</span><br><span class="line"> create mode 100644 file2.txt</span><br><span class="line"> create mode 100644 file3.txt	</span><br><span class="line">commit2:</span><br><span class="line"> create mode 100644 file4.txt</span><br><span class="line"> create mode 100644 file5.txt</span><br></pre></td></tr></table></figure>
+
+<p>合并分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff b1 -m &quot;Merge branch b1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到，以 <code>git merge --no-ff</code> 方式进行合并以后，git的节点图表是如下图所示的。1、2两个节点是每次提交后创建的提交节点，3节点是使用<code>--no-diff</code>进行合并时，创建的提交节点。</p>
+<p><img src="https://fengqichang666.github.io/images/1619677619775-20210429142658.png"></p>
+<p>从文件上面看，最后的这个节点的变更，是每次提交的变更的一个汇总，是将分支<code>b1</code>的所有的变更，都汇总到一起形成了一个新的提交节点，然后将这个节点提交到<code>master</code> 分支上面去。</p>
+<p><img src="https://fengqichang666.github.io/images/1619677724167-20210429142843.png"></p>
+<p><img src="https://fengqichang666.github.io/images/1619677762866-20210429142922.png"></p>
+<p><img src="https://fengqichang666.github.io/images/1619677806322-20210429143005.png"></p>
+<h3 id="从master分支-切出-b2分支-制造两次提交："><a href="#从master分支-切出-b2分支-制造两次提交：" class="headerlink" title="从master分支 切出 b2分支  制造两次提交："></a>从master分支 切出 b2分支  制造两次提交：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">commit1:</span><br><span class="line">  create mode 100644 file6.txt</span><br><span class="line">commit2:</span><br><span class="line">  create mode 100644 file7.txt</span><br><span class="line"> create mode 100644 file8.txt</span><br></pre></td></tr></table></figure>
+
+<p>合并分支</p>
+<p><code>git merge</code> 是默认带 <code>--ff</code> 参数的，也就是<code>fast forward</code>的意思</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge b2 -m &quot;merge branch b2&quot;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到，直接使用git merge，会将整个b2的所有的提交节点，都直接汇入到master分支中。比如说，我有一个开发分支，开发了两周，中间的大大小小的提交有上百次，如果我直接将这个开发分支通过git merge的方式进行提交到master分支的话，那master分支将会被我这个分支中的琐碎的提交所淹没。<br><img src="https://fengqichang666.github.io/images/1619679062606-20210429145101.png"></p>
+<p>拿图中的merge –no-ff与直接merge相比较，我们可以看到， merge –no-ff的合并方式，会合并提交，并保留有原来的提交记录，也不会将原来的提交记录汇入到被合并的分支中，保证了被合并分支的提交记录的整洁，如果有需要进行回滚的点，也可以很方便的从历史提交记录中找到相应的提交点。</p>
+<p><img src="https://fengqichang666.github.io/images/1619680127536-20210429150846.png"></p>
+<p>而且，就算我们将b1这个分支删除掉，这个记录也不会消失。我们执行完删除操作以后，可以从下图中看到，分支中的b1分支已经没了，但是历史的提交节点并没有受到影响。</p>
+<p><img src="https://fengqichang666.github.io/images/1619681371508-20210429152930.png"></p>
+<h3 id="merge-–squash"><a href="#merge-–squash" class="headerlink" title="merge –squash"></a><strong>merge –squash</strong></h3><p><code>merge --squash</code> 会将分支的所有的提交压缩到一次提交中，并且不会自动提交，需要<code>merge</code>的操作人手动进行提交。</p>
+<p> 从master分支中创建b3分支，并切换到b3分支上</p>
+<p><code>merge --squash</code> 后<code>b3</code>分支与<code>master</code>分支间的关联是中断的，<code>b3</code>分支中提交的文件，在新创建的节点中，也是未提交的状态，<code>merge --squash</code>操作，会将要合并的分支的所有的提交进行合并压缩到一次提交上。</p>
+<p><img src="https://fengqichang666.github.io/images/1619681946336-20210429153905.png"></p>
+<p>在我们将合并提交以后，我们可以看到，这次提交以后，<code>merge --squash</code>新创建的提交点，与原来的<code>b3</code>分支是断开的，是无法溯源的</p>
+<p><img src="https://fengqichang666.github.io/images/1619683130210-20210429155849.png"></p>
+<h3 id="merge-–no-ff-–no-commit"><a href="#merge-–no-ff-–no-commit" class="headerlink" title="merge –no-ff –no-commit"></a><strong>merge –no-ff –no-commit</strong></h3><p>在合并分支时使用<code>--no-commit</code> 参数，可以只执行合并代码的操作，不进行提交操作。</p>
+<p>可以直观的看到，使用<code>--no-ff --no-commit</code> 的方式进行提交以后，合并是并没有提交的。</p>
+<p><img src="https://fengqichang666.github.io/images/1619684451105-20210429162050.png"></p>
+<p>手动进行提交以后，才提交上去</p>
+<p><img src="https://fengqichang666.github.io/images/1619684848026-20210429162727.png"></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>merge –no-ff 与 merge –ff 和merge –squash 相比，拥有可以保持分支整洁，而且可追溯的优点，所以在开发中，推荐使用 merge –no-ff 方式进行分支合并，而且在合并时，配合 –no-commit 进行合并，待检查合并完毕的文件以后再进行提交的方式为最佳方案。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2022/06/19/Git%E5%87%AD%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F-https/" style="float: left;">
+        ← Git凭据管理的三种方式(https)
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/12/08/vue%E4%B8%AD%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84/">
+        vue中可能会用到的 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
