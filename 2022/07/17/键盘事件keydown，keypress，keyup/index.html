@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>git merge --no-ff 与--ff 和--squash的区别 | 前端知识点记录</title>
+  <title>键盘事件keydown，keypress，keyup | 前端知识点记录</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -173,74 +173,110 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2022-06-19T03:18:58.000Z" itemprop="datePublished">
-          2022-06-19
+      <time datetime="2022-07-17T03:46:10.000Z" itemprop="datePublished">
+          2022-07-17
       </time>
     
 </span>
-                <h1>git merge --no-ff 与--ff 和--squash的区别</h1>
+                <h1>键盘事件keydown，keypress，keyup</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>推荐在合并分支时，，加上 <code>--no-ff</code> 参数，会生成一个新的commit，用于查看这次合并的差异了：<code>--no-ff</code> 在这的作用是禁止快进式合并。</p>
-<p>Git 合并两个分支时，如果顺着一个分支走下去可以到达另一个分支的话，那么 Git 在合并两者时，只会简单地把指针右移，叫做“快进”（fast-forward），比如下图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          A---B---C feature</span><br><span class="line">         &#x2F;</span><br><span class="line">D---E---F master</span><br></pre></td></tr></table></figure>
+      		<h3 id="一、键盘事件基础"><a href="#一、键盘事件基础" class="headerlink" title="一、键盘事件基础"></a>一、键盘事件基础</h3><h6 id="1、定义"><a href="#1、定义" class="headerlink" title="1、定义"></a>1、定义</h6><ul>
+<li><code>keydown</code>：按下键盘键</li>
+<li><code>keypress</code>：紧接着<code>keydown</code>事件触发（只有按下字符键时触发）</li>
+<li><code>keyup</code>：释放键盘键</li>
+</ul>
+<p><strong>顺序为：keydown -&gt; keypress -&gt;keyup</strong></p>
+<h6 id="2、示例"><a href="#2、示例" class="headerlink" title="2、示例"></a>2、示例</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    function keydown(event) &#123;</span><br><span class="line">        console.log(&#39;keydown&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    function keypress(event) &#123;</span><br><span class="line">        console.log(event.keyCode);</span><br><span class="line">        console.log(event.charCode);</span><br><span class="line">        console.log(&#39;keypress&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    function keyup(event) &#123;</span><br><span class="line">        console.log(&#39;keyup&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; onkeydown&#x3D;&quot;keydown()&quot; onkeypress&#x3D;&quot;keypress()&quot; onkeyup&#x3D;&quot;keyup()&quot; &#x2F;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>要把 feature 合并（直接merge）到 master 中，结果就会变成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          A---B---C feature</span><br><span class="line">         &#x2F;         master</span><br><span class="line">D---E---F </span><br></pre></td></tr></table></figure>
+<h6 id="3、详解"><a href="#3、详解" class="headerlink" title="3、详解"></a>3、详解</h6><p>1）用户<strong>按下键盘上的字符键时</strong></p>
+<ul>
+<li>首先会触发<code>keydown</code>事件</li>
+<li>然后紧接着触发<code>keypress</code>事件</li>
+<li>最后触发<code>keyup</code>事件</li>
+<li>如果用户按下了一个<em>字符键</em>不放，就会重复触发<code>keydown</code>和<code>keypress</code>事件，直到用户松开该键为止</li>
+</ul>
+<p>2）当用户<strong>按下非字符键时</strong></p>
+<ul>
+<li>首先会触发<code>keydown</code>事件</li>
+<li>然后就触发<code>keyup</code>事件</li>
+<li>如果用户按下了一个<em>非字符键</em>不放，就会重复触发<code>keydown</code>事件，直到用户松开该键为止</li>
+</ul>
+<p>3）<em>在<code>keyup</code> 事件中无法阻止浏览器默认事件</em>，因为在<code>keypress</code>时，浏览器默认行为已经完成，即将文字输入文本框（尽管这时还没显示），这个时候不管是<code>preventDefault</code>还是<code>returnValue = false</code>，都不能阻止在文本框中输入文字的行为，<em>如要阻止默认行为</em>，必须在<code>keydown</code>或<code>keypress</code>时阻止</p>
+<p>4）发生<code>keypress</code>事件意味着按下的键会影响到屏幕中文本的显示，即在所有浏览器中，按下能够<em>插入或删除字符</em>的键都会触发<code>keypress</code>事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id&#x3D;&quot;input&quot; value&#x3D;&quot;default&quot; type&#x3D;&quot;text&quot; &#x2F;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var input &#x3D; document.getElementById(&#39;input&#39;);</span><br><span class="line">input.onkeydown &#x3D; function() &#123;</span><br><span class="line">    &#x2F;&#x2F;return false;</span><br><span class="line">    console.log(&#39;onkeydown &#39; + this.value);</span><br><span class="line">&#125;</span><br><span class="line">input.onkeypress &#x3D; function() &#123;</span><br><span class="line">    &#x2F;&#x2F;return false;</span><br><span class="line">    console.log(&#39;onkeypress &#39; + this.value);</span><br><span class="line">&#125;</span><br><span class="line">input.onkeyup &#x3D; function() &#123;</span><br><span class="line">    return false;</span><br><span class="line">    console.log(&#39;onkeyup &#39; + this.value);</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#x2F;&#x2F;结果为keydown、keypress事件中return false文本框无法输入文字</span><br><span class="line">&#x2F;&#x2F;在keyup事件中return false文本框可以输入文字</span><br></pre></td></tr></table></figure>
 
-<p>因为 feature 就在 master 的下游，所以直接移动了 master 的指针，master 和 feature 都指向了 C。而如果执行了 <code>git merge --no-ff feature</code> 的话，是下面的结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          A---B---C feature</span><br><span class="line">         &#x2F;         \</span><br><span class="line">D---E---F-----------G master</span><br></pre></td></tr></table></figure>
-
-<p>由于 <code>--no-ff</code> 禁止了快进，所以会生成一个新的提交，master 指向 G。</p>
-<p>从合并后的代码来看，结果其实是一样的，区别就在于 <code>--no-ff</code> 会让 Git 生成一个新的提交对象。为什么要这样？通常我们把 master 作为主分支，上面存放的都是比较稳定的代码，提交频率也很低，而 feature 是用来开发特性的，上面会存在许多零碎的提交，快进式合并会把 feature 的提交历史混入到 master 中，搅乱 master 的提交历史。所以如果你根本不在意提交历史，也不爱管 master 干不干净，那么 <code>--no-ff</code> 其实没什么用。不过，如果某一次 master 出现了问题，你需要回退到上个版本的时候，比如上例，你就会发现退一个版本到了 B，而不是想要的 F，因为 feature 的历史合并进了 master 里。</p>
-<h2 id="图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程"><a href="#图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程" class="headerlink" title="图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程"></a>图形化工具sourceTree，这个可以帮助我们更直观的观察每种merge方式的过程</h2><h3 id="从master分支-切出-b1分支-制造两次提交："><a href="#从master分支-切出-b1分支-制造两次提交：" class="headerlink" title="从master分支 切出 b1分支  制造两次提交："></a>从master分支 切出 b1分支  制造两次提交：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">commit1:</span><br><span class="line"> create mode 100644 file2.txt</span><br><span class="line"> create mode 100644 file3.txt	</span><br><span class="line">commit2:</span><br><span class="line"> create mode 100644 file4.txt</span><br><span class="line"> create mode 100644 file5.txt</span><br></pre></td></tr></table></figure>
-
-<p>合并分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff b1 -m &quot;Merge branch b1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到，以 <code>git merge --no-ff</code> 方式进行合并以后，git的节点图表是如下图所示的。1、2两个节点是每次提交后创建的提交节点，3节点是使用<code>--no-diff</code>进行合并时，创建的提交节点。</p>
-<p><img src="https://fengqichang666.github.io/images/1619677619775-20210429142658.png"></p>
-<p>从文件上面看，最后的这个节点的变更，是每次提交的变更的一个汇总，是将分支<code>b1</code>的所有的变更，都汇总到一起形成了一个新的提交节点，然后将这个节点提交到<code>master</code> 分支上面去。</p>
-<p><img src="https://fengqichang666.github.io/images/1619677724167-20210429142843.png"></p>
-<p><img src="https://fengqichang666.github.io/images/1619677762866-20210429142922.png"></p>
-<p><img src="https://fengqichang666.github.io/images/1619677806322-20210429143005.png"></p>
-<h3 id="从master分支-切出-b2分支-制造两次提交："><a href="#从master分支-切出-b2分支-制造两次提交：" class="headerlink" title="从master分支 切出 b2分支  制造两次提交："></a>从master分支 切出 b2分支  制造两次提交：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">commit1:</span><br><span class="line">  create mode 100644 file6.txt</span><br><span class="line">commit2:</span><br><span class="line">  create mode 100644 file7.txt</span><br><span class="line"> create mode 100644 file8.txt</span><br></pre></td></tr></table></figure>
-
-<p>合并分支</p>
-<p><code>git merge</code> 是默认带 <code>--ff</code> 参数的，也就是<code>fast forward</code>的意思</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge b2 -m &quot;merge branch b2&quot;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到，直接使用git merge，会将整个b2的所有的提交节点，都直接汇入到master分支中。比如说，我有一个开发分支，开发了两周，中间的大大小小的提交有上百次，如果我直接将这个开发分支通过git merge的方式进行提交到master分支的话，那master分支将会被我这个分支中的琐碎的提交所淹没。<br><img src="https://fengqichang666.github.io/images/1619679062606-20210429145101.png"></p>
-<p>拿图中的merge –no-ff与直接merge相比较，我们可以看到， merge –no-ff的合并方式，会合并提交，并保留有原来的提交记录，也不会将原来的提交记录汇入到被合并的分支中，保证了被合并分支的提交记录的整洁，如果有需要进行回滚的点，也可以很方便的从历史提交记录中找到相应的提交点。</p>
-<p><img src="https://fengqichang666.github.io/images/1619680127536-20210429150846.png"></p>
-<p>而且，就算我们将b1这个分支删除掉，这个记录也不会消失。我们执行完删除操作以后，可以从下图中看到，分支中的b1分支已经没了，但是历史的提交节点并没有受到影响。</p>
-<p><img src="https://fengqichang666.github.io/images/1619681371508-20210429152930.png"></p>
-<h3 id="merge-–squash"><a href="#merge-–squash" class="headerlink" title="merge –squash"></a><strong>merge –squash</strong></h3><p><code>merge --squash</code> 会将分支的所有的提交压缩到一次提交中，并且不会自动提交，需要<code>merge</code>的操作人手动进行提交。</p>
-<p> 从master分支中创建b3分支，并切换到b3分支上</p>
-<p><code>merge --squash</code> 后<code>b3</code>分支与<code>master</code>分支间的关联是中断的，<code>b3</code>分支中提交的文件，在新创建的节点中，也是未提交的状态，<code>merge --squash</code>操作，会将要合并的分支的所有的提交进行合并压缩到一次提交上。</p>
-<p><img src="https://fengqichang666.github.io/images/1619681946336-20210429153905.png"></p>
-<p>在我们将合并提交以后，我们可以看到，这次提交以后，<code>merge --squash</code>新创建的提交点，与原来的<code>b3</code>分支是断开的，是无法溯源的</p>
-<p><img src="https://fengqichang666.github.io/images/1619683130210-20210429155849.png"></p>
-<h3 id="merge-–no-ff-–no-commit"><a href="#merge-–no-ff-–no-commit" class="headerlink" title="merge –no-ff –no-commit"></a><strong>merge –no-ff –no-commit</strong></h3><p>在合并分支时使用<code>--no-commit</code> 参数，可以只执行合并代码的操作，不进行提交操作。</p>
-<p>可以直观的看到，使用<code>--no-ff --no-commit</code> 的方式进行提交以后，合并是并没有提交的。</p>
-<p><img src="https://fengqichang666.github.io/images/1619684451105-20210429162050.png"></p>
-<p>手动进行提交以后，才提交上去</p>
-<p><img src="https://fengqichang666.github.io/images/1619684848026-20210429162727.png"></p>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>merge –no-ff 与 merge –ff 和merge –squash 相比，拥有可以保持分支整洁，而且可追溯的优点，所以在开发中，推荐使用 merge –no-ff 方式进行分支合并，而且在合并时，配合 –no-commit 进行合并，待检查合并完毕的文件以后再进行提交的方式为最佳方案。</p>
+<h3 id="二、键码和键盘事件"><a href="#二、键码和键盘事件" class="headerlink" title="二、键码和键盘事件"></a>二、键码和键盘事件</h3><ul>
+<li><strong>系统功能键</strong> ：<code>Esc、Tab、CapsLk、Shift、Ctrl、Alt、Enter、Backspace、Print Screen、Scroll Lock、Pause Break、Insert、Delete、Home、End、Page Up、Page Down， F1 ~ F12，Num Lock、The Arrow Keys</code></li>
+</ul>
+<h6 id="１、键盘中的键"><a href="#１、键盘中的键" class="headerlink" title="１、键盘中的键"></a>１、键盘中的键</h6><ul>
+<li>分为 <strong>字符键</strong> (可打印) 和 <strong>功能键</strong> (不可打印)</li>
+<li><code>keypress</code>支持的系统<em>功能键</em> ：</li>
+<li>**<code>Firefox</code>**：<code>Esc、Enter、Backspace、Pause Break、Insert、 Delete、Home、End、Page Up、Page Down、F1 through F12、The Arrow Keys</code>、上下左右键</li>
+<li><strong><code>Chrome / Oprea / Safari</code></strong> ：<code>Enter</code></li>
+<li>**<code>IE</code>**：<code>Esc、Enter</code></li>
+<li><strong>除了 \</strong><code>Firefox</code>**，其他<code>chrome、oprea、safari、IE</code> 上下左右键不会触发<code>kepress</code>**</li>
+</ul>
+<h6 id="2、-keyCode-键码-、which、charCode-字符编码"><a href="#2、-keyCode-键码-、which、charCode-字符编码" class="headerlink" title="2、**keyCode(键码)、which、charCode(字符编码)"></a>2、**keyCode(键码)、which、charCode(字符编码)</h6><ul>
+<li><code>keydown</code>: 获得<code>keyCode， charCode=0</code></li>
+<li><code>keyup</code>: 获得<code>keyCode， charCode=0</code></li>
+<li><code>keypress</code>: 字符<code>keyCode</code>=0，获取<code>charCode</code>值，反之获取<code>keyCode</code>， <code>charCode</code>=0</li>
+</ul>
+<p><strong>详述：</strong></p>
+<ul>
+<li><code>event对象</code>包含一个<code>keyCode</code>属性和一个<code>charCode</code>属性</li>
+<li>当捕捉的是<code>keydown</code>和<code>keyup</code>事件时，<code>keyCode</code>表示的就是你具体按的键(也称为<code>virtual keycode</code>)，<code>charCode</code>为0</li>
+<li>当捕捉的是<code>keypress</code>事件时，<code>keyCode</code>为0，<code>charCode</code>指的是你按下的字符（而 IE 只有一个<code>KeyCode</code>属性，它指的是你键入的字符(<code>character code</code>))</li>
+</ul>
+<h6 id="3、keypress-和-keydown-keyup-的区别"><a href="#3、keypress-和-keydown-keyup-的区别" class="headerlink" title="3、keypress 和 keydown / keyup 的区别"></a>3、keypress 和 keydown / keyup 的区别</h6><p><strong>区别简述</strong></p>
+<ul>
+<li>1）<code>keypress</code> 对中文输入法支持不好，无法响应中文输入</li>
+<li>2）<code>keypress</code> 无法响应系统功能键（如<code>delete，backspace</code>）</li>
+<li>3）由于前面两个限制，<code>keydown和keyup</code>对<code>keyCode</code>不敏感</li>
+</ul>
+<p><strong>区别详解</strong></p>
+<ul>
+<li>对系统功能键的响应方面<ul>
+<li><code>keypress</code>事件不能对系统功能键(对中文输入法不能有效响应)进行正常的响应</li>
+<li><code>keydown</code>和<code>keyup</code>均可以对系统功能键进行有效的拦截，但事件截获的位置不同</li>
+</ul>
+</li>
+<li><code>keyCode</code>对字母的大小写敏感程度</li>
+<li><code>keypress</code>事件的<code>keyCode</code>对字母的大小写敏感</li>
+<li><code>keydown、keyup</code>事件不敏感</li>
+<li>主附键盘的数字键敏感程度</li>
+<li><code>keypress</code>事件的<code>which</code>值无法区分主键盘上的数字键和附键盘数字键的</li>
+<li><code>keydown、keyup</code>事件的<code>which</code>值对<em>主附键盘的数字键</em> 敏感</li>
+</ul>
+<h6 id="4、需要注意的地方"><a href="#4、需要注意的地方" class="headerlink" title="4、需要注意的地方"></a>4、需要注意的地方</h6><ul>
+<li>1）英文输入法</li>
+<li>所有浏览器都支持这三个事件</li>
+<li>2）中文输入法（浏览器之间表现得不太一致）</li>
+<li><code>IE,Chrome,Safari</code>：触发<code>keydown和keyup</code>， 不触发<code>keypress</code></li>
+<li><code>Firefox</code>：<ul>
+<li>首次按下时触发<code>keydown</code>，不触发<code>keypress</code></li>
+<li>在停止输入并改变文本框内容(如按下回车或者空格键)后会触发<code>keyup</code>（<strong>只有在触发keyup事件才能获得修改后的文本值）</strong></li>
+</ul>
+</li>
+<li><code>Opera</code>：<code>keydown, keypress和keyup</code>都不触发</li>
+<li>3）大小写</li>
+<li>大写：<code>keydown、keypress</code>(字母，主键盘数字、回车)、<code>keyup</code>的<code>which</code>值相等</li>
+<li>小写：<code>kepress</code>获取的<code>which</code>不同于<code>keydown、keyup</code></li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2022/06/19/Git%E5%87%AD%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F-https/" style="float: left;">
-        ← Git凭据管理的三种方式(https)
+    <a class="pull-left" href="/2022/07/17/%E9%87%91%E9%A2%9D%E8%BE%93%E5%85%A5%E6%A1%86%E5%B0%81%E8%A3%85%EF%BC%88%E5%8D%83%E5%88%86%E4%BD%8D%EF%BC%8C%E7%A6%81%E6%AD%A2%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%EF%BC%89/" style="float: left;">
+        ← 金额输入框封装（千分位，禁止中文输入）
     </a>
     
     
-    <a class="pull-right" href="/2021/12/08/vue%E4%B8%AD%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84/">
-        vue自定义指令笔记 →
+    <a class="pull-right" href="/2022/07/03/nodejs-websocket/">
+        nodejs-websocket →
     </a>
     
 </nav>
