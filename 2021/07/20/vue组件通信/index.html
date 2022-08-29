@@ -83,7 +83,7 @@
     
         
             <a title="github"
-               href="https://github.com/yelog"
+               href="https://github.com/fengqichang666"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -95,7 +95,7 @@
     
         
             <a title="facebook"
-               href="https://www.facebook.com/faker.tops"
+               href="https://www.facebook.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -111,7 +111,7 @@
     
         
             <a title="instagram"
-               href="https://www.facebook.com/faker.tops"
+               href="https://www.facebook.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -123,7 +123,7 @@
     
         
             <a title="reddit"
-               href="https://www.reddit.com/user/yelog/"
+               href="https://www.reddit.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -135,7 +135,7 @@
     
         
             <a title="weibo"
-               href="http://weibo.com/u/2307534817"
+               href="http://weibo.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -147,7 +147,7 @@
     
         
             <a title="jianshu"
-               href="https://www.jianshu.com/u/ff56736de7cf"
+               href="https://www.jianshu.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -159,7 +159,7 @@
     
         
             <a title="zhihu"
-               href="https://www.zhihu.com/people/jaytp/activities"
+               href="https://www.zhihu.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -173,7 +173,7 @@
     
         
             <a title="oschina"
-               href="https://my.oschina.net/yelog"
+               href="https://my.oschina.net/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -187,7 +187,7 @@
     
         
             <a title="email"
-               href="mailto:jaytp@qq.com"
+               href="mailto:2309997549@qq.com"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -199,7 +199,7 @@
     
         
             <a title="qq"
-               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2309997549&site=qq&menu=yes"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -223,7 +223,7 @@
     
         
             <a title="neteasemusic"
-               href="https://music.163.com/#/user/home?id=88151013"
+               href="https://music.163.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -284,7 +284,7 @@
     <div class="friends-content">
         <ul>
             
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            <li><a target="_blank" href="https://wgrape.github.io/">WGrape</a></li>
             
         </ul>
     </div>
@@ -674,14 +674,10 @@
 <p>Bus；Vuex；provide / inject API、<code>$attrs/$listeners</code></p>
 
       
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+       <hr><span style="font-style: italic;color: gray;"> --- </span>
     </div>
 </article>
 
-
-<p>
-    <a  class="dashang" onclick="dashangToggle()">💰</a>
-</p>
 
 
 
@@ -696,7 +692,7 @@
     </div>
     <div class="copyright">
         <p class="footer-entry">
-    ©2016-2020 Yelog
+    ©2019-2022
 </p>
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
@@ -707,24 +703,6 @@
 
     </div>
 </div>
-
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close"  onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>Help us with donation</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
-        </div>
-    </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
-    </div>
-</div>
-
 
 </body>
 <script src="/js/jquery.pjax.js?v=1.1.0" ></script>
@@ -739,14 +717,6 @@
         
 
         /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
-        })
         
 
         /*高亮代码块行号*/
@@ -765,11 +735,6 @@
     }
 
     /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
     
 
 </script>

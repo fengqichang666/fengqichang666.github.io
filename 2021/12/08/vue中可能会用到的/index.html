@@ -83,7 +83,7 @@
     
         
             <a title="github"
-               href="https://github.com/yelog"
+               href="https://github.com/fengqichang666"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -95,7 +95,7 @@
     
         
             <a title="facebook"
-               href="https://www.facebook.com/faker.tops"
+               href="https://www.facebook.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -111,7 +111,7 @@
     
         
             <a title="instagram"
-               href="https://www.facebook.com/faker.tops"
+               href="https://www.facebook.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -123,7 +123,7 @@
     
         
             <a title="reddit"
-               href="https://www.reddit.com/user/yelog/"
+               href="https://www.reddit.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -135,7 +135,7 @@
     
         
             <a title="weibo"
-               href="http://weibo.com/u/2307534817"
+               href="http://weibo.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -147,7 +147,7 @@
     
         
             <a title="jianshu"
-               href="https://www.jianshu.com/u/ff56736de7cf"
+               href="https://www.jianshu.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -159,7 +159,7 @@
     
         
             <a title="zhihu"
-               href="https://www.zhihu.com/people/jaytp/activities"
+               href="https://www.zhihu.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -173,7 +173,7 @@
     
         
             <a title="oschina"
-               href="https://my.oschina.net/yelog"
+               href="https://my.oschina.net/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -187,7 +187,7 @@
     
         
             <a title="email"
-               href="mailto:jaytp@qq.com"
+               href="mailto:2309997549@qq.com"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -199,7 +199,7 @@
     
         
             <a title="qq"
-               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2309997549&site=qq&menu=yes"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -223,7 +223,7 @@
     
         
             <a title="neteasemusic"
-               href="https://music.163.com/#/user/home?id=88151013"
+               href="https://music.163.com/"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
@@ -284,7 +284,7 @@
     <div class="friends-content">
         <ul>
             
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            <li><a target="_blank" href="https://wgrape.github.io/">WGrape</a></li>
             
         </ul>
     </div>
@@ -660,14 +660,10 @@
 <h3 id="一键-Copy的功能"><a href="#一键-Copy的功能" class="headerlink" title="一键 Copy的功能"></a>一键 Copy的功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Message &#125; from &#39;ant-design-vue&#39;;</span><br><span class="line"></span><br><span class="line">const vCopy &#x3D; &#123; &#x2F;&#x2F;</span><br><span class="line">  &#x2F;*</span><br><span class="line">    bind 钩子函数，第一次绑定时调用，可以在这里做初始化设置</span><br><span class="line">    el: 作用的 dom 对象</span><br><span class="line">    value: 传给指令的值，也就是我们要 copy 的值</span><br><span class="line">  *&#x2F;</span><br><span class="line">  bind(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value; &#x2F;&#x2F; 用一个全局属性来存传进来的值，因为这个值在别的钩子函数里还会用到</span><br><span class="line">    el.handler &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      if (!el.$value) &#123;</span><br><span class="line">      &#x2F;&#x2F; 值为空的时候，给出提示，我这里的提示是用的 ant-design-vue 的提示，你们随意</span><br><span class="line">        Message.warning(&#39;无复制内容&#39;);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F; 动态创建 textarea 标签</span><br><span class="line">      const textarea &#x3D; document.createElement(&#39;textarea&#39;);</span><br><span class="line">      &#x2F;&#x2F; 将该 textarea 设为 readonly 防止 iOS 下自动唤起键盘，同时将 textarea 移出可视区域</span><br><span class="line">      textarea.readOnly &#x3D; &#39;readonly&#39;;</span><br><span class="line">      textarea.style.position &#x3D; &#39;absolute&#39;;</span><br><span class="line">      textarea.style.left &#x3D; &#39;-9999px&#39;;</span><br><span class="line">      &#x2F;&#x2F; 将要 copy 的值赋给 textarea 标签的 value 属性</span><br><span class="line">      textarea.value &#x3D; el.$value;</span><br><span class="line">      &#x2F;&#x2F; 将 textarea 插入到 body 中</span><br><span class="line">      document.body.appendChild(textarea);</span><br><span class="line">      &#x2F;&#x2F; 选中值并复制</span><br><span class="line">      textarea.select();</span><br><span class="line">      &#x2F;&#x2F; textarea.setSelectionRange(0, textarea.value.length);</span><br><span class="line">      const result &#x3D; document.execCommand(&#39;Copy&#39;);</span><br><span class="line">      if (result) &#123;</span><br><span class="line">        Message.success(&#39;复制成功&#39;);</span><br><span class="line">      &#125;</span><br><span class="line">      document.body.removeChild(textarea);</span><br><span class="line">    &#125;;</span><br><span class="line">    &#x2F;&#x2F; 绑定点击事件，就是所谓的一键 copy 啦</span><br><span class="line">    el.addEventListener(&#39;click&#39;, el.handler);</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 当传进来的值更新的时候触发</span><br><span class="line">  componentUpdated(el, &#123; value &#125;) &#123;</span><br><span class="line">    el.$value &#x3D; value;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 指令与元素解绑的时候，移除事件绑定</span><br><span class="line">  unbind(el) &#123;</span><br><span class="line">    el.removeEventListener(&#39;click&#39;, el.handler);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default vCopy;</span><br></pre></td></tr></table></figure>
 
       
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+       <hr><span style="font-style: italic;color: gray;"> --- </span>
     </div>
 </article>
 
-
-<p>
-    <a  class="dashang" onclick="dashangToggle()">💰</a>
-</p>
 
 
 
@@ -682,7 +678,7 @@
     </div>
     <div class="copyright">
         <p class="footer-entry">
-    ©2016-2020 Yelog
+    ©2019-2022
 </p>
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
@@ -693,24 +689,6 @@
 
     </div>
 </div>
-
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close"  onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>Help us with donation</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
-        </div>
-    </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
-    </div>
-</div>
-
 
 </body>
 <script src="/js/jquery.pjax.js?v=1.1.0" ></script>
@@ -725,14 +703,6 @@
         
 
         /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
-        })
         
 
         /*高亮代码块行号*/
@@ -751,11 +721,6 @@
     }
 
     /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
     
 
 </script>
