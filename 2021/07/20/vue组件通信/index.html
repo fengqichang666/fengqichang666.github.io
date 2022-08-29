@@ -1,188 +1,655 @@
 <!DOCTYPE html>
-<!--[if lte IE 8 ]>
-<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
-<![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<!--
-***************  *      *     *
-      8          *    *       *
-      8          *  *         *
-      8          **           *
-      8          *  *         *
-      8          *    *       *
-      8          *      *     *
-      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
--->
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
-<!--<![endif]-->
-
+<html>
 <head>
+  <meta charset="utf-8">
   <title>vue组件通信 | 前端知识点记录</title>
-  <!-- Meta data -->
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content="前端知识点记录">
-    <meta name="author" content="John Doe">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+  <meta name="keywords" content="">
+  <meta name="description" content="vue组件通信 | 前端知识点记录">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="局部自定义指令v-money 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394使用： v-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="金额输入框封装（千分位，禁止中文输入）">
+<meta property="og:url" content="http://example.com/2022/07/17/%E9%87%91%E9%A2%9D%E8%BE%93%E5%85%A5%E6%A1%86%E5%B0%81%E8%A3%85%EF%BC%88%E5%8D%83%E5%88%86%E4%BD%8D%EF%BC%8C%E7%A6%81%E6%AD%A2%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%EF%BC%89/index.html">
+<meta property="og:site_name" content="前端知识点记录">
+<meta property="og:description" content="局部自定义指令v-money 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394使用： v-">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-17T08:34:55.000Z">
+<meta property="article:modified_time" content="2022-07-17T13:25:56.446Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
 
-    <!-- Favicon, (keep icon in root folder) -->
-    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
 
-    <link rel="alternate" href="/atom.xml" title="前端知识点记录" type="application/atom+xml">
-    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
     
-    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
     
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
 
-    <!--[if IE 8]>
-    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
-    <![endif]-->
 
-    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
 
-    <!-- Load these in the <head> for quicker IE8+ load times -->
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.min.js"></script>
-    <![endif]-->
 
-  
-  
-  
-
-  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
-</head>
-
-<!--
-<body class="post-template">
--->
-<body id="index" class="lightnav animsition">
-
-      <!-- ============================ Off-canvas navigation =========================== -->
-
-    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
-        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
-            <img src="/img/close.png" alt="Close"/>
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(25)</small>
+            
         </div>
-        <!-- Lists in Slidebars -->
-        <ul class="sb-menu">
-            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
-            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
-            <!-- Dropdown Menu -->
-			 
-            <li>
-                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
-                <ul class="sb-submenu">
-                    
-                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
-                    
-                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
-                    
-                </ul>
-            </li>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
             
             
             
-            <li>
-                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
-                <ul class="sb-submenu">
-                    
-                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
-                    
-                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
-                    
-                </ul>
-            </li>
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
             
-        </ul>
-        <!-- Lists in Slidebars -->
-        <ul class="sb-menu secondary">
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
             
-            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
-            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
         </ul>
     </div>
-    
-    <!-- ============================ END Off-canvas navigation =========================== -->
-
-    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
-
-    <div id="sb-site">
-        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
-
-        <!-- ============================ Header & Logo bar =========================== -->
-
-        <div id="navigation" class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <!-- Nav logo -->
-                    <div class="logo">
-                        <a href="/" title="Logo" class="animsition-link">
-                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
-                        </a>
-                    </div>
-                    <!-- // Nav logo -->
-                    <!-- Info-bar -->
-                    <nav>
-                        <ul class="nav">
-                            <li><a href="/" class="animsition-link">前端知识点记录</a></li>
-                            <li class="nolink"><span>Always </span>Creative.</li>
-                            
-                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
-                            
-                            
-                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
-                            
-                            
-                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
-                            
-                            
-                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
-                            
-                            
-                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
-                            
-                            <li class="nolink"><span>Welcome!</span></li>
-                        </ul>
-                    </nav>
-                    <!--// Info-bar -->
-                </div>
-                <!-- // .container -->
-                <div class="learnmore sb-toggle-right">More</div>
-                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar before"></span>
-                <span class="icon-bar main"></span>
-                <span class="icon-bar after"></span>
-                </button>
-            </div>
-            <!-- // .navbar-inner -->
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
         </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
 
-        <!-- ============================ Header & Logo bar =========================== -->
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>比较频繁用到的css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>常用的正则表达式大全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>构造函数、原型对象、对象实例</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端工具</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端性能优化面试题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度理解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git操作指令大全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JS手写题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Proxy和Object.defineProperty</a>
+            </li>
+        
+    </div>
 
+</div>
 
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2022/07/17/%E9%87%91%E9%A2%9D%E8%BE%93%E5%85%A5%E6%A1%86%E5%B0%81%E8%A3%85%EF%BC%88%E5%8D%83%E5%88%86%E4%BD%8D%EF%BC%8C%E7%A6%81%E6%AD%A2%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%EF%BC%89/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="金额输入框封装（千分位，禁止中文输入）">金额输入框封装（千分位，禁止中文输入）</span>
+            <span class="post-date" title="2022-07-17 16:34:55">2022/07/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/17/%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6keydown%EF%BC%8Ckeypress%EF%BC%8Ckeyup/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="键盘事件keydown，keypress，keyup">键盘事件keydown，keypress，keyup</span>
+            <span class="post-date" title="2022-07-17 11:46:10">2022/07/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/03/nodejs-websocket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="nodejs-websocket">nodejs-websocket</span>
+            <span class="post-date" title="2022-07-03 13:13:15">2022/07/03</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/19/Git%E5%87%AD%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F-https/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Git凭据管理的三种方式(https)">Git凭据管理的三种方式(https)</span>
+            <span class="post-date" title="2022-06-19 11:56:57">2022/06/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/19/git-merge-no-ff-%E4%B8%8E-ff-%E5%92%8C-squash%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git merge --no-ff 与--ff 和--squash的区别">git merge --no-ff 与--ff 和--squash的区别</span>
+            <span class="post-date" title="2022-06-19 11:18:58">2022/06/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue%E4%B8%AD%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue中可能会用到的">vue中可能会用到的</span>
+            <span class="post-date" title="2021-12-08 15:23:24">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6css%E4%BF%AE%E6%94%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue第三方组件css修改">vue第三方组件css修改</span>
+            <span class="post-date" title="2021-12-08 14:00:41">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/11/25/vuex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vuex">vuex</span>
+            <span class="post-date" title="2021-11-25 15:56:11">2021/11/25</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/26/url%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="url解析过程">url解析过程</span>
+            <span class="post-date" title="2021-10-26 11:17:26">2021/10/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/25/commonJS%E4%B8%8Ees6%E6%A8%A1%E5%9D%97%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="exports、module.exports和export、export default">exports、module.exports和export、export default</span>
+            <span class="post-date" title="2021-10-25 13:41:29">2021/10/25</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/08/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDIFF%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="虚拟DOM与DIFF算法">虚拟DOM与DIFF算法</span>
+            <span class="post-date" title="2021-10-08 16:57:02">2021/10/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/09/24/%E8%AF%A6%E8%A7%A3mixins%E6%B7%B7%E5%85%A5%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="详解mixins混入使用">详解mixins混入使用</span>
+            <span class="post-date" title="2021-09-24 17:10:18">2021/09/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/09/24/Vue%E4%B8%ADextend-mixins-extends%E4%BB%A5%E5%8F%8AVue-use%E7%9A%84install%E5%92%8CVue-nextTick/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick">Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick</span>
+            <span class="post-date" title="2021-09-24 15:33:37">2021/09/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/20/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue组件通信">vue组件通信</span>
+            <span class="post-date" title="2021-07-20 11:00:15">2021/07/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/15/%E6%A0%B7%E5%BC%8F%E6%B8%85%E5%8D%95%E6%95%B4%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="样式清单整理">样式清单整理</span>
+            <span class="post-date" title="2021-07-15 09:34:39">2021/07/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/07/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据类型判断">数据类型判断</span>
+            <span class="post-date" title="2021-07-07 15:21:32">2021/07/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/07/Proxy%E5%92%8CObject-defineProperty/"
+           data-tag="Proxy和Object.defineProperty"
+           data-author="" >
+            <span class="post-title" title="Proxy和Object.defineProperty">Proxy和Object.defineProperty</span>
+            <span class="post-date" title="2021-07-07 10:31:00">2021/07/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/05/JS%E6%89%8B%E5%86%99%E9%A2%98/"
+           data-tag="JS手写题"
+           data-author="" >
+            <span class="post-title" title="JS手写题">JS手写题</span>
+            <span class="post-date" title="2021-07-05 15:12:32">2021/07/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/30/git%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4/"
+           data-tag="git操作指令大全"
+           data-author="" >
+            <span class="post-title" title="git命令总结">git命令总结</span>
+            <span class="post-date" title="2021-06-30 10:28:12">2021/06/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/30/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%A7%E5%85%A8/"
+           data-tag="常用的正则表达式大全"
+           data-author="" >
+            <span class="post-title" title="常用的正则表达式大全">常用的正则表达式大全</span>
+            <span class="post-date" title="2021-06-30 10:28:12">2021/06/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/10/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"
+           data-tag="前端工具"
+           data-author="" >
+            <span class="post-title" title="前端工具">前端工具</span>
+            <span class="post-date" title="2021-06-10 10:22:12">2021/06/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/06/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E9%9D%A2%E8%AF%95%E9%A2%98/"
+           data-tag="前端性能优化面试题"
+           data-author="" >
+            <span class="post-title" title="前端性能优化面试题总结">前端性能优化面试题总结</span>
+            <span class="post-date" title="2020-06-06 15:33:46">2020/06/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/05/30/%E5%B8%B8%E7%94%A8css%E7%AC%94%E8%AE%B0/"
+           data-tag="比较频繁用到的css"
+           data-author="" >
+            <span class="post-title" title="常用css笔记">常用css笔记</span>
+            <span class="post-date" title="2020-05-30 13:52:50">2020/05/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/05/24/%E5%8E%9F%E5%9E%8B%E9%93%BE/"
+           data-tag="构造函数、原型对象、对象实例"
+           data-author="" >
+            <span class="post-title" title="原型链">原型链</span>
+            <span class="post-date" title="2020-05-24 10:40:00">2020/05/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/05/20/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84JavaScript%20%E9%9D%A2%E8%AF%95%E9%A2%98/"
+           data-tag="深度理解"
+           data-author="" >
+            <span class="post-title" title="有意思的 JavaScript 面试题">有意思的 JavaScript 面试题</span>
+            <span class="post-date" title="2020-05-20 09:11:56">2020/05/20</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-vue组件通信" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">vue组件通信</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-03-23 17:20:01'>2021-07-20 11:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E3%80%81props-emit"><span class="toc-text">方法一、props&#x2F;$emit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%EF%BC%88EventBus%EF%BC%89"><span class="toc-text">方法二 事件总线（EventBus）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E3%80%81vuex%E4%B8%8ElocalStorage"><span class="toc-text">方法三、vuex与localStorage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%E3%80%81-attrs-listeners"><span class="toc-text">方法四、$attrs&#x2F;$listeners</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%94%E3%80%81provide-inject"><span class="toc-text">方法五、provide&#x2F;inject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%85%AD%E3%80%81-parent-children%E4%B8%8E-ref"><span class="toc-text">方法六、$parent &#x2F; $children与 ref</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2021-07-20T03:00:15.000Z" itemprop="datePublished">
-          2021-07-20
-      </time>
-    
-</span>
-                <h1>vue组件通信</h1>
-            </div>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<h2 id="方法一、props-emit"><a href="#方法一、props-emit" class="headerlink" title="方法一、props/$emit"></a>方法一、<code>props</code>/<code>$emit</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">父传子</span><br><span class="line">父组件调用子组件</span><br><span class="line"> &lt;Son :ptos&#x3D;&quot;ptos&quot;&gt;&lt;&#x2F;Son&gt;</span><br><span class="line"> </span><br><span class="line"> import Son from &#39;@&#x2F;views&#x2F;Children.vue&#39;</span><br><span class="line"> components:&#123;</span><br><span class="line">    Son</span><br><span class="line">  &#125;</span><br><span class="line"> 子组件接收</span><br><span class="line"> props:&#123;</span><br><span class="line">        ptos:&#123;</span><br><span class="line">            type:String,</span><br><span class="line">            require:true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> 如果需要根据父组件传值实时刷新子组件</span><br><span class="line"> data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            a:&#39;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> created()&#123;</span><br><span class="line">     this.a&#x3D;this.ptos;</span><br><span class="line"> &#125;,</span><br><span class="line"> watch:&#123;</span><br><span class="line">     ptos(newval,oldval)&#123;</span><br><span class="line">     	this.a&#x3D;newval</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">子传父</span><br><span class="line">父组件</span><br><span class="line"> &lt;Son :ptos&#x3D;&quot;ptos&quot; @zdysj&#x3D;&#39;zdysj&#39;&gt;&lt;&#x2F;Son&gt;</span><br><span class="line"> </span><br><span class="line"> zdysj(e)&#123;</span><br><span class="line">      console.log(e);&#x2F;&#x2F;e代表&#39;接收的子组件传的值&#39;</span><br><span class="line">    &#125;</span><br><span class="line"> 子</span><br><span class="line"> &lt;el-button @click&#x3D;&quot;stop&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;el-button&gt;</span><br><span class="line"> </span><br><span class="line"> stop()&#123;</span><br><span class="line">   this.$emit(&#39;zdysj&#39;,&#39;子传父&#39;);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="方法一、props-emit"><a href="#方法一、props-emit" class="headerlink" title="方法一、props/$emit"></a>方法一、<code>props</code>/<code>$emit</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">父传子</span><br><span class="line">父组件调用子组件</span><br><span class="line"> &lt;Son :ptos&#x3D;&quot;ptos&quot;&gt;&lt;&#x2F;Son&gt;</span><br><span class="line"> </span><br><span class="line"> import Son from &#39;@&#x2F;views&#x2F;Children.vue&#39;</span><br><span class="line"> components:&#123;</span><br><span class="line">    Son</span><br><span class="line">  &#125;</span><br><span class="line"> 子组件接收</span><br><span class="line"> props:&#123;</span><br><span class="line">        ptos:&#123;</span><br><span class="line">            type:String,</span><br><span class="line">            require:true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> 如果需要根据父组件传值实时刷新子组件</span><br><span class="line"> data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            a:&#39;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> created()&#123;</span><br><span class="line">     this.a&#x3D;this.ptos;</span><br><span class="line"> &#125;,</span><br><span class="line"> watch:&#123;</span><br><span class="line">     ptos(newval,oldval)&#123;</span><br><span class="line">     	this.a&#x3D;newval</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">子传父</span><br><span class="line">父组件</span><br><span class="line"> &lt;Son :ptos&#x3D;&quot;ptos&quot; @zdysj&#x3D;&#39;zdysj&#39;&gt;&lt;&#x2F;Son&gt;</span><br><span class="line"> </span><br><span class="line"> zdysj(e)&#123;</span><br><span class="line">      console.log(e);&#x2F;&#x2F;e代表&#39;接收的子组件传的值&#39;</span><br><span class="line">    &#125;</span><br><span class="line"> 子</span><br><span class="line"> &lt;el-button @click&#x3D;&quot;stop&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;el-button&gt;</span><br><span class="line"> </span><br><span class="line"> stop()&#123;</span><br><span class="line">   this.$emit(&#39;zdysj&#39;,&#39;子传父&#39;);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="方法二-事件总线（EventBus）"><a href="#方法二-事件总线（EventBus）" class="headerlink" title="方法二 事件总线（EventBus）"></a>方法二 事件总线（EventBus）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.使用js或者空vue实例组件</span><br><span class="line">新建一个 eventBus.js  </span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">export const EventBus &#x3D; new Vue()</span><br><span class="line">新建一个 eventBus.vue</span><br><span class="line">&lt;tempalte&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import Vue from &#39;vue&#39;;</span><br><span class="line">    export default new Vue(&#123;</span><br><span class="line">        data () &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">父子组件引入</span><br><span class="line">import &#123;EventBus&#125; from &#39;@&#x2F;eventBus.js&#39;</span><br><span class="line">父</span><br><span class="line">mounted()&#123;</span><br><span class="line">    EventBus.$on(&#39;zdysjed&#39;,(&#123;a&#125;)&#x3D;&gt;&#123;</span><br><span class="line">      console.log(a);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">子</span><br><span class="line">stop()&#123;</span><br><span class="line">      EventBus.$emit(&#39;zdysjed&#39;,&#123;a:&#39;eventBus&#39;&#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
@@ -206,151 +673,194 @@
 </ul>
 <p>Bus；Vuex；provide / inject API、<code>$attrs/$listeners</code></p>
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    <a class="pull-left" href="/2021/09/24/Vue%E4%B8%ADextend-mixins-extends%E4%BB%A5%E5%8F%8AVue-use%E7%9A%84install%E5%92%8CVue-nextTick/" style="float: left;">
-        ← Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick
-    </a>
-    
-    
-    <a class="pull-right" href="/2021/07/15/%E6%A0%B7%E5%BC%8F%E6%B8%85%E5%8D%95%E6%95%B4%E7%90%86/">
-        样式清单整理 →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
-</section>
+</article>
 
 
-      
-<!-- ============================ Footer =========================== -->
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
 
-<footer>
-    <div class="container">
-            <div class="copy">
-                <p>
-                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
-                </p>
-                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
-            </div>
-            <div class="social">
-                <ul>
-                    
-                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
-                    
-                    
-                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
-                    
-                    
-                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
-                    
-                    
-                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
-                    
-                    
-                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
-                    
-                </ul>
-            </div>
-            <div class="clearfix"> </div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
         </div>
-</footer>
-
-<!-- ============================ END Footer =========================== -->
-      <!-- Load our scripts -->
-<!-- Resizable 'on-demand' full-height hero -->
-<script type="text/javascript">
-    var resizeHero = function () {
-        var hero = $(".cover,.heightblock"),
-            window1 = $(window);
-        hero.css({
-            "height": window1.height()
-        });
-    };
-
-    resizeHero();
-
-    $(window).resize(function () {
-        resizeHero();
-    });
-</script>
-<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
-<script src="/js/scripts.js"></script><!-- Theme scripts -->
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$('#intro').find('img').each(function(){
-  var alt = this.alt;
-
-  if (alt){
-    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
-  }
-
-  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
-});
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-
-
-      
 </body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
