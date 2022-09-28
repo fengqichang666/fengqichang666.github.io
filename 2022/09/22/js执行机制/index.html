@@ -1,28 +1,20 @@
-<!--
- * @Author: 冯琦昌 2309997549@qq.com
- * @Date: 2022-08-29 14:40:11
- * @LastEditors: 冯琦昌 2309997549@qq.com
- * @LastEditTime: 2022-08-29 16:24:48
- * @FilePath: \3-hexo\layout\index.ejs
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>前端知识点记录</title>
+  <title>js执行机制 | 前端知识点记录</title>
   <meta name="keywords" content="">
-  <meta name="description" content="前端知识点记录">
+  <meta name="description" content="js执行机制 | 前端知识点记录">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="使用场景项目中的一个表单中，有两个下拉框，都选择之后需要发接口把所选信息上送，后端进行校验，看两个下拉框所选内容是否符合条件，如果不符合，后端返回标识，下拉框下方报错。 方法一element-ui的form-item有一个error属性可以进行设置错误信息，在接口返回信息后，设置error信息 123&lt;el-form-item label&#x3D;&quot;表单元素&quot; prop">
+<meta name="description" content="Heap(堆)、Stack(栈)、Queue(队列)、Event Loop(事件循环)Heap(堆)堆是线性数据结构，相当于一维数组，有唯一后继。 动态分配的内存，大小不定也不会自动释放，存放引用类型，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，实际上保存的不是变量本身，而是指向该对象的指针。 堆的作用：存储引用类型值的数据 堆内存的释放    让所有引用堆内存空间地址的变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue+elementui 表单检验中发送接口进行校验">
-<meta property="og:url" content="http://example.com/2022/09/19/vue-elementui-%E8%A1%A8%E5%8D%95%E6%A3%80%E9%AA%8C%E4%B8%AD%E5%8F%91%E9%80%81%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C/index.html">
+<meta property="og:title" content="js执行机制">
+<meta property="og:url" content="http://example.com/2022/09/22/js%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="前端知识点记录">
-<meta property="og:description" content="使用场景项目中的一个表单中，有两个下拉框，都选择之后需要发接口把所选信息上送，后端进行校验，看两个下拉框所选内容是否符合条件，如果不符合，后端返回标识，下拉框下方报错。 方法一element-ui的form-item有一个error属性可以进行设置错误信息，在接口返回信息后，设置error信息 123&lt;el-form-item label&#x3D;&quot;表单元素&quot; prop">
+<meta property="og:description" content="Heap(堆)、Stack(栈)、Queue(队列)、Event Loop(事件循环)Heap(堆)堆是线性数据结构，相当于一维数组，有唯一后继。 动态分配的内存，大小不定也不会自动释放，存放引用类型，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，实际上保存的不是变量本身，而是指向该对象的指针。 堆的作用：存储引用类型值的数据 堆内存的释放    让所有引用堆内存空间地址的变量">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-19T11:30:51.000Z">
-<meta property="article:modified_time" content="2022-09-20T09:28:46.979Z">
+<meta property="article:published_time" content="2022-09-22T08:08:28.000Z">
+<meta property="article:modified_time" content="2022-09-22T08:54:02.557Z">
 <meta property="article:author" content="Feng">
 <meta name="twitter:card" content="summary">
 
@@ -64,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -334,10 +326,6 @@
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>深度理解</a>
-            </li>
-        
-            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>git操作指令大全</a>
             </li>
         
@@ -351,6 +339,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2022/09/22/js%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="js执行机制">js执行机制</span>
+            <span class="post-date" title="2022-09-22 16:08:28">2022/09/22</span>
+        </a>
         
         
         <a  class="All "
@@ -550,15 +547,6 @@
             <span class="post-date" title="2020-05-24 10:40:00">2020/05/24</span>
         </a>
         
-        
-        <a  class="All "
-           href="/2020/05/20/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84JavaScript%20%E9%9D%A2%E8%AF%95%E9%A2%98/"
-           data-tag="深度理解"
-           data-author="" >
-            <span class="post-title" title="有意思的 JavaScript 面试题">有意思的 JavaScript 面试题</span>
-            <span class="post-date" title="2020-05-20 09:11:56">2020/05/20</span>
-        </a>
-        
         <div id="no-item-tips">
 
         </div>
@@ -575,12 +563,43 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-js执行机制" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%95%88%E5%8A%9E%E5%85%AC%E6%A1%8C%E9%9D%A2-FastPage"><span class="toc-text">高效办公桌面-FastPage</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="toc-text">友情链接</span></a></li></ol>
+        <h1 class="article-title">js执行机制</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-09-22 16:54:02'>2022-09-22 16:08</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Heap-%E5%A0%86-%E3%80%81Stack-%E6%A0%88-%E3%80%81Queue-%E9%98%9F%E5%88%97-%E3%80%81Event-Loop-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">Heap(堆)、Stack(栈)、Queue(队列)、Event Loop(事件循环)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Heap-%E5%A0%86"><span class="toc-text">Heap(堆)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%EF%BC%88Stack%EF%BC%89"><span class="toc-text">栈（Stack）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%88%97%EF%BC%88Queue%EF%BC%89"><span class="toc-text">队列（Queue）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-Loop-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">Event Loop(事件循环)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JS%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%8C%E9%82%A3%E5%AE%83%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B-%E9%9D%9E%E9%98%BB%E5%A1%9E-%E8%BF%90%E8%A1%8C%E7%9A%84"><span class="toc-text">JS为什么是单线程语言，那它是怎么实现异步编程(非阻塞)运行的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">JS执行机制</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -593,19 +612,46 @@
     }
 </style>
 </div>
-            <!--
- * @Author: 冯琦昌 2309997549@qq.com
- * @Date: 2022-08-29 14:40:11
- * @LastEditors: 冯琦昌 2309997549@qq.com
- * @LastEditTime: 2022-08-29 16:47:17
- * @FilePath: \3-hexo\layout\indexs.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
-<h1 id="高效办公桌面-FastPage"><a href="#高效办公桌面-FastPage" class="headerlink" title="高效办公桌面-FastPage"></a>高效办公桌面-FastPage</h1><p><a target="_blank" rel="noopener" href="https://fengqichang666.github.io/pages/">FastPage</a></p>
-<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p><a target="_blank" rel="noopener" href="https://wgrape.github.io/">WGrape的博客</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Heap-堆-、Stack-栈-、Queue-队列-、Event-Loop-事件循环"><a href="#Heap-堆-、Stack-栈-、Queue-队列-、Event-Loop-事件循环" class="headerlink" title="Heap(堆)、Stack(栈)、Queue(队列)、Event Loop(事件循环)"></a>Heap(堆)、Stack(栈)、Queue(队列)、Event Loop(事件循环)</h1><h2 id="Heap-堆"><a href="#Heap-堆" class="headerlink" title="Heap(堆)"></a><strong>Heap(堆)</strong></h2><p>堆是<strong>线性数据结构</strong>，相当于<strong>一维数组</strong>，有唯一后继。</p>
+<p>动态分配的内存，大小不定也不会自动释放，存放<strong>引用类型</strong>，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，<strong>实际上保存的不是变量本身，而是指向该对象的指针</strong>。</p>
+<p><strong>堆的作用</strong>：存储引用类型值的数据</p>
+<p><strong>堆内存的释放</strong>    让所有引用堆内存空间地址的变量赋值为 null 即可，当堆内存没有被任何的变量或者其他东西引用时，就会在浏览器执行垃圾回收的时候，被销毁掉。</p>
+<h2 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a><strong>栈（Stack）</strong></h2><p>栈在程序中的设定是限定仅在表尾进行插入或删除操作的线性表。栈是一种数据结构，它按照<strong>后进先出</strong>的原则存储数据，先进入的数据被压入栈底，最后的数据在栈顶</p>
+<p>js中的栈准确来将应该叫调用栈，会自动分配内存空间，会自动释放，存放<strong>基本类型</strong>，简单的数据段，占据固定大小的空间。</p>
+<p><strong>栈的作用</strong>：存储基本类型值，还有一个很要的作用。<strong>提供代码执行的环境</strong>（提供一个供 JS 代码自上而下执行的环境（作用域，代码都是在栈内存中执行的）</p>
+<p><strong>栈内存的释放</strong>    全局作用域会在页面关闭或者刷新的时候释放。（栈内存释放后，存储在栈内存中的值也都会销毁。)</p>
+<h2 id="队列（Queue）"><a href="#队列（Queue）" class="headerlink" title="队列（Queue）"></a><strong>队列（Queue</strong>）</h2><p>和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。 队列中没有元素时，称为<strong>空队列</strong>。</p>
+<p>队列的数据元素又称为队列元素。在队列中插入一个队列元素称为入队，从队列中删除一个队列元素称为出队。因为队列只允许在一端插入，在另一端删除，所以只有最早进入队列的元素才能最先从队列中删除，故队列又称为<strong>先进先出</strong></p>
+<p>js中的队列可以叫做<strong>任务队列</strong>，任务队列里存放的任务分为两种任务类型，宏任务(<code>macroTask</code>)和微任务(<code>microTask</code>)。</p>
+<p>Macrotack（宏任务）：<br>script(整体代码)、setTimeout、setInterval、setImmediateI/O、UI交互事件、postMessage、MessageChannel<br>Microtack（微任务）:<br>Promise.then、MutationObserver、process.nextTick(Node环境)</p>
+<h2 id="Event-Loop-事件循环"><a href="#Event-Loop-事件循环" class="headerlink" title="Event Loop(事件循环)"></a>Event Loop(事件循环)</h2><p>JS是一门单线程的非阻塞脚本语言，Event Loop就是为了解决JS异步编程的一种解决方案。</p>
+<p>JavaScript是一门单线程语言，所谓单线程，就是指一次只能完成一件任务，如果在同个时间有多个任务的话，这些任务就需要进行排队，前一个任务执行完，才会执行下一个任务。但如果有一个任务的执行时间很长，比如文件的读取或者数据的请求等等，那么后面的任务就要一直等待，这就会影响用户的使用体验。<br>为了解决这种情况，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。<br>同步模式就是前一个任务执行完成后，再执行下一个任务，程序的执行顺序与任务的排列顺序是一致的、同步的；<br>异步模式则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行队列上的后一个任务，而是执行回调函数；后一个任务则是不等前一个任务的回调函数的执行而执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。</p>
+<h3 id="JS为什么是单线程语言，那它是怎么实现异步编程-非阻塞-运行的"><a href="#JS为什么是单线程语言，那它是怎么实现异步编程-非阻塞-运行的" class="headerlink" title="JS为什么是单线程语言，那它是怎么实现异步编程(非阻塞)运行的"></a>JS为什么是单线程语言，那它是怎么实现异步编程(非阻塞)运行的</h3><p>1、JavaScript的诞生就是为了处理浏览器网页的交互（DOM操作的处理、UI动画等),  设计成单线程的原因就是不想让浏览器变得太复杂，因为多线程需要共享资源、且有可能修改彼此的运行结果（两个线程修改了同一个DOM节点就会产生不必要的麻烦），这对于一种网页脚本语言来说这就太复杂了。</p>
+<p>2、JavaScript是单线程的但它所运行的宿主环境—浏览器是多线程，浏览器提供了各种线程供Event Loop调度来协调JS单线程运行时不会阻塞。</p>
+<p>当执行栈中的任务清空，主线程会先检查微任务队列中是否有任务，如果有，就将微任务队列中的任务依次执行，直到微任务队列为空，之后再检查宏任务队列中是否有任务，如果有，则每次取出第一个宏任务加入到执行栈中，之后再清空执行栈，检查微任务，以此循环，直到全部的任务都执行完成。<br>· 如此循环，就形成js的事件循环机制（Event Loop）</p>
+<h2 id="JS执行机制"><a href="#JS执行机制" class="headerlink" title="JS执行机制"></a><strong>JS执行机制</strong></h2><p><strong>主线程（宏任务） =&gt; 微任务 =&gt; 宏任务 =&gt; 主线程</strong></p>
+<p>如果宏任务里还有微任就继续执行宏任务里的微任务，如果宏任务中的微任务中还有宏任务就在依次进行</p>
+<p><strong>主线程任务——&gt;微任务——&gt;宏任务——&gt;宏任务里的微任务——&gt;宏任务里的微任务中的宏任务——&gt;直到任务全部完成</strong></p>
 
-        </article>
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> --- </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -614,11 +660,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
