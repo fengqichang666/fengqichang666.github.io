@@ -426,7 +426,7 @@
            href="/2021/12/08/vue3+elementplus+ts+pinia%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="vue知识点记录">vue知识点记录</span>
+            <span class="post-title" title="vue3+elementplus+ts+pinia踩坑记录">vue3+elementplus+ts+pinia踩坑记录</span>
             <span class="post-date" title="2021-12-08 15:23:24">2021/12/08</span>
         </a>
         
@@ -595,7 +595,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-22 16:54:02'>2022-09-22 16:08</time>
+            Created At : <time class="date" title='Updated At: 2022-11-07 09:49:55'>2022-09-22 16:08</time>
         
     </div>
     <div class="article-meta">
@@ -647,9 +647,11 @@
 <p>Macrotack（宏任务）：<br>script(整体代码)、setTimeout、setInterval、setImmediateI/O、UI交互事件、postMessage、MessageChannel<br>Microtack（微任务）:<br>Promise.then、MutationObserver、process.nextTick(Node环境)</p>
 <h2 id="Event-Loop-事件循环"><a href="#Event-Loop-事件循环" class="headerlink" title="Event Loop(事件循环)"></a>Event Loop(事件循环)</h2><p>JS是一门单线程的非阻塞脚本语言，Event Loop就是为了解决JS异步编程的一种解决方案。</p>
 <p>JavaScript是一门单线程语言，所谓单线程，就是指一次只能完成一件任务，如果在同个时间有多个任务的话，这些任务就需要进行排队，前一个任务执行完，才会执行下一个任务。但如果有一个任务的执行时间很长，比如文件的读取或者数据的请求等等，那么后面的任务就要一直等待，这就会影响用户的使用体验。<br>为了解决这种情况，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。<br>同步模式就是前一个任务执行完成后，再执行下一个任务，程序的执行顺序与任务的排列顺序是一致的、同步的；<br>异步模式则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行队列上的后一个任务，而是执行回调函数；后一个任务则是不等前一个任务的回调函数的执行而执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。</p>
+<p>JS是单线程，碰见同步执行同步直到执行完毕，遇到异步放到执行<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%98%9F%E5%88%97&spm=1001.2101.3001.7020">队列</a>中去，异步(宏任务和微任务)，在异步中微任务是优于宏任务执行的</p>
+<p>JS 在解析一段代码时，会将同步代码按顺序排在某个地方，即执行栈，然后依次执行里面的函数。当遇到异步任务时就交给其他线程(执行队列)处理，待当前执行栈所有同步代码执行完成后，会从一个队列中去取出已完成的异步任务(宏任务和微任务，在异步中微任务是优于宏任务执行的）的回调加入执行栈继续执行，遇到异步任务时又交给其他线程，…..，如此循环往复。而其他异步任务完成后，将回调放入任务队列中待执行栈来取出执行。</p>
+<p>· 如此循环，就形成js的事件循环机制（Event Loop）</p>
 <h3 id="JS为什么是单线程语言，那它是怎么实现异步编程-非阻塞-运行的"><a href="#JS为什么是单线程语言，那它是怎么实现异步编程-非阻塞-运行的" class="headerlink" title="JS为什么是单线程语言，那它是怎么实现异步编程(非阻塞)运行的"></a>JS为什么是单线程语言，那它是怎么实现异步编程(非阻塞)运行的</h3><p>1、JavaScript的诞生就是为了处理浏览器网页的交互（DOM操作的处理、UI动画等),  设计成单线程的原因就是不想让浏览器变得太复杂，因为多线程需要共享资源、且有可能修改彼此的运行结果（两个线程修改了同一个DOM节点就会产生不必要的麻烦），这对于一种网页脚本语言来说这就太复杂了。</p>
 <p>2、JavaScript是单线程的但它所运行的宿主环境—浏览器是多线程，浏览器提供了各种线程供Event Loop调度来协调JS单线程运行时不会阻塞。</p>
-<p>当执行栈中的任务清空，主线程会先检查微任务队列中是否有任务，如果有，就将微任务队列中的任务依次执行，直到微任务队列为空，之后再检查宏任务队列中是否有任务，如果有，则每次取出第一个宏任务加入到执行栈中，之后再清空执行栈，检查微任务，以此循环，直到全部的任务都执行完成。<br>· 如此循环，就形成js的事件循环机制（Event Loop）</p>
 <h2 id="JS执行机制"><a href="#JS执行机制" class="headerlink" title="JS执行机制"></a><strong>JS执行机制</strong></h2><p><strong>主线程（宏任务） =&gt; 微任务 =&gt; 宏任务 =&gt; 主线程</strong></p>
 <p>如果宏任务里还有微任就继续执行宏任务里的微任务，如果宏任务中的微任务中还有宏任务就在依次进行</p>
 <p><strong>主线程任务——&gt;微任务——&gt;宏任务——&gt;宏任务里的微任务——&gt;宏任务里的微任务中的宏任务——&gt;直到任务全部完成</strong></p>
