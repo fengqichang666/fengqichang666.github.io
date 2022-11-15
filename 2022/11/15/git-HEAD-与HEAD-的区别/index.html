@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>nodejs-websocket | 前端知识点记录</title>
+  <title>git HEAD~与HEAD^的区别 | 前端知识点记录</title>
   <meta name="keywords" content="">
-  <meta name="description" content="nodejs-websocket | 前端知识点记录">
+  <meta name="description" content="git HEAD~与HEAD^的区别 | 前端知识点记录">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="HEAD~ 表示祖先 HEAD^ 表示父母 (涉及分支合并)  举例 A B C 三个分支  A: A1, A2, A3 B: B1, B2, B3 C: C1, C3, C3  当前在分支 A 上, 合并 B C 这两个分支 1git merge B C  当前提交一共有 3 个父母 ~ 表示第 1 个分支的第 n 个祖先 HEAD~ 表示 A3HEAD2 表示 A2HEAD3 表示 A1^">
 <meta property="og:type" content="article">
@@ -592,9 +592,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-nodejs-websocket" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-git-HEAD-与HEAD-的区别" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">nodejs-websocket</h1>
+        <h1 class="article-title">git HEAD~与HEAD^的区别</h1>
     
     <div class="article-meta">
         
@@ -604,7 +604,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-07-03 15:00:54'>2022-07-03 13:13</time>
+            Created At : <time class="date" title='Updated At: 2022-11-15 14:18:50'>2022-11-15 14:17</time>
         
     </div>
     <div class="article-meta">
@@ -642,13 +642,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>文档地址：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/nodejs-websocket">nodejs-websocket - npm (npmjs.com)</a></p>
-<p>服务端：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const io &#x3D; require(&#39;nodejs-websocket&#39;)</span><br><span class="line">let server &#x3D; io.createServer((connection:any)&#x3D;&gt;&#123;</span><br><span class="line">	&#x2F;&#x2F;server.connections  返回包含所有 connection 的数组，可以用来广播所有消息</span><br><span class="line">	console.log(&#39;new connection...&#39;)</span><br><span class="line">	&#x2F;&#x2F;客户端发送send过来的消息</span><br><span class="line">	connection.on(&quot;text&quot;,function(data)&#123;</span><br><span class="line">		console.log(&quot;接收到的客户端消息:&quot;+data);</span><br><span class="line">		&#x2F;&#x2F;服务端发送数据致客户端</span><br><span class="line">	&#x2F;&#x2F;connection.send(data, [callback]): 发送一个字符串或者二进制内容到客户端，如果发送的是文本，类似于	&#x2F;&#x2F; sendText()，如果发送的是二进制，类似于sendBinary(),</span><br><span class="line">		connection.send(&quot;服务器端返回的数据，客户端使用onmessage接收&quot;)</span><br><span class="line">		</span><br><span class="line">	&#125;)</span><br><span class="line">	&#x2F;&#x2F; 监听关闭</span><br><span class="line">    connection.on(&quot;close&quot;, function (code, reason) &#123;</span><br><span class="line">        console.log(&quot;Connection closed&quot;)</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F; 监听异常  （比如：直接关闭浏览器窗口）</span><br><span class="line">	connection.on(&quot;error&quot;,(code) &#x3D;&gt; &#123;</span><br><span class="line">		console.log(&#39;服务异常关闭...&#39;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;).listen(3333)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <ul>
+<li>HEAD~ 表示祖先</li>
+<li>HEAD^ 表示父母 (涉及分支合并)</li>
+</ul>
+<p>举例 A B C 三个分支</p>
+<ul>
+<li>A: A1, A2, A3</li>
+<li>B: B1, B2, B3</li>
+<li>C: C1, C3, C3</li>
+</ul>
+<p>当前在分支 A 上, 合并 B C 这两个分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge B C</span><br></pre></td></tr></table></figure>
 
-<p>客户端</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const ws&#x3D; new WebSocket(&#39;ws:&#x2F;&#x2F;127.0.0.1:3333&#39;)</span><br><span class="line">ws.onopen &#x3D; () &#x3D;&gt;&#123;</span><br><span class="line">   console.log(&#39;成功&#39;)</span><br><span class="line">   ws.send(&#39;发送至服务端的消息，服务端使用text事件接收&#39;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;服务端send的数据</span><br><span class="line">ws.onmessage&#x3D; (data) &#x3D;&gt;&#123;</span><br><span class="line">   console.log(data.data)</span><br><span class="line">&#125;</span><br><span class="line">ws.onclose &#x3D; () &#x3D;&gt;&#123;</span><br><span class="line">   console.log(&#39;close&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>当前提交一共有 3 个父母</p>
+<p>~ 表示第 1 个分支的第 n 个祖先</p>
+<p>HEAD~ 表示 A3<br>HEAD<del>2 表示 A2<br>HEAD</del>3 表示 A1<br>^ 表示第 n 个父母</p>
+<p>HEAD^ 表示 A3<br>HEAD^2 表示 B3<br>HEAD^3 表示 C3<br>注意事项</p>
+<p>HEAD~ 与 HEAD<del>1 等效, HEAD^ 与 HEAD^1 等效<br>HEAD</del>3 等效于 HEAD~~~ 等效于 HEAD^^^ 都表示 A1<br>HEAD<del>n 等效于 HEAD</del>…~ (n 次 <del>) 等效于 HEAD^^^ (n 次 ^)<br>HEAD^3 与 HEAD^^^ 不同, 前者表示 C3 (即第 3 个父母), 后者表示 A1<br>总结:<br>一般情况下, 使用 HEAD</del>n 情况即可, 表示前 n 次提交, 而使用 HEAD^n 用于分支合并的情况多</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> --- </span>
