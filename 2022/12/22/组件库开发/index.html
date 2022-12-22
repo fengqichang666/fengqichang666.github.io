@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>git HEAD~与HEAD^的区别 | 前端知识点记录</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="git HEAD~与HEAD^的区别 | 前端知识点记录">
+  <title>组件库开发 | 前端知识点记录</title>
+  <meta name="keywords" content=" vue ">
+  <meta name="description" content="组件库开发 | 前端知识点记录">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安装使用Vue3 安装对应的router4版本 使用Vue2安装对应的router3版本 npm install vue-router@4 在src目录下面新建router 文件 然后在router 文件夹下面新建 index.ts 12345678910111213141516171819202122232425&#x2F;&#x2F;引入路由对象import &amp;#123; createRouter, create">
 <meta property="og:type" content="article">
@@ -632,19 +632,26 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-git-HEAD-与HEAD-的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-组件库开发" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">git HEAD~与HEAD^的区别</h1>
+        <h1 class="article-title">组件库开发</h1>
     
     <div class="article-meta">
         
         
         
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">vue</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-15 14:18:50'>2022-11-15 14:17</time>
+            Created At : <time class="date" title='Updated At: 2022-12-22 16:01:26'>2022-12-22 15:17</time>
         
     </div>
     <div class="article-meta">
@@ -666,7 +673,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%94%B9%E9%80%A0%E5%8F%8A%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE"><span class="toc-text">目录改造及打包配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E7%BB%84%E4%BB%B6%E4%BB%A3%E7%A0%81"><span class="toc-text">编写组件代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%84%E4%BB%B6"><span class="toc-text">测试组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEpackage-json%E6%96%87%E4%BB%B6"><span class="toc-text">配置package.json文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0npm"><span class="toc-text">发布到npm</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -682,24 +689,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>HEAD~ 表示祖先</li>
-<li>HEAD^ 表示父母 (涉及分支合并)</li>
-</ul>
-<p>举例 A B C 三个分支</p>
-<ul>
-<li>A: A1, A2, A3</li>
-<li>B: B1, B2, B3</li>
-<li>C: C1, C3, C3</li>
-</ul>
-<p>当前在分支 A 上, 合并 B C 这两个分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge B C</span><br></pre></td></tr></table></figure>
+        <h1 id="目录改造及打包配置"><a href="#目录改造及打包配置" class="headerlink" title="目录改造及打包配置"></a>目录改造及打包配置</h1><p>使用vue-cli创建一个新工程</p>
+<p><img src="https://fengqichang666.github.io/images/directory.png"></p>
+<p>目录改造参考element</p>
+<p>将src的目录文件改为examples，用来写组件相关文档和事例。</p>
+<p>在根目录下新建一个 packages 文件夹，用来进行组件的编写。</p>
+<p>在根目录下新建一个vue.config.js文件，修改入口文件地址为examples下的main.js,其次将packages加入打包编译任务中，配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    pages: &#123;</span><br><span class="line">        index: &#123;</span><br><span class="line">            entry: &#39;examples&#x2F;main.js&#39;,</span><br><span class="line">            template: &#39;public&#x2F;index.html&#39;,</span><br><span class="line">            filename: &#39;index.html&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 扩展 webpack 配置，使 packages 加入编译</span><br><span class="line">    chainWebpack: config &#x3D;&gt; &#123;</span><br><span class="line">        config.module</span><br><span class="line">            .rule(&#39;js&#39;)</span><br><span class="line">            .include</span><br><span class="line">            .add(&#39;&#x2F;packages&#39;)</span><br><span class="line">            .end()</span><br><span class="line">            .use(&#39;babel&#39;)</span><br><span class="line">            .loader(&#39;babel-loader&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>当前提交一共有 3 个父母</p>
-<p>~ 表示第 1 个分支的第 n 个祖先</p>
-<p>HEAD~ 表示 A3<br>HEAD<del>2 表示 A2<br>HEAD</del>3 表示 A1<br>^ 表示第 n 个父母</p>
-<p>HEAD^ 表示 A3<br>HEAD^2 表示 B3<br>HEAD^3 表示 C3<br>注意事项</p>
-<p>HEAD~ 与 HEAD<del>1 等效, HEAD^ 与 HEAD^1 等效<br>HEAD</del>3 等效于 HEAD~~~ 等效于 HEAD^^^ 都表示 A1<br>HEAD<del>n 等效于 HEAD</del>…~ (n 次 <del>) 等效于 HEAD^^^ (n 次 ^)<br>HEAD^3 与 HEAD^^^ 不同, 前者表示 C3 (即第 3 个父母), 后者表示 A1<br>总结:<br>一般情况下, 使用 HEAD</del>n 情况即可, 表示前 n 次提交, 而使用 HEAD^n 用于分支合并的情况多</p>
+<h1 id="编写组件代码"><a href="#编写组件代码" class="headerlink" title="编写组件代码"></a>编写组件代码</h1><p>在packages目录下新建一个button目录</p>
+<p>button/src/index.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line"> * @Author: feng</span><br><span class="line"> * @Date: 2022-11-09 15:03:34</span><br><span class="line"> * @LastEditTime: 2022-11-09 15:38:09</span><br><span class="line"> * @Description: file content</span><br><span class="line">--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;x-button&quot;&gt;</span><br><span class="line">      &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    name: &#39;x-button&#39;,</span><br><span class="line">    props: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;style scoped&gt;</span><br><span class="line">    .x-button &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        padding: 3px 6px;</span><br><span class="line">        background: red;</span><br><span class="line">        color: #fff;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>button/index.js 单个组件的挂载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 导入组件，组件必须声明 name</span><br><span class="line">import XButton from &#39;.&#x2F;src&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 为组件提供 install 安装方法，供按需引入</span><br><span class="line">XButton.install &#x3D; function (Vue) &#123;</span><br><span class="line">  Vue.component(XButton.name, XButton)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导出组件</span><br><span class="line">export default XButton</span><br></pre></td></tr></table></figure>
+
+<p>packages/index.js  入口文件  导入所有组件并挂载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 导入button组件</span><br><span class="line">import XButton from &#39;.&#x2F;button&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 组件列表</span><br><span class="line">const components &#x3D; [</span><br><span class="line">  XButton</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，那么所有的组件都会被注册</span><br><span class="line">const install &#x3D; function (Vue) &#123;</span><br><span class="line">  &#x2F;&#x2F; 判断是否安装</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  &#x2F;&#x2F; 遍历注册全局组件</span><br><span class="line">  components.map(component &#x3D;&gt; Vue.component(component.name, component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断是否是直接引入文件</span><br><span class="line">if (typeof window !&#x3D;&#x3D; &#39;undefined&#39; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 导出的对象必须具有 install，才能被 Vue.use() 方法安装</span><br><span class="line">  install,</span><br><span class="line">  &#x2F;&#x2F; 以下是具体的组件列表</span><br><span class="line">  XButton</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试组件"><a href="#测试组件" class="headerlink" title="测试组件"></a>测试组件</h1><p>将组件导入到examples目录下的main.js中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line">&#x2F;&#x2F; 导入组件库</span><br><span class="line">import myui from &#39;..&#x2F;packages&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 注册组件库</span><br><span class="line">Vue.use(myui)</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip &#x3D; false</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;).$mount(&#39;#app&#39;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这种方式是全局导入，至于按需导入，可以采用element的方式来配置</p>
+<p>接下来我们就可以在项目中使用我们的组件了</p>
+<h1 id="配置package-json文件"><a href="#配置package-json文件" class="headerlink" title="配置package.json文件"></a>配置package.json文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;serve&quot;: &quot;vue-cli-service serve&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;vue-cli-service build&quot;,</span><br><span class="line">    &quot;lib&quot;: &quot;vue-cli-service build --target lib --name myui --dest lib 							packages&#x2F;index.js&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;vue-cli-service --fixed lint&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>lib脚本就是用来打包packages的组件代码到lib目录下,文件名为以–name指定的名称前缀开头</p>
+<p>编写package文件的description,keywords等,具体介绍如下: </p>
+<p><em>description 组件库的描述文本</em> </p>
+<p>keywords 组件库的关键词 </p>
+<p><em>license 许可协议</em> </p>
+<p>repository 组件库关联的git仓库地址 </p>
+<p><em>homepage 组件库展示的首页地址</em> </p>
+<p>main 组件库的主入口地址(在使用组件时引入的地址) </p>
+<p><em>private 声明组件库的私有性,如果要发布到npm公网上,需删除该属性或者设置为false</em> </p>
+<p>publishConfig 用来设置npm发布的地址,这个配置作为团队内部的npm服务器来说非常关键,可以设置为私有的npm仓库</p>
+<h1 id="发布到npm"><a href="#发布到npm" class="headerlink" title="发布到npm"></a>发布到npm</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 登录</span><br><span class="line"> npm login</span><br><span class="line"> &#x2F;&#x2F; 发布</span><br><span class="line"> npm publish</span><br><span class="line"> &#x2F;&#x2F; 如果发布失败提示权限问题,请执行以下命令</span><br><span class="line"> npm publish --access public</span><br></pre></td></tr></table></figure>
+
+<p>之后mian.js就可以通过如下方式使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 导入组件库</span><br><span class="line">import myui from &#39;..&#x2F;lib&#x2F;myui.umd.min&#39;</span><br><span class="line">import &#39;..&#x2F;lib&#x2F;myui.css&#39;</span><br><span class="line">&#x2F;&#x2F; 注册组件库</span><br><span class="line">Vue.use(myui)</span><br></pre></td></tr></table></figure>
+
 
       
        <hr><span style="font-style: italic;color: gray;"> --- </span>
