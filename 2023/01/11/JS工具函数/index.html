@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>工具函数 | 前端知识点记录</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="工具函数 | 前端知识点记录">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1、校验数据类型12345678910export const typeOf &#x3D; function(obj) &amp;#123;  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()&amp;#125;&#x2F;&#x2F; 示例typeOf(&#39;树哥&#39;)  &#x2F;&#x2F; stringt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具函数">
+<meta property="og:url" content="http://example.com/2023/01/11/JS%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="前端知识点记录">
+<meta property="og:description" content="1、校验数据类型12345678910export const typeOf &#x3D; function(obj) &amp;#123;  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()&amp;#125;&#x2F;&#x2F; 示例typeOf(&#39;树哥&#39;)  &#x2F;&#x2F; stringt">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-11T09:09:41.000Z">
+<meta property="article:modified_time" content="2023-01-12T10:59:01.077Z">
+<meta property="article:author" content="Feng">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Feng</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/fengqichang666"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:2309997549@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2309997549&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(33)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="33">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://wgrape.github.io/">WGrape</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>常用的正则表达式大全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>构造函数、原型对象、对象实例</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端性能优化面试题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git操作指令大全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Proxy和Object.defineProperty</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vue</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2023/01/11/JS%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具函数">工具函数</span>
+            <span class="post-date" title="2023-01-11 17:09:41">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/01/11/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95SSO/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="单点登录SSO">单点登录SSO</span>
+            <span class="post-date" title="2023-01-11 13:56:41">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/01/11/%E5%89%8D%E7%AB%AF%E9%89%B4%E6%9D%83cookie%E3%80%81session%E3%80%81token%E3%80%81jwt%E3%80%81%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="前端鉴权cookie、session、token、jwt、单点登录">前端鉴权cookie、session、token、jwt、单点登录</span>
+            <span class="post-date" title="2023-01-11 10:13:51">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/22/%E7%BB%84%E4%BB%B6%E5%BA%93%E5%BC%80%E5%8F%91/"
+           data-tag="vue"
+           data-author="" >
+            <span class="post-title" title="组件库开发">组件库开发</span>
+            <span class="post-date" title="2022-12-22 15:17:36">2022/12/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/22/pinia/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="pinia">pinia</span>
+            <span class="post-date" title="2022-12-22 10:55:10">2022/12/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/21/router4%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="router4笔记">router4笔记</span>
+            <span class="post-date" title="2022-12-21 17:02:33">2022/12/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/15/vue3%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue3笔记">vue3笔记</span>
+            <span class="post-date" title="2022-12-15 15:00:16">2022/12/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/11/15/git-HEAD-%E4%B8%8EHEAD-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git HEAD~与HEAD^的区别">git HEAD~与HEAD^的区别</span>
+            <span class="post-date" title="2022-11-15 14:17:58">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/10/08/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="开发中容易遇到的问题">开发中容易遇到的问题</span>
+            <span class="post-date" title="2022-10-08 16:30:35">2022/10/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/22/js%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="js执行机制">js执行机制</span>
+            <span class="post-date" title="2022-09-22 16:08:28">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/19/vue-elementui-%E8%A1%A8%E5%8D%95%E6%A3%80%E9%AA%8C%E4%B8%AD%E5%8F%91%E9%80%81%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue+elementui 表单检验中发送接口进行校验">vue+elementui 表单检验中发送接口进行校验</span>
+            <span class="post-date" title="2022-09-19 19:30:51">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/19/eslint%E4%BD%BF%E7%94%A8%E3%80%81%E6%8A%A5%E9%94%99%E9%83%A8%E5%88%86%E5%BF%AB%E9%80%9F%E4%BF%AE%E5%A4%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue-cli中eslint检验指定文件/夹、报错部分快速修复">vue-cli中eslint检验指定文件/夹、报错部分快速修复</span>
+            <span class="post-date" title="2022-09-19 19:28:46">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/17/%E9%87%91%E9%A2%9D%E8%BE%93%E5%85%A5%E6%A1%86%E5%B0%81%E8%A3%85%EF%BC%88%E5%8D%83%E5%88%86%E4%BD%8D%EF%BC%8C%E7%A6%81%E6%AD%A2%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%EF%BC%89/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="金额输入框封装（千分位，禁止中文输入）">金额输入框封装（千分位，禁止中文输入）</span>
+            <span class="post-date" title="2022-07-17 16:34:55">2022/07/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/17/%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6keydown%EF%BC%8Ckeypress%EF%BC%8Ckeyup/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="键盘事件keydown，keypress，keyup">键盘事件keydown，keypress，keyup</span>
+            <span class="post-date" title="2022-07-17 11:46:10">2022/07/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/03/nodejs-websocket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="nodejs-websocket">nodejs-websocket</span>
+            <span class="post-date" title="2022-07-03 13:13:15">2022/07/03</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/19/Git%E5%87%AD%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F-https/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Git凭据管理的三种方式(https)">Git凭据管理的三种方式(https)</span>
+            <span class="post-date" title="2022-06-19 11:56:57">2022/06/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/19/git-merge-no-ff-%E4%B8%8E-ff-%E5%92%8C-squash%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git merge --no-ff 与--ff 和--squash的区别">git merge --no-ff 与--ff 和--squash的区别</span>
+            <span class="post-date" title="2022-06-19 11:18:58">2022/06/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue3+elementplus+ts+pinia%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue3+elementplus+ts+pinia踩坑记录">vue3+elementplus+ts+pinia踩坑记录</span>
+            <span class="post-date" title="2021-12-08 15:23:24">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue知识点记录">vue知识点记录</span>
+            <span class="post-date" title="2021-12-08 15:23:24">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6css%E4%BF%AE%E6%94%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue第三方组件css修改">vue第三方组件css修改</span>
+            <span class="post-date" title="2021-12-08 14:00:41">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/11/25/vuex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vuex">vuex</span>
+            <span class="post-date" title="2021-11-25 15:56:11">2021/11/25</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/25/commonJS%E4%B8%8Ees6%E6%A8%A1%E5%9D%97%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="exports、module.exports和export、export default">exports、module.exports和export、export default</span>
+            <span class="post-date" title="2021-10-25 13:41:29">2021/10/25</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/08/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDIFF%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="虚拟DOM与DIFF算法">虚拟DOM与DIFF算法</span>
+            <span class="post-date" title="2021-10-08 16:57:02">2021/10/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/09/24/%E8%AF%A6%E8%A7%A3mixins%E6%B7%B7%E5%85%A5%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="详解mixins混入使用">详解mixins混入使用</span>
+            <span class="post-date" title="2021-09-24 17:10:18">2021/09/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/09/24/Vue%E4%B8%ADextend-mixins-extends%E4%BB%A5%E5%8F%8AVue-use%E7%9A%84install%E5%92%8CVue-nextTick/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick">Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick</span>
+            <span class="post-date" title="2021-09-24 15:33:37">2021/09/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/20/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue组件通信">vue组件通信</span>
+            <span class="post-date" title="2021-07-20 11:00:15">2021/07/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/15/%E6%A0%B7%E5%BC%8F%E6%B8%85%E5%8D%95%E6%95%B4%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="样式清单整理">样式清单整理</span>
+            <span class="post-date" title="2021-07-15 09:34:39">2021/07/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/07/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据类型判断">数据类型判断</span>
+            <span class="post-date" title="2021-07-07 15:21:32">2021/07/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/07/Proxy%E5%92%8CObject-defineProperty/"
+           data-tag="Proxy和Object.defineProperty"
+           data-author="" >
+            <span class="post-title" title="Proxy和Object.defineProperty">Proxy和Object.defineProperty</span>
+            <span class="post-date" title="2021-07-07 10:31:00">2021/07/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/30/git%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4/"
+           data-tag="git操作指令大全"
+           data-author="" >
+            <span class="post-title" title="git命令总结">git命令总结</span>
+            <span class="post-date" title="2021-06-30 10:28:12">2021/06/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/30/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%A7%E5%85%A8/"
+           data-tag="常用的正则表达式大全"
+           data-author="" >
+            <span class="post-title" title="常用的正则表达式大全">常用的正则表达式大全</span>
+            <span class="post-date" title="2021-06-30 10:28:12">2021/06/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/06/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E9%9D%A2%E8%AF%95%E9%A2%98/"
+           data-tag="前端性能优化面试题"
+           data-author="" >
+            <span class="post-title" title="前端性能优化面试题总结">前端性能优化面试题总结</span>
+            <span class="post-date" title="2020-06-06 15:33:46">2020/06/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/05/24/%E5%8E%9F%E5%9E%8B%E9%93%BE/"
+           data-tag="构造函数、原型对象、对象实例"
+           data-author="" >
+            <span class="post-title" title="原型链">原型链</span>
+            <span class="post-date" title="2020-05-24 10:40:00">2020/05/24</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="JS工具函数-JS工具函数" class="article article-type-JS工具函数" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">工具函数</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-01-12 18:59:01'>2023-01-11 17:09</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%A0%A1%E9%AA%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1、校验数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E9%98%B2%E6%8A%96"><span class="toc-text">2、防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E8%8A%82%E6%B5%81"><span class="toc-text">3、节流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%89%8B%E6%9C%BA%E5%8F%B7%E8%84%B1%E6%95%8F"><span class="toc-text">4、手机号脱敏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%BC%80%E5%90%AF%E5%85%A8%E5%B1%8F"><span class="toc-text">5、开启全屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E5%85%B3%E9%97%AD%E5%85%A8%E5%B1%8F"><span class="toc-text">6、关闭全屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="toc-text">7、大小写转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E8%A7%A3%E6%9E%90URL%E5%8F%82%E6%95%B0"><span class="toc-text">8、解析URL参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E5%88%A4%E6%96%AD%E6%89%8B%E6%9C%BA%E6%98%AFAndoird%E8%BF%98%E6%98%AFIOS"><span class="toc-text">9、判断手机是Andoird还是IOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%A0%B9%E6%8D%AE%E5%AD%97%E6%AE%B5%E5%8E%BB%E9%87%8D"><span class="toc-text">10、数组对象根据字段去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11%E3%80%81%E6%BB%9A%E5%8A%A8%E5%88%B0%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8"><span class="toc-text">11、滚动到页面顶部</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12%E3%80%81%E6%BB%9A%E5%8A%A8%E5%88%B0%E5%85%83%E7%B4%A0%E4%BD%8D%E7%BD%AE"><span class="toc-text">12、滚动到元素位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13%E3%80%81%E9%87%91%E9%A2%9D%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">13、金额格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14%E3%80%81%E5%AD%98%E5%82%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">14、存储操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15%E3%80%81%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="toc-text">15、下载文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16%E3%80%81%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text">16、深拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17%E3%80%81%E6%A8%A1%E7%B3%8A%E6%90%9C%E7%B4%A2"><span class="toc-text">17、模糊搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18%E3%80%81%E9%81%8D%E5%8E%86%E6%A0%91%E8%8A%82%E7%82%B9"><span class="toc-text">18、遍历树节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19%E3%80%81%E5%81%9C%E6%AD%A2%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6"><span class="toc-text">19、停止冒泡事件</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、校验数据类型"><a href="#1、校验数据类型" class="headerlink" title="1、校验数据类型"></a>1、校验数据类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export const typeOf &#x3D; function(obj) &#123;</span><br><span class="line">  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 示例</span><br><span class="line">typeOf(&#39;树哥&#39;)  &#x2F;&#x2F; string</span><br><span class="line">typeOf([])  &#x2F;&#x2F; array</span><br><span class="line">typeOf(new Date())  &#x2F;&#x2F; date</span><br><span class="line">typeOf(null) &#x2F;&#x2F; null</span><br><span class="line">typeOf(true) &#x2F;&#x2F; boolean</span><br><span class="line">typeOf(() &#x3D;&gt; &#123; &#125;) &#x2F;&#x2F; function</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、防抖"><a href="#2、防抖" class="headerlink" title="2、防抖"></a>2、防抖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">export const debounce &#x3D; (() &#x3D;&gt; &#123;</span><br><span class="line">  let timer &#x3D; null</span><br><span class="line">  return (callback, wait &#x3D; 800) &#x3D;&gt; &#123;</span><br><span class="line">    timer&amp;&amp;clearTimeout(timer)</span><br><span class="line">    timer &#x3D; setTimeout(callback, wait)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">&#x2F;&#x2F; 示例</span><br><span class="line">methods: &#123;</span><br><span class="line">  loadList() &#123;</span><br><span class="line">    debounce(() &#x3D;&gt; &#123;</span><br><span class="line">      console.log(&#39;加载数据&#39;)</span><br><span class="line">    &#125;, 500)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、节流"><a href="#3、节流" class="headerlink" title="3、节流"></a>3、节流</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export const throttle &#x3D; (() &#x3D;&gt; &#123;</span><br><span class="line">  let last &#x3D; 0</span><br><span class="line">  return (callback, wait &#x3D; 800) &#x3D;&gt; &#123;</span><br><span class="line">    let now &#x3D; +new Date()</span><br><span class="line">    if (now - last &gt; wait) &#123;</span><br><span class="line">      callback()</span><br><span class="line">      last &#x3D; now</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、手机号脱敏"><a href="#4、手机号脱敏" class="headerlink" title="4、手机号脱敏"></a>4、手机号脱敏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export const hideMobile &#x3D; (mobile) &#x3D;&gt; &#123;</span><br><span class="line">  return mobile.replace(&#x2F;^(\d&#123;3&#125;)\d&#123;4&#125;(\d&#123;4&#125;)$&#x2F;, &quot;$1****$2&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、开启全屏"><a href="#5、开启全屏" class="headerlink" title="5、开启全屏"></a>5、开启全屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export const launchFullscreen &#x3D; (element) &#x3D;&gt; &#123;</span><br><span class="line">  if (element.requestFullscreen) &#123;</span><br><span class="line">    element.requestFullscreen()</span><br><span class="line">  &#125; else if (element.mozRequestFullScreen) &#123;</span><br><span class="line">    element.mozRequestFullScreen()</span><br><span class="line">  &#125; else if (element.msRequestFullscreen) &#123;</span><br><span class="line">    element.msRequestFullscreen()</span><br><span class="line">  &#125; else if (element.webkitRequestFullscreen) &#123;</span><br><span class="line">    element.webkitRequestFullScreen()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、关闭全屏"><a href="#6、关闭全屏" class="headerlink" title="6、关闭全屏"></a>6、关闭全屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export const exitFullscreen &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  if (document.exitFullscreen) &#123;</span><br><span class="line">    document.exitFullscreen()</span><br><span class="line">  &#125; else if (document.msExitFullscreen) &#123;</span><br><span class="line">    document.msExitFullscreen()</span><br><span class="line">  &#125; else if (document.mozCancelFullScreen) &#123;</span><br><span class="line">    document.mozCancelFullScreen()</span><br><span class="line">  &#125; else if (document.webkitExitFullscreen) &#123;</span><br><span class="line">    document.webkitExitFullscreen()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、大小写转换"><a href="#7、大小写转换" class="headerlink" title="7、大小写转换"></a>7、大小写转换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; str 待转换的字符串</span><br><span class="line">&#x2F;&#x2F; type 1-全大写 2-全小写 3-首字母大写</span><br><span class="line">export const turnCase &#x3D; (str, type) &#x3D;&gt; &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case 1:</span><br><span class="line">      return str.toUpperCase()</span><br><span class="line">    case 2:</span><br><span class="line">      return str.toLowerCase()</span><br><span class="line">    case 3:</span><br><span class="line">      &#x2F;&#x2F;return str[0].toUpperCase() + str.substr(1).toLowerCase() &#x2F;&#x2F; substr 已不推荐使用</span><br><span class="line">      return str[0].toUpperCase() + str.substring(1).toLowerCase()</span><br><span class="line">    default:</span><br><span class="line">      return str</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、解析URL参数"><a href="#8、解析URL参数" class="headerlink" title="8、解析URL参数"></a>8、解析URL参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export const getSearchParams &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const searchPar &#x3D; new URLSearchParams(window.location.search)</span><br><span class="line">  const paramsObj &#x3D; &#123;&#125;</span><br><span class="line">  for (const [key, value] of searchPar.entries()) &#123;</span><br><span class="line">    paramsObj[key] &#x3D; value</span><br><span class="line">  &#125;</span><br><span class="line">  return paramsObj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 假设目前位于 https:&#x2F;&#x2F;****com&#x2F;index?id&#x3D;154513&amp;age&#x3D;18;</span><br><span class="line">getSearchParams(); &#x2F;&#x2F; &#123;id: &quot;154513&quot;, age: &quot;18&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、判断手机是Andoird还是IOS"><a href="#9、判断手机是Andoird还是IOS" class="headerlink" title="9、判断手机是Andoird还是IOS"></a>9、判断手机是Andoird还是IOS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** </span><br><span class="line"> * 1: ios</span><br><span class="line"> * 2: android</span><br><span class="line"> * 3: 其它</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const getOSType&#x3D;() &#x3D;&gt; &#123;</span><br><span class="line">  let u &#x3D; navigator.userAgent, app &#x3D; navigator.appVersion;</span><br><span class="line">  let isAndroid &#x3D; u.indexOf(&#39;Android&#39;) &gt; -1 || u.indexOf(&#39;Linux&#39;) &gt; -1;</span><br><span class="line">  let isIOS &#x3D; !!u.match(&#x2F;\(i[^;]+;( U;)? CPU.+Mac OS X&#x2F;);</span><br><span class="line">  if (isIOS) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;</span><br><span class="line">  if (isAndroid) &#123;</span><br><span class="line">    return 2;</span><br><span class="line">  &#125;</span><br><span class="line">  return 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="10、数组对象根据字段去重"><a href="#10、数组对象根据字段去重" class="headerlink" title="10、数组对象根据字段去重"></a>10、数组对象根据字段去重</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; arr 要去重的数组</span><br><span class="line">&#x2F;&#x2F; key 根据去重的字段名</span><br><span class="line">export const uniqueArrayObject &#x3D; (arr &#x3D; [], key &#x3D; &#39;id&#39;) &#x3D;&gt; &#123;</span><br><span class="line">  if (arr.length &#x3D;&#x3D;&#x3D; 0) return</span><br><span class="line">  let list &#x3D; []</span><br><span class="line">  const map &#x3D; &#123;&#125;</span><br><span class="line">  arr.forEach((item) &#x3D;&gt; &#123;</span><br><span class="line">    if (!map[item[key]]) &#123;</span><br><span class="line">      map[item[key]] &#x3D; item</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  list &#x3D; Object.values(map)</span><br><span class="line"></span><br><span class="line">  return list</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="11、滚动到页面顶部"><a href="#11、滚动到页面顶部" class="headerlink" title="11、滚动到页面顶部"></a>11、滚动到页面顶部</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export const scrollToTop &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const height &#x3D; document.documentElement.scrollTop || document.body.scrollTop;</span><br><span class="line">  if (height &gt; 0) &#123;</span><br><span class="line">    window.requestAnimationFrame(scrollToTop);</span><br><span class="line">    window.scrollTo(0, height - height &#x2F; 8);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="12、滚动到元素位置"><a href="#12、滚动到元素位置" class="headerlink" title="12、滚动到元素位置"></a>12、滚动到元素位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export const smoothScroll &#x3D; element &#x3D;&gt;&#123;</span><br><span class="line">    document.querySelector(element).scrollIntoView(&#123;</span><br><span class="line">        behavior: &#39;smooth&#39;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="13、金额格式化"><a href="#13、金额格式化" class="headerlink" title="13、金额格式化"></a>13、金额格式化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#123;number&#125; number：要格式化的数字</span><br><span class="line">&#x2F;&#x2F; &#123;number&#125; decimals：保留几位小数</span><br><span class="line">&#x2F;&#x2F; &#123;string&#125; dec_point：小数点符号</span><br><span class="line">&#x2F;&#x2F; &#123;string&#125; thousands_sep：千分位符号</span><br><span class="line">export const moneyFormat &#x3D; (number, decimals, dec_point, thousands_sep) &#x3D;&gt; &#123;</span><br><span class="line">  number &#x3D; (number + &#39;&#39;).replace(&#x2F;[^0-9+-Ee.]&#x2F;g, &#39;&#39;)</span><br><span class="line">  const n &#x3D; !isFinite(+number) ? 0 : +number</span><br><span class="line">  const prec &#x3D; !isFinite(+decimals) ? 2 : Math.abs(decimals)</span><br><span class="line">  const sep &#x3D; typeof thousands_sep &#x3D;&#x3D;&#x3D; &#39;undefined&#39; ? &#39;,&#39; : thousands_sep</span><br><span class="line">  const dec &#x3D; typeof dec_point &#x3D;&#x3D;&#x3D; &#39;undefined&#39; ? &#39;.&#39; : dec_point</span><br><span class="line">  let s &#x3D; &#39;&#39;</span><br><span class="line">  const toFixedFix &#x3D; function(n, prec) &#123;</span><br><span class="line">    const k &#x3D; Math.pow(10, prec)</span><br><span class="line">    return &#39;&#39; + Math.ceil(n * k) &#x2F; k</span><br><span class="line">  &#125;</span><br><span class="line">  s &#x3D; (prec ? toFixedFix(n, prec) : &#39;&#39; + Math.round(n)).split(&#39;.&#39;)</span><br><span class="line">  const re &#x3D; &#x2F;(-?\d+)(\d&#123;3&#125;)&#x2F;</span><br><span class="line">  while (re.test(s[0])) &#123;</span><br><span class="line">    s[0] &#x3D; s[0].replace(re, &#39;$1&#39; + sep + &#39;$2&#39;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if ((s[1] || &#39;&#39;).length &lt; prec) &#123;</span><br><span class="line">    s[1] &#x3D; s[1] || &#39;&#39;</span><br><span class="line">    s[1] +&#x3D; new Array(prec - s[1].length + 1).join(&#39;0&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">  return s.join(dec)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="14、存储操作"><a href="#14、存储操作" class="headerlink" title="14、存储操作"></a>14、存储操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class MyCache &#123;</span><br><span class="line">  constructor(isLocal &#x3D; true) &#123;</span><br><span class="line">    this.storage &#x3D; isLocal ? localStorage : sessionStorage</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setItem(key, value) &#123;</span><br><span class="line">    if (typeof (value) &#x3D;&#x3D;&#x3D; &#39;object&#39;) value &#x3D; JSON.stringify(value)</span><br><span class="line">    this.storage.setItem(key, value)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getItem(key) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      return JSON.parse(this.storage.getItem(key))</span><br><span class="line">    &#125; catch (err) &#123;</span><br><span class="line">      return this.storage.getItem(key)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  removeItem(key) &#123;</span><br><span class="line">    this.storage.removeItem(key)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  clear() &#123;</span><br><span class="line">    this.storage.clear()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  key(index) &#123;</span><br><span class="line">    return this.storage.key(index)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  length() &#123;</span><br><span class="line">    return this.storage.length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const localCache &#x3D; new MyCache()</span><br><span class="line">const sessionCache &#x3D; new MyCache(false)</span><br><span class="line"></span><br><span class="line">export &#123; localCache, sessionCache &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="15、下载文件"><a href="#15、下载文件" class="headerlink" title="15、下载文件"></a>15、下载文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;api 接口</span><br><span class="line">&#x2F;&#x2F;params 请求参数</span><br><span class="line">&#x2F;&#x2F;fileName 文件名</span><br><span class="line">const downloadFile &#x3D; (api, params, fileName, type &#x3D; &#39;get&#39;) &#x3D;&gt; &#123;</span><br><span class="line">  axios(&#123;</span><br><span class="line">    method: type,</span><br><span class="line">    url: api,</span><br><span class="line">    responseType: &#39;blob&#39;, </span><br><span class="line">    params: params</span><br><span class="line">  &#125;).then((res) &#x3D;&gt; &#123;</span><br><span class="line">    let str &#x3D; res.headers[&#39;content-disposition&#39;]</span><br><span class="line">    if (!res || !str) &#123;</span><br><span class="line">      return</span><br><span class="line">    &#125;</span><br><span class="line">    let suffix &#x3D; &#39;&#39;</span><br><span class="line">    &#x2F;&#x2F; 截取文件名和文件类型</span><br><span class="line">    if (str.lastIndexOf(&#39;.&#39;)) &#123;</span><br><span class="line">      fileName ? &#39;&#39; : fileName &#x3D; decodeURI(str.substring(str.indexOf(&#39;&#x3D;&#39;) + 1, str.lastIndexOf(&#39;.&#39;)))</span><br><span class="line">      suffix &#x3D; str.substring(str.lastIndexOf(&#39;.&#39;), str.length)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;  如果支持微软的文件下载方式(ie10+浏览器)</span><br><span class="line">    if (window.navigator.msSaveBlob) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        const blobObject &#x3D; new Blob([res.data]);</span><br><span class="line">        window.navigator.msSaveBlob(blobObject, fileName + suffix);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        console.log(e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F;  其他浏览器</span><br><span class="line">      let url &#x3D; window.URL.createObjectURL(res.data)</span><br><span class="line">      let link &#x3D; document.createElement(&#39;a&#39;)</span><br><span class="line">      link.style.display &#x3D; &#39;none&#39;</span><br><span class="line">      link.href &#x3D; url</span><br><span class="line">      link.setAttribute(&#39;download&#39;, fileName + suffix)</span><br><span class="line">      document.body.appendChild(link)</span><br><span class="line">      link.click()</span><br><span class="line">      document.body.removeChild(link)</span><br><span class="line">      window.URL.revokeObjectURL(link.href);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).catch((err) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(err.message);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="16、深拷贝"><a href="#16、深拷贝" class="headerlink" title="16、深拷贝"></a>16、深拷贝</h2><p>此方法存在一定局限性：一些特殊情况没有处理: 例如Buffer对象、Promise、Set、Map。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">export const clone &#x3D; parent &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; 判断类型</span><br><span class="line">  const isType &#x3D; (obj, type) &#x3D;&gt; &#123;</span><br><span class="line">    if (typeof obj !&#x3D;&#x3D; &quot;object&quot;) return false;</span><br><span class="line">    const typeString &#x3D; Object.prototype.toString.call(obj);</span><br><span class="line">    let flag;</span><br><span class="line">    switch (type) &#123;</span><br><span class="line">      case &quot;Array&quot;:</span><br><span class="line">        flag &#x3D; typeString &#x3D;&#x3D;&#x3D; &quot;[object Array]&quot;;</span><br><span class="line">        break;</span><br><span class="line">      case &quot;Date&quot;:</span><br><span class="line">        flag &#x3D; typeString &#x3D;&#x3D;&#x3D; &quot;[object Date]&quot;;</span><br><span class="line">        break;</span><br><span class="line">      case &quot;RegExp&quot;:</span><br><span class="line">        flag &#x3D; typeString &#x3D;&#x3D;&#x3D; &quot;[object RegExp]&quot;;</span><br><span class="line">        break;</span><br><span class="line">      default:</span><br><span class="line">        flag &#x3D; false;</span><br><span class="line">    &#125;</span><br><span class="line">    return flag;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 处理正则</span><br><span class="line">  const getRegExp &#x3D; re &#x3D;&gt; &#123;</span><br><span class="line">    var flags &#x3D; &quot;&quot;;</span><br><span class="line">    if (re.global) flags +&#x3D; &quot;g&quot;;</span><br><span class="line">    if (re.ignoreCase) flags +&#x3D; &quot;i&quot;;</span><br><span class="line">    if (re.multiline) flags +&#x3D; &quot;m&quot;;</span><br><span class="line">    return flags;</span><br><span class="line">  &#125;;</span><br><span class="line">  &#x2F;&#x2F; 维护两个储存循环引用的数组</span><br><span class="line">  const parents &#x3D; [];</span><br><span class="line">  const children &#x3D; [];</span><br><span class="line"></span><br><span class="line">  const _clone &#x3D; parent &#x3D;&gt; &#123;</span><br><span class="line">    if (parent &#x3D;&#x3D;&#x3D; null) return null;</span><br><span class="line">    if (typeof parent !&#x3D;&#x3D; &quot;object&quot;) return parent;</span><br><span class="line"></span><br><span class="line">    let child, proto;</span><br><span class="line"></span><br><span class="line">    if (isType(parent, &quot;Array&quot;)) &#123;</span><br><span class="line">      &#x2F;&#x2F; 对数组做特殊处理</span><br><span class="line">      child &#x3D; [];</span><br><span class="line">    &#125; else if (isType(parent, &quot;RegExp&quot;)) &#123;</span><br><span class="line">      &#x2F;&#x2F; 对正则对象做特殊处理</span><br><span class="line">      child &#x3D; new RegExp(parent.source, getRegExp(parent));</span><br><span class="line">      if (parent.lastIndex) child.lastIndex &#x3D; parent.lastIndex;</span><br><span class="line">    &#125; else if (isType(parent, &quot;Date&quot;)) &#123;</span><br><span class="line">      &#x2F;&#x2F; 对Date对象做特殊处理</span><br><span class="line">      child &#x3D; new Date(parent.getTime());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F; 处理对象原型</span><br><span class="line">      proto &#x3D; Object.getPrototypeOf(parent);</span><br><span class="line">      &#x2F;&#x2F; 利用Object.create切断原型链</span><br><span class="line">      child &#x3D; Object.create(proto);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 处理循环引用</span><br><span class="line">    const index &#x3D; parents.indexOf(parent);</span><br><span class="line"></span><br><span class="line">    if (index !&#x3D; -1) &#123;</span><br><span class="line">      &#x2F;&#x2F; 如果父数组存在本对象,说明之前已经被引用过,直接返回此对象</span><br><span class="line">      return children[index];</span><br><span class="line">    &#125;</span><br><span class="line">    parents.push(parent);</span><br><span class="line">    children.push(child);</span><br><span class="line"></span><br><span class="line">    for (let i in parent) &#123;</span><br><span class="line">      &#x2F;&#x2F; 递归</span><br><span class="line">      child[i] &#x3D; _clone(parent[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return child;</span><br><span class="line">  &#125;;</span><br><span class="line">  return _clone(parent);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="17、模糊搜索"><a href="#17、模糊搜索" class="headerlink" title="17、模糊搜索"></a>17、模糊搜索</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; list 原数组</span><br><span class="line">&#x2F;&#x2F; keyWord 查询的关键词</span><br><span class="line">&#x2F;&#x2F; attribute 数组需要检索属性</span><br><span class="line">export const fuzzyQuery &#x3D; (list, keyWord, attribute &#x3D; &#39;name&#39;) &#x3D;&gt; &#123;</span><br><span class="line">  const reg &#x3D; new RegExp(keyWord)</span><br><span class="line">  const arr &#x3D; []</span><br><span class="line">  for (let i &#x3D; 0; i &lt; list.length; i++) &#123;</span><br><span class="line">    if (reg.test(list[i][attribute])) &#123;</span><br><span class="line">      arr.push(list[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;示例</span><br><span class="line">const list &#x3D; [</span><br><span class="line">  &#123; id: 1, name: &#39;树哥&#39; &#125;,</span><br><span class="line">  &#123; id: 2, name: &#39;黄老爷&#39; &#125;,</span><br><span class="line">  &#123; id: 3, name: &#39;张麻子&#39; &#125;,</span><br><span class="line">  &#123; id: 4, name: &#39;汤师爷&#39; &#125;,</span><br><span class="line">  &#123; id: 5, name: &#39;胡万&#39; &#125;,</span><br><span class="line">  &#123; id: 6, name: &#39;花姐&#39; &#125;,</span><br><span class="line">  &#123; id: 7, name: &#39;小梅&#39; &#125;</span><br><span class="line">]</span><br><span class="line">fuzzyQuery(list, &#39;树&#39;, &#39;name&#39;) &#x2F;&#x2F; [&#123;id: 1, name: &#39;树哥&#39;&#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="18、遍历树节点"><a href="#18、遍历树节点" class="headerlink" title="18、遍历树节点"></a>18、遍历树节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">export const foreachTree &#x3D; (data, callback, childrenName &#x3D; &#39;children&#39;) &#x3D;&gt; &#123;</span><br><span class="line">  for (let i &#x3D; 0; i &lt; data.length; i++) &#123;</span><br><span class="line">    callback(data[i])</span><br><span class="line">    if (data[i][childrenName] &amp;&amp; data[i][childrenName].length &gt; 0) &#123;</span><br><span class="line">      foreachTree(data[i][childrenName], callback, childrenName)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 示例</span><br><span class="line">const treeData &#x3D; [&#123;</span><br><span class="line">  id: 1,</span><br><span class="line">  label: &#39;一级 1&#39;,</span><br><span class="line">  children: [&#123;</span><br><span class="line">    id: 4,</span><br><span class="line">    label: &#39;二级 1-1&#39;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      id: 9,</span><br><span class="line">      label: &#39;三级 1-1-1&#39;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      id: 10,</span><br><span class="line">      label: &#39;三级 1-1-2&#39;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br><span class="line"> &#125;, &#123;</span><br><span class="line">  id: 2,</span><br><span class="line">  label: &#39;一级 2&#39;,</span><br><span class="line">  children: [&#123;</span><br><span class="line">    id: 5,</span><br><span class="line">    label: &#39;二级 2-1&#39;</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    id: 6,</span><br><span class="line">    label: &#39;二级 2-2&#39;</span><br><span class="line">  &#125;]</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    id: 3,</span><br><span class="line">    label: &#39;一级 3&#39;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      id: 7,</span><br><span class="line">      label: &#39;二级 3-1&#39;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      id: 8,</span><br><span class="line">      label: &#39;二级 3-2&#39;</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;],</span><br><span class="line"></span><br><span class="line">let result</span><br><span class="line">foreachTree(data, (item) &#x3D;&gt; &#123;</span><br><span class="line">  if (item.id &#x3D;&#x3D;&#x3D; 9) &#123;</span><br><span class="line">    result &#x3D; item</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;result&#39;, result)  &#x2F;&#x2F; &#123;id: 9,label: &quot;三级 1-1-1&quot;&#125; </span><br></pre></td></tr></table></figure>
+
+<h2 id="19、停止冒泡事件"><a href="#19、停止冒泡事件" class="headerlink" title="19、停止冒泡事件"></a>19、停止冒泡事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const stopPropagation &#x3D; (event) &#x3D;&gt; &#123;</span><br><span class="line">  event &#x3D; event || window.event;</span><br><span class="line">  if (event.stopPropagation) &#123;</span><br><span class="line">    event.stopPropagation();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    event.cancelBubble &#x3D; true;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+       <hr><span style="font-style: italic;color: gray;"> --- </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2019-2022
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

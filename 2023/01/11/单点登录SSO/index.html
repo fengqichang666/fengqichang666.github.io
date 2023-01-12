@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>vue3+elementplus+ts+pinia踩坑记录 | 前端知识点记录</title>
+  <title>单点登录SSO | 前端知识点记录</title>
   <meta name="keywords" content="">
-  <meta name="description" content="vue3+elementplus+ts+pinia踩坑记录 | 前端知识点记录">
+  <meta name="description" content="单点登录SSO | 前端知识点记录">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1、校验数据类型12345678910export const typeOf &#x3D; function(obj) &amp;#123;  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()&amp;#125;&#x2F;&#x2F; 示例typeOf(&#39;树哥&#39;)  &#x2F;&#x2F; stringt">
 <meta property="og:type" content="article">
@@ -659,9 +659,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-vue3+elementplus+ts+pinia踩坑记录" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-单点登录SSO" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">vue3+elementplus+ts+pinia踩坑记录</h1>
+        <h1 class="article-title">单点登录SSO</h1>
     
     <div class="article-meta">
         
@@ -671,7 +671,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-07 10:29:57'>2021-12-08 15:23</time>
+            Created At : <time class="date" title='Updated At: 2023-01-11 15:46:56'>2023-01-11 13:56</time>
         
     </div>
     <div class="article-meta">
@@ -693,7 +693,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#element-plus%E5%8D%95%E9%80%89%E6%A1%86%E6%97%A0%E6%B3%95%E6%9B%B4%E6%94%B9%E9%97%AE%E9%A2%98"><span class="toc-text">element-plus单选框无法更改问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8Eelementui%E7%9A%84%E8%A1%A8%E5%8D%95%E6%A0%B7%E5%BC%8F%E5%8C%BA%E5%88%AB"><span class="toc-text">与elementui的表单样式区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ts%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E4%B8%AD%E6%8B%AC%E5%8F%B7%E8%AF%BB%E5%8F%96%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text">Ts如何通过中括号读取属性值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%AD%A6%E5%91%8A%EF%BC%9A-Vue-warn-Missing-required-prop-%E2%80%9C-%E2%80%9D"><span class="toc-text">控制台警告： [Vue warn]:Missing required prop: “***”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BB%84%E4%BB%B6%E6%9B%B4%E6%94%B9%E6%8E%A5%E5%8F%97%E5%88%B0%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84"><span class="toc-text">子组件更改接受到的对象数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#localStorage%E5%8F%96%E5%80%BC%E3%80%81%E8%B5%8B%E5%80%BC"><span class="toc-text">localStorage取值、赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%A4%A7%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%8B%86%E5%88%86"><span class="toc-text">超大静态资源拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0hexo%E5%8D%9A%E5%AE%A2github-io-fast-page-%EF%BC%88hash%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">部署到hexo博客github.io&#x2F;fast-page （hash模式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#history%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F%E9%9C%80%E5%90%8E%E7%AB%AF%E9%85%8D%E5%90%88%EF%BC%8C%E6%94%BE%E5%BC%83"><span class="toc-text">history路由模式需后端配合，放弃</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#draggable%E6%8B%96%E5%8A%A8%E6%8F%92%E4%BB%B6%E5%BC%95%E8%B5%B7%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">draggable拖动插件引起的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2%EF%BC%8Celement-plus%E8%8F%9C%E5%8D%95%E9%80%89%E4%B8%AD%E6%A0%B7%E5%BC%8F%E4%B8%8E%E5%BD%93%E5%89%8D%E8%8F%9C%E5%8D%95%E4%B8%8D%E5%8C%B9%E9%85%8D"><span class="toc-text">刷新页面，element-plus菜单选中样式与当前菜单不匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%BC%95%E5%85%A5icon%EF%BC%8Cswitch%E7%BB%84%E4%BB%B6active-icon%E4%B8%8Einactive-icon%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8ts%E6%8A%A5%E9%94%99"><span class="toc-text">全局引入icon，switch组件active-icon与inactive-icon直接使用ts报错</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%EF%BC%88SSO%EF%BC%89Single-Sign-On"><span class="toc-text">单点登录（SSO）Single Sign On</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E5%9F%9F%E4%B8%8B%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95"><span class="toc-text">同域下的单点登录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%9F%9F%E4%B8%8B%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95"><span class="toc-text">不同域下的单点登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-text">登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%94%80"><span class="toc-text">注销</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -709,52 +709,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="element-plus单选框无法更改问题"><a href="#element-plus单选框无法更改问题" class="headerlink" title="element-plus单选框无法更改问题"></a>element-plus单选框无法更改问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form ref&#x3D;&quot;form&quot; :model&#x3D;&quot;form&quot; class&#x3D;&quot;mt15&quot;&gt;</span><br><span class="line"> 	&lt;el-radio v-model&#x3D;&quot;form.amtRadio&quot; label&#x3D;&quot;1&quot;&gt;按钮1&lt;&#x2F;el-radio&gt;</span><br><span class="line">    &lt;el-radio v-model&#x3D;&quot;form.amtRadio&quot; label&#x3D;&quot;2&quot;&gt;按钮2&lt;&#x2F;el-radio&gt;</span><br><span class="line">&lt;&#x2F;el-form&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>发现单选按钮2无法选中</p>
-<p>原因：el-form中绑定的ref 跟v-model 相同</p>
-<h2 id="与elementui的表单样式区别"><a href="#与elementui的表单样式区别" class="headerlink" title="与elementui的表单样式区别"></a>与elementui的表单样式区别</h2><p>elementui中 表单的label与content使用浮动保持在一行</p>
-<p>elementplus中表单的item使用的display布局。</p>
-<h2 id="Ts如何通过中括号读取属性值"><a href="#Ts如何通过中括号读取属性值" class="headerlink" title="Ts如何通过中括号读取属性值"></a>Ts如何通过中括号读取属性值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">type form &#x3D; &#123;</span><br><span class="line">    amtRadio:string,</span><br><span class="line">    mainAmt:string,</span><br><span class="line">    subAmt:string</span><br><span class="line">&#125;</span><br><span class="line">const form &#x3D; reactive&lt;form&gt;(&#123;</span><br><span class="line">    amtRadio: &#39;1&#39;,</span><br><span class="line">    mainAmt: &#39;&#39;,</span><br><span class="line">    subAmt:&#39;&#39;</span><br><span class="line">&#125;)</span><br><span class="line">const blurAmt &#x3D; (key:string): void &#x3D;&gt; &#123;</span><br><span class="line">    console.log(form[key])   &#x2F;&#x2F;ts会报错：类型&quot;String&quot;不能作为索引类型使用</span><br><span class="line">&#125;</span><br><span class="line">解决方法：keyof typeof</span><br><span class="line">const blurAmt &#x3D; (key:keyof typeof form): void &#x3D;&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="控制台警告：-Vue-warn-Missing-required-prop-“-”"><a href="#控制台警告：-Vue-warn-Missing-required-prop-“-”" class="headerlink" title="控制台警告： [Vue warn]:Missing required prop: “***”"></a>控制台警告： [Vue warn]:Missing required prop: “***”</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">父组件：</span><br><span class="line">    &lt;LayOut msg&#x3D;&quot;Vue3 + Vite + Ts + Pinia&quot; &#x2F;&gt;</span><br><span class="line">子组件：</span><br><span class="line">	defineProps&lt;&#123; msg: string &#125;&gt;()</span><br><span class="line">解决方案：</span><br><span class="line">子组件：</span><br><span class="line">	defineProps&lt;&#123; msg?: string &#125;&gt;()</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="子组件更改接受到的对象数组"><a href="#子组件更改接受到的对象数组" class="headerlink" title="子组件更改接受到的对象数组"></a>子组件更改接受到的对象数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">数据类型:[&#123;title:&#39;&#39;,value:&#39;&#39;&#125;,&#123;title:&#39;&#39;,value:&#39;&#39;&#125;]</span><br><span class="line">场景1</span><br><span class="line">父组件传过来的值，子组件需要在子组件更改为响应式</span><br><span class="line">type item &#x3D; &#123;</span><br><span class="line">    title: string,</span><br><span class="line">    value: string</span><br><span class="line">&#125;</span><br><span class="line">const props &#x3D; defineProps&lt;&#123;</span><br><span class="line">    info: Array&lt;item&gt;</span><br><span class="line">&#125;&gt;()</span><br><span class="line">&#x2F;&#x2F;toRefs toRef无效</span><br><span class="line">const info &#x3D; ref(props.info) &#x2F;&#x2F;重新ref（会改变父组件源对象，可深拷贝解决）</span><br><span class="line"></span><br><span class="line">简单数据类型</span><br><span class="line">&lt;div&gt;&#123;&#123;info&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">const props &#x3D;defineProps&lt;&#123;</span><br><span class="line">    xxx:string</span><br><span class="line">&#125;&gt;()</span><br><span class="line">const info &#x3D;ref(props.xxx)&#x2F;&#x2F;父组件更改xxx值，子组件无响应。但是子组件可任意更改info值（影响不到父组件）</span><br><span class="line"></span><br><span class="line">解决方法  父组件更改xxx值，子组件同时发生改变，但是为只读。无法在子组件更改</span><br><span class="line">&#123;&#123;info.xxx&#125;&#125;</span><br><span class="line">const info &#x3D;toRefs(props)</span><br><span class="line"></span><br><span class="line">&#123;&#123;xxx&#125;&#125;</span><br><span class="line">const info &#x3D;toRef(props,&#39;xxx&#39;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用components.d.ts报错：找不到模块“./src/components/com.vue”或其相应的类型声明。</p>
-<p>原因：tsconfig.json中需要在include中添加”components.d.ts”</p>
-<h2 id="localStorage取值、赋值"><a href="#localStorage取值、赋值" class="headerlink" title="localStorage取值、赋值"></a>localStorage取值、赋值</h2><p>直接使用JSON.parse(localStorage.getItem(‘****’))会报错  类型“string | null”的参数不能赋给类型“string”的参数。</p>
-<p>解决方案  JSON.<strong>parse</strong>(localStorage.<strong>getItem</strong>(‘****’) as string)  使用as关键字  类型断言</p>
-<h2 id="超大静态资源拆分"><a href="#超大静态资源拆分" class="headerlink" title="超大静态资源拆分"></a>超大静态资源拆分</h2><p>vite打包警告：Some chunks are larger than 500 KiB after minification.</p>
-<p>尚未解决：element-plus 600KiB依旧有警告</p>
-<p>vite.config.ts：设置包名、拆分 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">            rollupOptions: &#123;</span><br><span class="line">                output: &#123;</span><br><span class="line">                    chunkFileNames: &#39;static&#x2F;js&#x2F;[name]-[hash].js&#39;,</span><br><span class="line">                    entryFileNames: &#39;static&#x2F;js&#x2F;[name]-[hash].js&#39;,</span><br><span class="line">                    assetFileNames: &#39;static&#x2F;[ext]&#x2F;[name]-[hash].[ext]&#39;,</span><br><span class="line">                    manualChunks(id) &#123; &#x2F;&#x2F;静态资源分拆打包</span><br><span class="line">                        if (id.includes(&#39;node_modules&#39;)) &#123;</span><br><span class="line">                            return id.toString().split(&#39;node_modules&#x2F;&#39;)[1].split(&#39;&#x2F;&#39;)[0].toString();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="部署到hexo博客github-io-fast-page-（hash模式）"><a href="#部署到hexo博客github-io-fast-page-（hash模式）" class="headerlink" title="部署到hexo博客github.io/fast-page （hash模式）"></a>部署到hexo博客github.io/fast-page （hash模式）</h2><p>有的时候项目需要部署在服务器的子目录下，这时就要根据开发环境或生产环境动态配置 <code>vite.config.ts</code> 中的 <code>base</code> 选项</p>
-<p>vite.config.ts： </p>
-<p><code>command</code> 属性一共有两个值 <code>build</code> 和 <code>serve</code>，对应了 <code>package.json</code> 定义的脚本名称，分别为构建生产版本和开启开发服务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineConfig, ConfigEnv &#125; from &#39;vite&#39;</span><br><span class="line">import vue from &#39;@vitejs&#x2F;plugin-vue&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig((&#123; command, mode &#125;: ConfigEnv) &#x3D;&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">    	plugins: [</span><br><span class="line">            vue()</span><br><span class="line">        ],</span><br><span class="line">        base: command &#x3D;&#x3D;&#x3D; &#39;build&#39; ? &#39;&#x2F;fast-page&#x2F;&#39; : &#39;&#x2F;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="history路由模式需后端配合，放弃"><a href="#history路由模式需后端配合，放弃" class="headerlink" title="history路由模式需后端配合，放弃"></a>history路由模式需后端配合，放弃</h3><h2 id="draggable拖动插件引起的问题"><a href="#draggable拖动插件引起的问题" class="headerlink" title="draggable拖动插件引起的问题"></a>draggable拖动插件引起的问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 点击卡片右上角图标删除本条</span><br><span class="line">&lt;el-icon  @click&#x3D;&quot;del(element,index)&quot;&gt;</span><br><span class="line">      &lt;CloseBold &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;el-icon&gt;</span><br><span class="line"></span><br><span class="line">script代码</span><br><span class="line">const del &#x3D; (item: List, i: number): void &#x3D;&gt; &#123;</span><br><span class="line">    dataList.splice(i, 1) &#x2F;&#x2F; 页面显示</span><br><span class="line">    delItem(item) &#x2F;&#x2F; 本地存储</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>有时候点击之后触发了del事件，本地存储的数据也已经删了。页面上没删掉。</p>
-<p>解决方案：拖动过程中事件逻辑不让执行，拖动完成再触发</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const lock &#x3D; ref(false)</span><br><span class="line">&#x2F;&#x2F; draggable提供 拖动开始事件</span><br><span class="line">const onStart &#x3D; ():void &#x3D;&gt;&#123;</span><br><span class="line">    lock.value &#x3D; true</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; draggable提供 拖动结束事件</span><br><span class="line">const onEnd &#x3D; ():void &#x3D;&gt; &#123;</span><br><span class="line">    lock.value &#x3D; false</span><br><span class="line">&#125;</span><br><span class="line">const del &#x3D; (item: List, i: number): void &#x3D;&gt; &#123;</span><br><span class="line">    if(lock.value)&#123;return&#125;</span><br><span class="line">    dataList.splice(i, 1) &#x2F;&#x2F; 页面显示</span><br><span class="line">    delItem(item) &#x2F;&#x2F; 本地存储</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="刷新页面，element-plus菜单选中样式与当前菜单不匹配"><a href="#刷新页面，element-plus菜单选中样式与当前菜单不匹配" class="headerlink" title="刷新页面，element-plus菜单选中样式与当前菜单不匹配"></a>刷新页面，element-plus菜单选中样式与当前菜单不匹配</h2><p>解决方案：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;el-menu router :collapse-transition&#x3D;&quot;false&quot; :default-active&#x3D;&quot;activeIndex&quot;&gt;</span><br><span class="line"> &lt;&#x2F;el-menu&gt;</span><br><span class="line"></span><br><span class="line">const route &#x3D; useRoute()</span><br><span class="line">const activeIndex &#x3D; ref(&#39;&#x2F;okr&#39;) &#x2F;&#x2F; 定义默认</span><br><span class="line">activeIndex.value &#x3D; route.path &#x2F;&#x2F; 刷新页面后，获取到当前的path</span><br></pre></td></tr></table></figure>
-
-<h2 id="全局引入icon，switch组件active-icon与inactive-icon直接使用ts报错"><a href="#全局引入icon，switch组件active-icon与inactive-icon直接使用ts报错" class="headerlink" title="全局引入icon，switch组件active-icon与inactive-icon直接使用ts报错"></a>全局引入icon，switch组件active-icon与inactive-icon直接使用ts报错</h2><p>场景：</p>
-<p>在main.ts中import * as ElementPlusIconsVue from ‘@element-plus/icons-vue’全局使用icon</p>
-<p>代码中直接使用报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-switch v-model&#x3D;&quot;darkTheme&quot; class&#x3D;&quot;mt-2&quot; style&#x3D;&quot;margin-left: 24px&quot; inline-prompt</span><br><span class="line">                       :active-icon&#x3D;&quot;Check&quot; :inactive-icon&#x3D;&quot;Close&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>类型“{ $: ComponentInternalInstance; $data: {}; $props: Partial&lt;{}&gt; &amp; Omit&lt;Readonly&lt;ExtractPropTypes&lt;{}&gt;&gt; &amp; VNodeProps &amp; AllowedComponentProps &amp; ComponentCustomProps, never&gt;; … 10 more …; $watch(source: string | Function, cb: Function, options?: WatchOptions&lt;…&gt; | undefined): WatchStopHandle; } &amp; … 5 more … &amp; Sh…”上不存在属性“Check”。ts(2339)</p>
-<p>解决方法：重新定义。。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const Check &#x3D; &#39;Check&#39;</span><br><span class="line">const Close &#x3D; &#39;Close&#39;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="单点登录（SSO）Single-Sign-On"><a href="#单点登录（SSO）Single-Sign-On" class="headerlink" title="单点登录（SSO）Single Sign On"></a>单点登录（SSO）Single Sign On</h1><p><strong>在多个应用系统中，只需要登录一次，就可以访问其他相互信任的应用系统。</strong></p>
+<h1 id="同域下的单点登录"><a href="#同域下的单点登录" class="headerlink" title="同域下的单点登录"></a>同域下的单点登录</h1><p>如果业务系统都在同一主域名下，比如<code>wenku.baidu.com</code> <code>tieba.baidu.com</code>，就好办了。可以直接把 cookie domain 设置为主域名 <code>baidu.com</code></p>
+<p><strong>我们在设置Cookie时，只能设置顶域和自己的域，不能设置其他的域。比如：我们不能在自己的系统中给baidu.com的域设置Cookie。</strong></p>
+<h1 id="不同域下的单点登录"><a href="#不同域下的单点登录" class="headerlink" title="不同域下的单点登录"></a>不同域下的单点登录</h1><h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><p>sso需要一个独立的认证中心，只有认证中心能接受用户的用户名密码等安全信息，其他系统不提供登录入口，只接受认证中心的间接授权。</p>
+<p>间接授权通过令牌实现，sso认证中心验证用户的用户名密码没问题，创建授权令牌，在接下来的跳转过程中，授权令牌作为参数发送给各个子系统，子系统拿到令牌，即得到了授权，可以借此创建局部会话，局部会话登录方式与单系统的登录方式相同。</p>
+<p><strong>流程</strong></p>
+<ol>
+<li>用户访问系统1的受保护资源，系统1发现用户未登录，跳转至sso认证中心，并将自己的地址作为参数</li>
+<li>sso认证中心发现用户未登录，将用户引导至登录页面（带系统1地址）</li>
+<li>用户输入用户名密码提交登录申请</li>
+<li><code>sso认证中心校验用户信息，创建用户与sso认证中心之间的会话，称为全局会话（这时该会话信息保存到cookie中），同时创建授权令牌</code></li>
+<li>sso认证中心带着令牌跳转到最初的请求地址（系统1）</li>
+<li>系统1拿到令牌，去sso认证中心校验令牌是否有效</li>
+<li>sso认证中心校验令牌，返回有效，注册系统1</li>
+<li><code>系统1使用该令牌创建与用户的会话，称为局部会话(seesion)，返回受保护资源</code></li>
+<li>用户访问系统2的受保护资源</li>
+<li>系统2发现用户未登录，跳转至sso认证中心，并将自己的<code>地址</code>和之前和<code>sso认证中心的会话cookie信</code>息作为参数</li>
+<li>sso认证中心发现用户已登录，跳转回系统2的地址，并附上令牌</li>
+<li>系统2拿到令牌，去sso认证中心校验令牌是否有效</li>
+<li>sso认证中心校验令牌，返回有效，注册系统2</li>
+<li>系统2使用该令牌创建与用户的局部会话，返回受保护资源</li>
+</ol>
+<p>用户登录成功之后，会与sso认证中心及访问的子系统建立会话，用户与sso认证中心建立的会话称为全局会话，用户与各个子系统建立的会话称为局部会话，局部会话建立之后，用户访问子系统受保护资源将不再通过sso认证中心，全局会话与局部会话有如下约束关系</p>
+<ol>
+<li>局部会话存在，全局会话一定存在</li>
+<li>全局会话存在，局部会话不一定存在</li>
+<li>全局会话销毁，局部会话必须销毁</li>
+</ol>
+<h2 id="注销"><a href="#注销" class="headerlink" title="注销"></a>注销</h2><p>在一个子系统中注销，所有子系统的会话都将被销毁</p>
+<p>sso认证中心一直监听全局会话的状态，一旦全局会话销毁，监听器将通知所有注册系统执行注销操作</p>
+<ol>
+<li>用户向系统1发起注销请求</li>
+<li>系统1根据用户与系统1建立的会话id拿到令牌，向sso认证中心发起注销请求</li>
+<li>sso认证中心校验令牌有效，销毁全局会话，同时取出所有用此令牌注册的系统地址</li>
+<li>sso认证中心向所有注册系统发起注销请求</li>
+<li>各注册系统接收sso认证中心的注销请求，销毁局部会话</li>
+<li>sso认证中心引导用户至登录页面</li>
+</ol>
+<p>单点登录要求不同域下的系统「一次登录，全线通用」，通常由独立的 SSO 系统记录登录状态、下发令牌(ticket)，各业务系统配合存储和认证 ticket</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> --- </span>
