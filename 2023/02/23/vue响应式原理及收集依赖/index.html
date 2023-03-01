@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vue响应式原理、依赖收集 | 前端知识点记录</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="vue响应式原理、依赖收集 | 前端知识点记录">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="baidu-site-verification" content="codeva-LecjeKsg4q" />
+<meta name="msvalidate.01" content="BDC4733A72EDADC029644A0AB0A022AD" />
+<meta name="description" content="有帮助的贴子 9 个项目助你在 2023 年成为“前端大佬” - 专栏 - 声网 RTE 开发者社区 (rtcdeveloper.cn) vue2 vue3  (29条消息) 小满zs的博客_CSDN博客-Vue3,typeScript,nest-js领域博主  vue-router   axios   算法  左神算法笔记（持续更新） - 知乎 (zhihu.com) 力扣（LeetCode）官">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端学习资料">
+<meta property="og:url" content="http://example.com/2023/02/28/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/index.html">
+<meta property="og:site_name" content="前端知识点记录">
+<meta property="og:description" content="有帮助的贴子 9 个项目助你在 2023 年成为“前端大佬” - 专栏 - 声网 RTE 开发者社区 (rtcdeveloper.cn) vue2 vue3  (29条消息) 小满zs的博客_CSDN博客-Vue3,typeScript,nest-js领域博主  vue-router   axios   算法  左神算法笔记（持续更新） - 知乎 (zhihu.com) 力扣（LeetCode）官">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-28T07:28:27.000Z">
+<meta property="article:modified_time" content="2023-03-01T09:30:58.579Z">
+<meta property="article:author" content="Feng">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Feng</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/fengqichang666"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:2309997549@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2309997549&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(40)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="40">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://wgrape.github.io/">WGrape</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>常用的正则表达式大全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>构造函数、原型对象、对象实例</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端性能优化面试题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git操作指令大全</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Proxy和Object.defineProperty</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vue</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2023/02/28/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="前端学习资料">前端学习资料</span>
+            <span class="post-date" title="2023-02-28 15:28:27">2023/02/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/28/%E5%AF%BC%E8%88%AA%E8%81%9A%E5%90%88%E7%BD%91%E7%AB%99/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="有用的网站">有用的网站</span>
+            <span class="post-date" title="2023-02-28 15:20:18">2023/02/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/24/vue%E5%AF%B9%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%84%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue对数组的处理">vue对数组的处理</span>
+            <span class="post-date" title="2023-02-24 13:53:03">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/23/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E5%8F%8A%E6%94%B6%E9%9B%86%E4%BE%9D%E8%B5%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue响应式原理、依赖收集">vue响应式原理、依赖收集</span>
+            <span class="post-date" title="2023-02-23 09:38:38">2023/02/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/21/webpack%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="webpack笔记">webpack笔记</span>
+            <span class="post-date" title="2023-02-21 14:43:08">2023/02/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/21/react%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="react笔记">react笔记</span>
+            <span class="post-date" title="2023-02-21 14:43:02">2023/02/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/21/uniapp%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="uniapp笔记">uniapp笔记</span>
+            <span class="post-date" title="2023-02-21 14:42:53">2023/02/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/01/11/JS%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具函数">工具函数</span>
+            <span class="post-date" title="2023-01-11 17:09:41">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/01/11/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95SSO/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="单点登录SSO">单点登录SSO</span>
+            <span class="post-date" title="2023-01-11 13:56:41">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/01/11/%E5%89%8D%E7%AB%AF%E9%89%B4%E6%9D%83cookie%E3%80%81session%E3%80%81token%E3%80%81jwt%E3%80%81%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="前端鉴权cookie、session、token、jwt、单点登录">前端鉴权cookie、session、token、jwt、单点登录</span>
+            <span class="post-date" title="2023-01-11 10:13:51">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/22/%E7%BB%84%E4%BB%B6%E5%BA%93%E5%BC%80%E5%8F%91/"
+           data-tag="vue"
+           data-author="" >
+            <span class="post-title" title="组件库开发">组件库开发</span>
+            <span class="post-date" title="2022-12-22 15:17:36">2022/12/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/22/pinia/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="pinia">pinia</span>
+            <span class="post-date" title="2022-12-22 10:55:10">2022/12/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/21/router4%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="router4笔记">router4笔记</span>
+            <span class="post-date" title="2022-12-21 17:02:33">2022/12/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/12/15/vue3%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue3笔记">vue3笔记</span>
+            <span class="post-date" title="2022-12-15 15:00:16">2022/12/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/11/15/git-HEAD-%E4%B8%8EHEAD-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git HEAD~与HEAD^的区别">git HEAD~与HEAD^的区别</span>
+            <span class="post-date" title="2022-11-15 14:17:58">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/10/08/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="开发中容易遇到的问题">开发中容易遇到的问题</span>
+            <span class="post-date" title="2022-10-08 16:30:35">2022/10/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/22/js%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="js执行机制">js执行机制</span>
+            <span class="post-date" title="2022-09-22 16:08:28">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/19/vue-elementui-%E8%A1%A8%E5%8D%95%E6%A3%80%E9%AA%8C%E4%B8%AD%E5%8F%91%E9%80%81%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue+elementui 表单检验中发送接口进行校验">vue+elementui 表单检验中发送接口进行校验</span>
+            <span class="post-date" title="2022-09-19 19:30:51">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/19/eslint%E4%BD%BF%E7%94%A8%E3%80%81%E6%8A%A5%E9%94%99%E9%83%A8%E5%88%86%E5%BF%AB%E9%80%9F%E4%BF%AE%E5%A4%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue-cli中eslint检验指定文件/夹、报错部分快速修复">vue-cli中eslint检验指定文件/夹、报错部分快速修复</span>
+            <span class="post-date" title="2022-09-19 19:28:46">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/17/%E9%87%91%E9%A2%9D%E8%BE%93%E5%85%A5%E6%A1%86%E5%B0%81%E8%A3%85%EF%BC%88%E5%8D%83%E5%88%86%E4%BD%8D%EF%BC%8C%E7%A6%81%E6%AD%A2%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%EF%BC%89/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="金额输入框封装（千分位，禁止中文输入）">金额输入框封装（千分位，禁止中文输入）</span>
+            <span class="post-date" title="2022-07-17 16:34:55">2022/07/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/17/%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6keydown%EF%BC%8Ckeypress%EF%BC%8Ckeyup/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="键盘事件keydown，keypress，keyup">键盘事件keydown，keypress，keyup</span>
+            <span class="post-date" title="2022-07-17 11:46:10">2022/07/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/03/nodejs-websocket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="nodejs-websocket">nodejs-websocket</span>
+            <span class="post-date" title="2022-07-03 13:13:15">2022/07/03</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/19/Git%E5%87%AD%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F-https/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Git凭据管理的三种方式(https)">Git凭据管理的三种方式(https)</span>
+            <span class="post-date" title="2022-06-19 11:56:57">2022/06/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/19/git-merge-no-ff-%E4%B8%8E-ff-%E5%92%8C-squash%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git merge --no-ff 与--ff 和--squash的区别">git merge --no-ff 与--ff 和--squash的区别</span>
+            <span class="post-date" title="2022-06-19 11:18:58">2022/06/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue3+elementplus+ts+pinia%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue3+elementplus+ts+pinia踩坑记录">vue3+elementplus+ts+pinia踩坑记录</span>
+            <span class="post-date" title="2021-12-08 15:23:24">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue知识点记录">vue知识点记录</span>
+            <span class="post-date" title="2021-12-08 15:23:24">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/12/08/vue%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6css%E4%BF%AE%E6%94%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue第三方组件css修改">vue第三方组件css修改</span>
+            <span class="post-date" title="2021-12-08 14:00:41">2021/12/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/11/25/vuex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vuex">vuex</span>
+            <span class="post-date" title="2021-11-25 15:56:11">2021/11/25</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/25/commonJS%E4%B8%8Ees6%E6%A8%A1%E5%9D%97%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="exports、module.exports和export、export default">exports、module.exports和export、export default</span>
+            <span class="post-date" title="2021-10-25 13:41:29">2021/10/25</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/08/%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDIFF%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="虚拟DOM与DIFF算法">虚拟DOM与DIFF算法</span>
+            <span class="post-date" title="2021-10-08 16:57:02">2021/10/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/09/24/%E8%AF%A6%E8%A7%A3mixins%E6%B7%B7%E5%85%A5%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="详解mixins混入使用">详解mixins混入使用</span>
+            <span class="post-date" title="2021-09-24 17:10:18">2021/09/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/09/24/Vue%E4%B8%ADextend-mixins-extends%E4%BB%A5%E5%8F%8AVue-use%E7%9A%84install%E5%92%8CVue-nextTick/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick">Vue中extend,mixins,extends以及Vue.use的install和Vue.nextTick</span>
+            <span class="post-date" title="2021-09-24 15:33:37">2021/09/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/20/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vue组件通信">vue组件通信</span>
+            <span class="post-date" title="2021-07-20 11:00:15">2021/07/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/15/%E6%A0%B7%E5%BC%8F%E6%B8%85%E5%8D%95%E6%95%B4%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="样式清单整理">样式清单整理</span>
+            <span class="post-date" title="2021-07-15 09:34:39">2021/07/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/07/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据类型判断">数据类型判断</span>
+            <span class="post-date" title="2021-07-07 15:21:32">2021/07/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/07/07/Proxy%E5%92%8CObject-defineProperty/"
+           data-tag="Proxy和Object.defineProperty"
+           data-author="" >
+            <span class="post-title" title="Proxy和Object.defineProperty">Proxy和Object.defineProperty</span>
+            <span class="post-date" title="2021-07-07 10:31:00">2021/07/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/30/git%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4/"
+           data-tag="git操作指令大全"
+           data-author="" >
+            <span class="post-title" title="git命令总结">git命令总结</span>
+            <span class="post-date" title="2021-06-30 10:28:12">2021/06/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/06/30/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%A7%E5%85%A8/"
+           data-tag="常用的正则表达式大全"
+           data-author="" >
+            <span class="post-title" title="常用的正则表达式大全">常用的正则表达式大全</span>
+            <span class="post-date" title="2021-06-30 10:28:12">2021/06/30</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/06/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E9%9D%A2%E8%AF%95%E9%A2%98/"
+           data-tag="前端性能优化面试题"
+           data-author="" >
+            <span class="post-title" title="前端性能优化面试题总结">前端性能优化面试题总结</span>
+            <span class="post-date" title="2020-06-06 15:33:46">2020/06/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/05/24/%E5%8E%9F%E5%9E%8B%E9%93%BE/"
+           data-tag="构造函数、原型对象、对象实例"
+           data-author="" >
+            <span class="post-title" title="原型链">原型链</span>
+            <span class="post-date" title="2020-05-24 10:40:00">2020/05/24</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-vue响应式原理及收集依赖" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">vue响应式原理、依赖收集</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-03-01 22:37:10'>2023-02-23 09:38</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86"><span class="toc-text">依赖收集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B4%BE%E5%8F%91%E6%9B%B4%E6%96%B0"><span class="toc-text">派发更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81"><span class="toc-text">优化代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Dep%E7%B1%BB"><span class="toc-text">Dep类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#window-target"><span class="toc-text">window.target</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#update%E6%96%B9%E6%B3%95"><span class="toc-text">update方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E6%BA%90%E7%A0%81"><span class="toc-text">Vue源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%80%BB%E7%BB%93"><span class="toc-text">代码总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E8%A6%81%E8%A7%A6%E5%8F%91getter%E5%B0%B1%E4%BC%9A%E6%94%B6%E9%9B%86%E4%BE%9D%E8%B5%96%E5%90%97"><span class="toc-text">只要触发getter就会收集依赖吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%B5%8C%E5%A5%97%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-text">依赖嵌套的对象属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%90%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E3%80%91"><span class="toc-text">【源码目录结构】</span></a>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p><strong>Watcher</strong>类可以如下实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Watcher &#123;</span><br><span class="line">  constructor(data, expression, cb) &#123;</span><br><span class="line">    &#x2F;&#x2F; data: 数据对象，如obj</span><br><span class="line">    &#x2F;&#x2F; expression：表达式，如b.c，根据data和expression就可以获取watcher依赖的数据</span><br><span class="line">    &#x2F;&#x2F; cb：依赖变化时触发的回调</span><br><span class="line">    this.data &#x3D; data</span><br><span class="line">    this.expression &#x3D; expression</span><br><span class="line">    this.cb &#x3D; cb</span><br><span class="line">    &#x2F;&#x2F; 初始化watcher实例时订阅数据</span><br><span class="line">    this.value &#x3D; this.get()</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  get() &#123;</span><br><span class="line">    const value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">    return value</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F; 当收到数据变化的消息时执行该方法，从而调用cb</span><br><span class="line">  update() &#123;</span><br><span class="line">    this.value &#x3D; parsePath(this.data, this.expression) &#x2F;&#x2F; 对存储的数据进行更新</span><br><span class="line">    cb()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function parsePath(obj, expression) &#123;</span><br><span class="line">  const segments &#x3D; expression.split(&#39;.&#39;)</span><br><span class="line">  for (let key of segments) &#123;</span><br><span class="line">    if (!obj) return</span><br><span class="line">    obj &#x3D; obj[key]</span><br><span class="line">  &#125;</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>需要有一个数组来存储<code>watcher</code></li>
+<li><code>watcher</code>实例需要订阅(依赖)数据，也就是获取依赖或者收集依赖</li>
+<li><code>watcher</code>的依赖发生变化时触发<code>watcher</code>的回调函数，也就是派发更新。</li>
+</ol>
+<p>每个数据都应该维护一个属于自己的数组，该数组来存放依赖自己的<code>watcher</code>，我们可以在<code>defineReactive</code>中定义一个数组<code>dep</code>，这样通过闭包，每个属性就能拥有一个属于自己的<code>dep</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function defineReactive(data, key, value &#x3D; data[key]) &#123;</span><br><span class="line">  const dep &#x3D; [] &#x2F;&#x2F; 增加</span><br><span class="line">  observe(value)</span><br><span class="line">  Object.defineProperty(data, key, &#123;</span><br><span class="line">    get: function reactiveGetter() &#123;</span><br><span class="line">      return value</span><br><span class="line">    &#125;,</span><br><span class="line">    set: function reactiveSetter(newValue) &#123;</span><br><span class="line">      if (newValue &#x3D;&#x3D;&#x3D; value) return</span><br><span class="line">      value &#x3D; newValue</span><br><span class="line">      observe(newValue)</span><br><span class="line">      dep.notify()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="依赖收集"><a href="#依赖收集" class="headerlink" title="依赖收集"></a>依赖收集</h4><p>页面的初次渲染过程中(暂时忽略渲染函数和虚拟<code>DOM</code>等部分)：渲染引擎会解析模板，比如引擎遇到了一个插值表达式，如果我们此时实例化一个<code>watcher</code>，会发生什么事情呢？从<code>Watcher</code>的代码中可以看到，实例化时会执行<code>get</code>方法，<code>get</code>方法的作用就是<code>获取</code>自己依赖的数据，而我们重写了数据的访问行为，为每个数据定义了<code>getter</code>，因此<code>getter</code>函数就会执行，如果我们在<code>getter</code>中把当前的<code>watcher</code>添加到<code>dep</code>数组中(淘宝低登记买家信息)，就能够完成依赖收集了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注意：执行到getter时，new Watcher()的get方法还没有执行完毕。</span><br><span class="line">new Watcher()时执行constructor，调用了实例的get方法，实例的get方法会读取数据的值，从而触发了数据的getter，getter执行完毕后，实例的get方法执行完毕，并返回值，constructor执行完毕，实例化完毕。</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的分析，我们只需要对<code>getter</code>进行一些修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">get: function reactiveGetter() &#123;</span><br><span class="line">  dep.push(watcher) &#x2F;&#x2F; 新增</span><br><span class="line">  return value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>watcher</code>这个变量从哪里来呢？我们是在模板编译函数中的实例化<code>watcher</code>的，<code>getter</code>中取不到这个实例啊。解决方法也很简单，将<code>watcher</code>实例放到全局不就行了吗，比如放到<code>window.target</code>上。因此，<code>Watcher</code>的<code>get</code>方法做如下修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">get() &#123;</span><br><span class="line">  window.target &#x3D; this &#x2F;&#x2F; 新增</span><br><span class="line">  const value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">  return value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，将<code>get</code>方法中的<code>dep.push(watcher)</code>修改为<code>dep.push(window.target)</code>即可。</p>
+<blockquote>
+<p>注意，不能这样写window.target = new Watcher()。因为执行到getter的时候，实例化watcher还没有完成，所以window.target还是undefined</p>
+</blockquote>
+<blockquote>
+<p>依赖收集过程：渲染页面时碰到插值表达式，<code>v-bind</code>等需要数据等地方，会实例化一个<code>watcher</code>,实例化<code>watcher</code>就会对依赖的数据求值，从而触发<code>getter</code>，数据的<code>getter</code>函数就会添加依赖自己的<code>watcher</code>，从而完成依赖收集。我们可以理解为<code>watcher</code>在收集依赖，而代码的实现方式是在数据中存储依赖自己的<code>watcher</code></p>
+</blockquote>
+<blockquote>
+<p>利用这种方法，每遇到一个插值表达式就会新建一个<code>watcher</code>，这样每个节点就会对应一个<code>watcher</code>。实际上这是<code>vue1.x</code>的做法，以节点为单位进行更新，粒度较细。而<code>vue2.x</code>的做法是每个组件对应一个<code>watcher</code>，实例化<code>watcher</code>时传入的也不再是一个<code>expression</code>，而是渲染函数，渲染函数由组件的模板转化而来，这样一个组件的<code>watcher</code>就能收集到自己的所有依赖，以组件为单位进行更新，是一种中等粒度的方式。要实现<code>vue2.x</code>的响应式系统涉及到很多其他的东西，比如组件化，虚拟<code>DOM</code>等，而这个系列文章只专注于数据响应式的原理，因此不能实现<code>vue2.x</code>，但是两者关于响应式的方面，原理相同。</p>
+</blockquote>
+<h4 id="派发更新"><a href="#派发更新" class="headerlink" title="派发更新"></a>派发更新</h4><p>实现依赖收集后，我们最后要实现的功能是派发更新，也就是依赖变化时触发<code>watcher</code>的回调。从依赖收集部分我们知道，获取哪个数据，也就是说触发哪个数据的<code>getter</code>，就说明<code>watcher</code>依赖哪个数据，那数据变化的时候如何通知<code>watcher</code>呢？在<code>setter</code>中派发更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set: function reactiveSetter(newValue) &#123;</span><br><span class="line">  if (newValue &#x3D;&#x3D;&#x3D; value) return</span><br><span class="line">  value &#x3D; newValue</span><br><span class="line">  observe(newValue)</span><br><span class="line">  dep.forEach(d &#x3D;&gt; d.update()) &#x2F;&#x2F; 新增 update方法见Watcher类</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优化代码"><a href="#优化代码" class="headerlink" title="优化代码"></a>优化代码</h4><h5 id="Dep类"><a href="#Dep类" class="headerlink" title="Dep类"></a>Dep类</h5><p>将<code>dep</code>数组抽象为一个类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Dep &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.subs &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  depend() &#123;</span><br><span class="line">    this.addSub(Dep.target)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notify() &#123;</span><br><span class="line">    const subs &#x3D; [...this.subs]</span><br><span class="line">    subs.forEach((s) &#x3D;&gt; s.update())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addSub(sub) &#123;</span><br><span class="line">    this.subs.push(sub)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>defineReactive</code>函数只需做相应的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function defineReactive(data, key, value &#x3D; data[key]) &#123;</span><br><span class="line">  const dep &#x3D; new Dep() &#x2F;&#x2F; 修改</span><br><span class="line">  observe(value)</span><br><span class="line">  Object.defineProperty(data, key, &#123;</span><br><span class="line">    get: function reactiveGetter() &#123;</span><br><span class="line">      dep.depend() &#x2F;&#x2F; 修改</span><br><span class="line">      return value</span><br><span class="line">    &#125;,</span><br><span class="line">    set: function reactiveSetter(newValue) &#123;</span><br><span class="line">      if (newValue &#x3D;&#x3D;&#x3D; value) return</span><br><span class="line">      value &#x3D; newValue</span><br><span class="line">      observe(newValue)</span><br><span class="line">      dep.notify() &#x2F;&#x2F; 修改</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="window-target"><a href="#window-target" class="headerlink" title="window.target"></a>window.target</h5><p>在<code>watcher</code>的<code>get</code>方法中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">get() &#123;</span><br><span class="line">  window.target &#x3D; this &#x2F;&#x2F; 设置了window.target</span><br><span class="line">  const value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">  return value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们没有重置<code>window.target</code>。有些同学可能认为这没什么问题，但是考虑如下场景：有一个对象<code>obj: &#123; a: 1, b: 2 &#125;</code>我们先实例化了一个<code>watcher1</code>，<code>watcher1</code>依赖<code>obj.a</code>，那么<code>window.target</code>就是<code>watcher1</code>。之后我们访问了<code>obj.b</code>，会发生什么呢？访问<code>obj.b</code>会触发<code>obj.b</code>的<code>getter</code>，<code>getter</code>会调用<code>dep.depend()</code>，那么<code>obj.b</code>的<code>dep</code>就会收集<code>window.target</code>， 也就是<code>watcher1</code>，这就导致<code>watcher1</code>依赖了<code>obj.b</code>，但事实并非如此。为解决这个问题，我们做如下修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Watcher的get方法</span><br><span class="line">get() &#123;</span><br><span class="line">  window.target &#x3D; this</span><br><span class="line">  const value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">  window.target &#x3D; null &#x2F;&#x2F; 新增，求值完毕后重置window.target</span><br><span class="line">  return value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Dep的depend方法</span><br><span class="line">depend() &#123;</span><br><span class="line">  if (Dep.target) &#123; &#x2F;&#x2F; 新增</span><br><span class="line">    this.addSub(Dep.target)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的分析能够看出，<code>window.target</code>的含义就是当前执行上下文中的<code>watcher</code>实例。由于<code>js</code>单线程的特性，同一时刻只有一个<code>watcher</code>的代码在执行，因此<code>window.target</code>就是当前正在处于实例化过程中的<code>watcher</code></p>
+<h5 id="update方法"><a href="#update方法" class="headerlink" title="update方法"></a>update方法</h5><p><code>update</code>方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update() &#123;</span><br><span class="line">  this.value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">  this.cb()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>回顾一下<code>vm.$watch</code>方法，我们可以在定义的回调中访问<code>this</code>，并且该回调可以接收到监听数据的新值和旧值，因此做如下修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update() &#123;</span><br><span class="line">  const oldValue &#x3D; this.value</span><br><span class="line">  this.value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">  this.cb.call(this.data, this.value, oldValue)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue源码"><a href="#Vue源码" class="headerlink" title="Vue源码"></a>Vue源码</h3><p>在<a href="https://link.juejin.cn/?target=https://github.com/vuejs/vue/blob/dev/src/core/observer/dep.js">Vue源码–56行</a>中，我们会看到这样一个变量：<code>targetStack</code>，看起来好像和我们的<code>window.target</code>有点关系，没错，确实有关系。设想一个这样的场景：我们有两个嵌套的父子组件，渲染父组件时会新建一个父组件的<code>watcher</code>，渲染过程中发现还有子组件，就会开始渲染子组件，也会新建一个子组件的<code>watcher</code>。在我们的实现中，新建父组件<code>watcher</code>时，<code>window.target</code>会指向父组件<code>watcher</code>，之后新建子组件<code>watcher</code>，<code>window.target</code>将被子组件<code>watcher</code>覆盖，子组件渲染完毕，回到父组件<code>watcher</code>时，<code>window.target</code>变成了<code>null</code>，这就会出现问题，因此，我们用一个栈结构来保存<code>watcher</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const targetStack &#x3D; []</span><br><span class="line"></span><br><span class="line">function pushTarget(_target) &#123;</span><br><span class="line">  targetStack.push(window.target)</span><br><span class="line">  window.target &#x3D; _target</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function popTarget() &#123;</span><br><span class="line">  window.target &#x3D; targetStack.pop()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Watcher</code>的<code>get</code>方法做如下修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">get() &#123;</span><br><span class="line">  pushTarget(this) &#x2F;&#x2F; 修改</span><br><span class="line">  const value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">  popTarget() &#x2F;&#x2F; 修改</span><br><span class="line">  return value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此外，<code>Vue</code>中使用<code>Dep.target</code>而不是<code>window.target</code>来保存当前的<code>watcher</code>，这一点影响不大，只要能保证有一个全局唯一的变量来保存当前的<code>watcher</code>即可</p>
+<h3 id="代码总结"><a href="#代码总结" class="headerlink" title="代码总结"></a>代码总结</h3><p>被Observer的data在触发 getter 时，Dep 就会收集依赖，然后打上标记，这里就是标记为Dep.target</p>
+<p>Watcher是一个观察者对象。依赖收集以后的watcher对象被保存在Dep的subs中，数据变动的时候Dep会通知watcher实例，然后由watcher实例回调cb进行视图更新。</p>
+<p>Watcher可以接受多个订阅者的订阅，当有data变动时，就会通过 Dep 给 Watcher 发通知进行更新。</p>
+<p><img src="https://fengqichang666.github.io/images/vueDep5.jpg" alt="vue原理图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 调用该方法来检测数据</span><br><span class="line">function observe(data) &#123;</span><br><span class="line">  if (typeof data !&#x3D;&#x3D; &#39;object&#39;) return</span><br><span class="line">  new Observer(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Observer &#123;</span><br><span class="line">  constructor(value) &#123;</span><br><span class="line">    this.value &#x3D; value</span><br><span class="line">    this.walk()</span><br><span class="line">  &#125;</span><br><span class="line">  walk() &#123;</span><br><span class="line">    Object.keys(this.value).forEach((key) &#x3D;&gt; defineReactive(this.value, key))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 数据拦截</span><br><span class="line">function defineReactive(data, key, value &#x3D; data[key]) &#123;</span><br><span class="line">  const dep &#x3D; new Dep()</span><br><span class="line">  observe(value)</span><br><span class="line">  Object.defineProperty(data, key, &#123;</span><br><span class="line">    get: function reactiveGetter() &#123;</span><br><span class="line">      dep.depend()</span><br><span class="line">      return value</span><br><span class="line">    &#125;,</span><br><span class="line">    set: function reactiveSetter(newValue) &#123;</span><br><span class="line">      if (newValue &#x3D;&#x3D;&#x3D; value) return</span><br><span class="line">      value &#x3D; newValue</span><br><span class="line">      observe(newValue)</span><br><span class="line">      dep.notify()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 依赖</span><br><span class="line">class Dep &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.subs &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  depend() &#123;</span><br><span class="line">    if (Dep.target) &#123;</span><br><span class="line">      this.addSub(Dep.target)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notify() &#123;</span><br><span class="line">    const subs &#x3D; [...this.subs]</span><br><span class="line">    subs.forEach((s) &#x3D;&gt; s.update())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addSub(sub) &#123;</span><br><span class="line">    this.subs.push(sub)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dep.target &#x3D; null</span><br><span class="line"></span><br><span class="line">const TargetStack &#x3D; []</span><br><span class="line"></span><br><span class="line">function pushTarget(_target) &#123;</span><br><span class="line">  TargetStack.push(Dep.target)</span><br><span class="line">  Dep.target &#x3D; _target</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function popTarget() &#123;</span><br><span class="line">  Dep.target &#x3D; TargetStack.pop()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; watcher</span><br><span class="line">class Watcher &#123;</span><br><span class="line">  constructor(data, expression, cb) &#123;</span><br><span class="line">    this.data &#x3D; data</span><br><span class="line">    this.expression &#x3D; expression</span><br><span class="line">    this.cb &#x3D; cb</span><br><span class="line">    this.value &#x3D; this.get()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get() &#123;</span><br><span class="line">    pushTarget(this)</span><br><span class="line">    const value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">    popTarget()</span><br><span class="line">    return value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  update() &#123;</span><br><span class="line">    const oldValue &#x3D; this.value</span><br><span class="line">    this.value &#x3D; parsePath(this.data, this.expression)</span><br><span class="line">    this.cb.call(this.data, this.value, oldValue)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 工具函数</span><br><span class="line">function parsePath(obj, expression) &#123;</span><br><span class="line">  const segments &#x3D; expression.split(&#39;.&#39;)</span><br><span class="line">  for (let key of segments) &#123;</span><br><span class="line">    if (!obj) return</span><br><span class="line">    obj &#x3D; obj[key]</span><br><span class="line">  &#125;</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for test</span><br><span class="line">let obj &#x3D; &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: &#123;</span><br><span class="line">    m: &#123;</span><br><span class="line">      n: 4</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">observe(obj)</span><br><span class="line"></span><br><span class="line">let w1 &#x3D; new Watcher(obj, &#39;a&#39;, (val, oldVal) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#96;obj.a 从 $&#123;oldVal&#125;(oldVal) 变成了 $&#123;val&#125;(newVal)&#96;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p><code>Vue</code>能够实现如此强大的功能，离不开闭包的功劳：在<code>defineReactive</code>中就形成了闭包，这样每个对象的每个属性就能保存自己的值<code>value</code>和依赖对象<code>dep</code>。</p>
+<h4 id="只要触发getter就会收集依赖吗"><a href="#只要触发getter就会收集依赖吗" class="headerlink" title="只要触发getter就会收集依赖吗"></a>只要触发getter就会收集依赖吗</h4><p>答案是否定的。在<code>Dep</code>的<code>depend</code>方法中，我们看到，只有<code>Dep.target</code>为真时才会添加依赖。比如在派发更新时会触发<code>watcher</code>的<code>update</code>方法，该方法也会触发<code>parsePath</code>来取值，但是此时的<code>Dep.target</code>为<code>null</code>，不会添加依赖。仔细观察可以发现，只有<code>watcher</code>的<code>get</code>方法中会调用<code>pushTarget(this)</code>来对<code>Dep.target</code>赋值，其他时候<code>Dep.target</code>都是<code>null</code>，而<code>get</code>方法只会在实例化<code>watcher</code>的时候调用，因此，在我们的实现中，一个<code>watcher</code>的依赖在其实例化时就已经确定了，之后任何读取值的操作均不会增加依赖。</p>
+<h4 id="依赖嵌套的对象属性"><a href="#依赖嵌套的对象属性" class="headerlink" title="依赖嵌套的对象属性"></a>依赖嵌套的对象属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let w2 &#x3D; new Watcher(obj, &#39;b.m.n&#39;, (val, oldVal) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#96;obj.b.m.n 从 $&#123;oldVal&#125;(oldVal) 变成了 $&#123;val&#125;(newVal)&#96;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>w2</code>会依赖<code>obj.b.m.n</code>， 但是<code>w2</code>会依赖<code>obj.b, obj.b.m</code>吗？或者说，<code>obj.b,和obj.b.m</code>，它们闭包中保存的<code>dep</code>中会有<code>w2</code>吗？答案是会。我们先不从代码角度分析，设想一下，如果我们让<code>obj.b = null</code>，那么很显然<code>w2</code>的回调函数应该被触发，这就说明<code>w2</code>会依赖中间层级的对象属性。</p>
+<p>接下来我们从代码层面分析一下：<code>new Watcher()</code>时，会调用<code>watcher的get</code>方法，将<code>Dep.target</code>设置为<code>w2</code>，<code>get</code>方法会调用<code>parsePath</code>来取值，我们来看一下取值的具体过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function parsePath(obj, expression) &#123;</span><br><span class="line">  const segments &#x3D; expression.split(&#39;.&#39;) &#x2F;&#x2F; 先将表达式分割，segments:[&#39;b&#39;, &#39;m&#39;, &#39;n&#39;]</span><br><span class="line">  &#x2F;&#x2F; 循环取值</span><br><span class="line">  for (let key of segments) &#123;</span><br><span class="line">    if (!obj) return</span><br><span class="line">    obj &#x3D; obj[key]</span><br><span class="line">  &#125;</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>局部变量<code>obj</code>为对象<code>obj</code>，读取<code>obj.b</code>的值，触发<code>getter</code>，触发<code>dep.depend()</code>(该<code>dep</code>是<code>obj.b</code>的闭包中的<code>dep</code>)，<code>Dep.target</code>存在，添加依赖</li>
+<li>局部变量<code>obj</code>为<code>obj.b</code>，读取<code>obj.b.m</code>的值，触发<code>getter</code>，触发<code>dep.depend()</code>(该<code>dep</code>是<code>obj.b.m</code>的闭包中的<code>dep</code>)，<code>Dep.target</code>存在，添加依赖</li>
+<li>局部变量<code>obj</code>为对象<code>obj.b.m</code>，读取<code>obj.b.m.n</code>的值，触发<code>getter</code>，触发<code>dep.depend()</code>(该<code>dep</code>是<code>obj.b.m.n</code>的闭包中的<code>dep</code>)，<code>Dep.target</code>存在，添加依赖</li>
+</ol>
+<p>从上面的代码可以看出，<code>w2</code>会依赖与目标属性相关的每一项，这也是符合逻辑的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结一、</p>
+<ol>
+<li>在Vue中模版编译过程中的指令或者数据绑定都会实例化一个Watcher实例，实例化过程中会触发get()将自身指向Dep.target;</li>
+<li>data在Observer时执行getter会触发dep.depend()进行依赖收集，</li>
+<li>当data中被 Observer的某个对象值变化后，触发subs中观察它的watcher执行 update() 方法，最后实际上是调用watcher的回调函数cb，进而更新视图。</li>
+</ol>
+<p>总结二、</p>
+<ol>
+<li>调用<code>observe(obj)</code>，将<code>obj</code>设置为响应式对象，<code>observe函数，Observe, defineReactive函数</code>三者互相调用，从而递归地将<code>obj</code>设置为响应式对象</li>
+<li>渲染页面时实例化<code>watcher</code>，这个过程会读取依赖数据的值，从而完成<code>在getter中获取依赖</code></li>
+<li>依赖变化时触发<code>setter</code>，从而派发更新，执行回调，完成<code>在setter中派发更新</code></li>
+</ol>
+<h2 id="【源码目录结构】"><a href="#【源码目录结构】" class="headerlink" title="【源码目录结构】"></a>【源码目录结构】</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">├─ .circleci                   &#x2F;&#x2F; 包含CircleCI持续集成&#x2F;持续部署工具的配置文件</span><br><span class="line">├─ .github                   &#x2F;&#x2F; 项目相关的说明文档，上面的说明文档就在此文件夹</span><br><span class="line">├─ benchmarks                 &#x2F;&#x2F; 基准,性能测试文件，Vue的跑分demo，比如大数据量的table或者渲染大量SVG</span><br><span class="line">├─ dist                       &#x2F;&#x2F; 构建后输出的不同版本Vue文件(UMD、CommonJS、ES 生产和开发包)</span><br><span class="line">├─ examples                   &#x2F;&#x2F; 部分示例，用Vue写的一些小demo</span><br><span class="line">├─ flow                       &#x2F;&#x2F; flow 因为Vue使用了 [Flow](https:&#x2F;&#x2F;flow.org&#x2F;) 来进行静态类型检查，静态类型检查类型声明文件</span><br><span class="line">├─ packages                   &#x2F;&#x2F; 包含服务端渲染和模板编译器两种不同的NPM包，是提供给不同使用场景使用的</span><br><span class="line">├─ scripts                   &#x2F;&#x2F; 存放npm脚本配置文件，结合webpack、rollup进行编译、测试、构建等操作（使用者不需要关心）</span><br><span class="line">│   ├─ alias.js              &#x2F;&#x2F; 模块导入所有源代码和测试中使用的别名</span><br><span class="line">│   ├─ config.js             &#x2F;&#x2F; 包含在&#39;dist&#x2F;&#96;中找到的所有文件的生成配置</span><br><span class="line">│   ├─ build.js               &#x2F;&#x2F; 对 config.js 中所有的rollup配置进行构建</span><br><span class="line">├─ src                        &#x2F;&#x2F; 主要源码所在位置，核心内容</span><br><span class="line">│   ├─ compiler               &#x2F;&#x2F; 解析模版相关</span><br><span class="line">│       ├─ codegen            &#x2F;&#x2F; 把AST转换为Render函数</span><br><span class="line">│       ├─ directives         &#x2F;&#x2F; 通用生成Render函数之前需要处理的指令</span><br><span class="line">│       ├─ parser              &#x2F;&#x2F; 解析模版成AST</span><br><span class="line">│   ├─ core                    &#x2F;&#x2F; Vue核心代码，包括内置组件，全局API封装，Vue 实例化，观察者，虚拟DOM, 工具函数等等。</span><br><span class="line">│       ├─ components          &#x2F;&#x2F; 组件相关属性，主要是Keep-Alive</span><br><span class="line">│       ├─ global-api          &#x2F;&#x2F; Vue全局API，如Vue.use,Vue.extend,Vue.mixin等</span><br><span class="line">│       ├─ instance            &#x2F;&#x2F; 实例化相关内容，生命周期、事件等</span><br><span class="line">│       ├─ observer            &#x2F;&#x2F; 响应式核心目录，双向数据绑定相关文件</span><br><span class="line">│       ├─ util                &#x2F;&#x2F; 工具方法</span><br><span class="line">│       └─ vdom                &#x2F;&#x2F; 包含虚拟DOM 创建（creation）和打补丁(patching) 的代码</span><br><span class="line">│   ├─ platforms               &#x2F;&#x2F; 和平台相关的内容，Vue.js 是一个跨平台的MVVM 框架(web、native、weex)</span><br><span class="line">│       ├─ web                 &#x2F;&#x2F; web端</span><br><span class="line">│           ├─ compiler        &#x2F;&#x2F; web端编译相关代码，用来编译模版成render函数basic.js</span><br><span class="line">│           ├─ runtime         &#x2F;&#x2F; web端运行时相关代码，用于创建Vue实例等</span><br><span class="line">│           ├─ server          &#x2F;&#x2F; 服务端渲染</span><br><span class="line">│           └─ util            &#x2F;&#x2F; 相关工具类</span><br><span class="line">│       └─ weex                &#x2F;&#x2F; 基于通用跨平台的 Web 开发语言和开发经验，来构建 Android、iOS 和 Web 应用</span><br><span class="line">│   ├─ server                  &#x2F;&#x2F; 服务端渲染（ssr）</span><br><span class="line">│   ├─ sfc                     &#x2F;&#x2F; 转换单文件组件（*.vue）</span><br><span class="line">│   └─ shared                  &#x2F;&#x2F; 全局共享的方法和常量</span><br><span class="line">├─ test                        &#x2F;&#x2F; test 测试用例</span><br><span class="line">├─ types                       &#x2F;&#x2F; Vue新版本支持TypeScript，主要是TypeScript类型声明文件</span><br><span class="line">├─ node_modules               &#x2F;&#x2F; npm包存放目录</span><br><span class="line">|-- .babelrc.js               &#x2F;&#x2F; babel配置</span><br><span class="line">|-- .editorconfig             &#x2F;&#x2F; 文本编码样式配置文件</span><br><span class="line">|-- .eslintignore             &#x2F;&#x2F; eslint校验忽略文件</span><br><span class="line">|-- .eslintrc.js              &#x2F;&#x2F; eslint配置文件</span><br><span class="line">|-- .flowconfig               &#x2F;&#x2F; flow配置文件</span><br><span class="line">|-- .gitignore               &#x2F;&#x2F; Git提交忽略文件配置</span><br><span class="line">|-- BACKERS.md               &#x2F;&#x2F; 赞助者信息文件</span><br><span class="line">|-- LICENSE                 &#x2F;&#x2F; 项目开源协议</span><br><span class="line">|-- package.json             &#x2F;&#x2F; 依赖</span><br><span class="line">|-- README.md               &#x2F;&#x2F; 说明文件</span><br><span class="line">|-- yarn.lock               &#x2F;&#x2F; yarn版本锁定文件</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+      
+       <hr><span style="font-style: italic;color: gray;"> --- </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2019-2022
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
