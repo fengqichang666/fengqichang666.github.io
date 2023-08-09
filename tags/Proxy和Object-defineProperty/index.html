@@ -16,17 +16,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="baidu-site-verification" content="codeva-LecjeKsg4q" />
 <meta name="msvalidate.01" content="BDC4733A72EDADC029644A0AB0A022AD" />
-<meta name="description" content="有帮助的贴子 9 个项目助你在 2023 年成为“前端大佬” - 专栏 - 声网 RTE 开发者社区 (rtcdeveloper.cn) vue2 vue3  (29条消息) 小满zs的博客_CSDN博客-Vue3,typeScript,nest-js领域博主 前言 | Vue3 入门指南与实战案例 (chengpeiquan.com)  vue-router  详解基于vue，vue-route">
+<meta name="description" content="vite与webpackwebpack问题公司的项目基本都是基于webpack构建，而我们都会对webpack构建项目进行一些构建速度上的优化，比如缓存等，但是开了缓存之后，开发环境还是会存在慢的问题，主要有两方面   首次启动慢 HMR慢   首次启动慢的原因是因为webpack是一种bundler方案，需要根据entry找到所有依赖模版，并输出最终的bundle.js； hmr慢是因为babe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端学习资料">
-<meta property="og:url" content="http://example.com/2023/02/28/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/index.html">
+<meta property="og:title" content="vite与webpack">
+<meta property="og:url" content="http://example.com/2023/08/09/vite%E4%B8%8Ewebpack/index.html">
 <meta property="og:site_name" content="前端知识点记录">
-<meta property="og:description" content="有帮助的贴子 9 个项目助你在 2023 年成为“前端大佬” - 专栏 - 声网 RTE 开发者社区 (rtcdeveloper.cn) vue2 vue3  (29条消息) 小满zs的博客_CSDN博客-Vue3,typeScript,nest-js领域博主 前言 | Vue3 入门指南与实战案例 (chengpeiquan.com)  vue-router  详解基于vue，vue-route">
+<meta property="og:description" content="vite与webpackwebpack问题公司的项目基本都是基于webpack构建，而我们都会对webpack构建项目进行一些构建速度上的优化，比如缓存等，但是开了缓存之后，开发环境还是会存在慢的问题，主要有两方面   首次启动慢 HMR慢   首次启动慢的原因是因为webpack是一种bundler方案，需要根据entry找到所有依赖模版，并输出最终的bundle.js； hmr慢是因为babe">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-02-28T07:28:27.000Z">
-<meta property="article:modified_time" content="2023-03-02T07:31:26.841Z">
+<meta property="og:image" content="https://fengqichang666.github.io/images/vite2build.png">
+<meta property="article:published_time" content="2023-08-09T14:05:32.000Z">
+<meta property="article:modified_time" content="2023-08-09T14:05:58.571Z">
 <meta property="article:author" content="Feng">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fengqichang666.github.io/images/vite2build.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -252,7 +254,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(40)</small>
+                <small>(41)</small>
             
         </div>
     </li>
@@ -277,7 +279,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="40">
+<input type="hidden" id="yelog_site_posts_number" value="41">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -353,6 +355,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2023/08/09/vite%E4%B8%8Ewebpack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vite与webpack">vite与webpack</span>
+            <span class="post-date" title="2023-08-09 22:05:32">2023/08/09</span>
+        </a>
         
         
         <a  class="All "

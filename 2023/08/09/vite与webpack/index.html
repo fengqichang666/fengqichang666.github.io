@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>webpack笔记 | 前端知识点记录</title>
+  <title>vite与webpack | 前端知识点记录</title>
   <meta name="keywords" content="">
-  <meta name="description" content="webpack笔记 | 前端知识点记录">
+  <meta name="description" content="vite与webpack | 前端知识点记录">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="baidu-site-verification" content="codeva-LecjeKsg4q" />
 <meta name="msvalidate.01" content="BDC4733A72EDADC029644A0AB0A022AD" />
@@ -735,9 +735,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-webpack笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-vite与webpack" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">webpack笔记</h1>
+        <h1 class="article-title">vite与webpack</h1>
     
     <div class="article-meta">
         
@@ -747,7 +747,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-02-21 14:43:08'>2023-02-21 14:43</time>
+            Created At : <time class="date" title='Updated At: 2023-08-09 22:05:58'>2023-08-09 22:05</time>
         
     </div>
     <div class="article-meta">
@@ -769,7 +769,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vite%E4%B8%8Ewebpack"><span class="toc-text">vite与webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack%E9%97%AE%E9%A2%98"><span class="toc-text">webpack问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E6%9E%84%E5%BB%BA"><span class="toc-text">预构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%A2%84%E6%9E%84%E5%BB%BA"><span class="toc-text">为什么要预构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#esbuild%E7%9A%84%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BF%AB"><span class="toc-text">esbuild的打包速度为什么快</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E4%BC%98%E5%8A%BF"><span class="toc-text">语言优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BC%98%E5%8A%BF"><span class="toc-text">多线程优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Ets-loader%E4%BB%A5%E5%8F%8Ababel-loader%E5%AF%B9%E6%AF%94"><span class="toc-text">与ts-loader以及babel-loader对比</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ts-loader"><span class="toc-text">ts-loader</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#babel-loader%EF%BC%88%E6%90%AC%E8%BF%90%E5%AE%98%E7%BD%91%EF%BC%89"><span class="toc-text">babel-loader（搬运官网）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#esbuild-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">esbuild 的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4vite%E5%BF%AB%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4vite%E6%85%A2%EF%BC%9F"><span class="toc-text">为什么说vite快？为什么说vite慢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91"><span class="toc-text">什么是依赖预编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6vite-plugin-optimize-persist"><span class="toc-text">插件vite-plugin-optimize-persist</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vite%E7%9A%84%E5%86%85%E9%83%A8%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">vite的内部核心流程图</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -785,7 +785,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="vite与webpack"><a href="#vite与webpack" class="headerlink" title="vite与webpack"></a>vite与webpack</h1><h2 id="webpack问题"><a href="#webpack问题" class="headerlink" title="webpack问题"></a>webpack问题</h2><p>公司的项目基本都是基于webpack构建，而我们都会对webpack构建项目进行一些构建速度上的优化，比如缓存等，但是开了缓存之后，开发环境还是会存在慢的问题，主要有两方面</p>
+<blockquote>
+<ul>
+<li>首次启动慢</li>
+<li>HMR慢</li>
+</ul>
+</blockquote>
+<p>首次启动慢的原因是因为webpack是一种bundler方案，需要根据entry找到所有依赖模版，并输出最终的bundle.js；</p>
+<p>hmr慢是因为babel-loader做语法转换耗时过长,且需要重新生产bundle.js</p>
+<p>所以针对上面的问题，首先我们可能会想到怎么降低语法转化时间，比如使用esbuild-loader来替换babel-loader，但是这只能减少部分语法转换时间，还是不能解决首次启动慢的问题，所以要从根本上解决开发环境首次启动慢的问题还得换一种思路，也就是现在vite提供的bundless思路，启动的时候，只进行预构建第三方依赖，实际浏览器访问的时候，在通过本地服务器实时转换每个请求的文件，达到缩短首次启动时间的目的</p>
+<h2 id="预构建"><a href="#预构建" class="headerlink" title="预构建"></a>预构建</h2><p>做了什么：</p>
+<ul>
+<li>扫描入口文件，然后通过这些入口，扫描所有用到的依赖</li>
+<li>将多个依赖进行打包</li>
+<li>修改这些模块的引入路径 ↓</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- import &#123; createApp, defineCustomElement &#125; from &#39;vue&#39;</span><br><span class="line">+ import &#123; createApp, defineCustomElement &#125; from &#39;&#x2F;node_modules&#x2F;.vite&#x2F;deps&#x2F;vue.js?v&#x3D;b92a21b7&#39;</span><br></pre></td></tr></table></figure>
+
+<p>node_module 下会多了一个 <code>.vite</code> 文件，依赖预构建的产物会放在 <code>deps</code> 目录下</p>
+<p>由于 import vue 这种模块引入方式，使用的是 Nodejs 特有的模块查找算法（到 node_modules 中取查找），浏览器无法使用，因此 Vite 会将 <code>vue</code> 替换成一个另一个路径，当浏览器解析到这行 import 语句时，会发送一个 <code>    /node_modules/.vite/deps/vue.js?v=b92a21b7</code>， Vite Server 会到该目录下，拿到 vue 预构建之后的产物代码。</p>
+<h3 id="为什么要预构建"><a href="#为什么要预构建" class="headerlink" title="为什么要预构建"></a>为什么要预构建</h3><blockquote>
+<p><strong>CommonJS 和 UMD 兼容性:</strong> 开发阶段中，Vite 的开发服务器将所有代码视为原生 ES 模块。因此，Vite 必须先将作为 CommonJS 或 UMD 发布的依赖项转换为 ESM。</p>
+<p><strong>性能：</strong> Vite 将有许多内部模块的 ESM 依赖关系转换为单个模块，以提高后续页面加载性能</p>
+</blockquote>
+<p>一些包将它们的 ES 模块构建作为许多单独的文件相互导入。例如，<a target="_blank" rel="noopener" href="https://unpkg.com/browse/lodash-es/"><code>lodash-es</code> 有超过 600 个内置模块</a>！当我们执行 <code>import &#123; debounce &#125; from &#39;lodash-es&#39;</code> 时，浏览器同时发出 600 多个 HTTP 请求！尽管服务器在处理这些请求时没有问题，但大量的请求会在浏览器端造成网络拥塞，导致页面的加载速度相当慢。</p>
+<p>通过预构建 <code>lodash-es</code> 成为一个模块，我们就只需要一个 HTTP 请求了！</p>
+<h2 id="esbuild的打包速度为什么快"><a href="#esbuild的打包速度为什么快" class="headerlink" title="esbuild的打包速度为什么快"></a>esbuild的打包速度为什么快</h2><h3 id="语言优势"><a href="#语言优势" class="headerlink" title="语言优势"></a>语言优势</h3><p>webpack基于js实现，esbuild基于go语言实现。</p>
+<p>js作为一门解释型语言，程序每次执行都需要先由解释器一边将源码翻译成机器语言，一边调度执行；而go是一种编译型语言，在编译阶段就已经将源码转为机器码，启动时只需要直接执行这些机器码即可。相当于，当esbuild解析我们的js代码文件时，node可能正忙于解析我们打包工具webpack的js代码。</p>
+<h3 id="多线程优势"><a href="#多线程优势" class="headerlink" title="多线程优势"></a>多线程优势</h3><p>go语言具有多线程运行能力，而js本质是一门单线程语言，虽然引入了WebWorker规范后，我们可以使用js在浏览器、Node中实现多线程操作，但是在查阅资料后webpack中并未使用webworker提供的多线程能力。反观esbuild，尽可能饱和地使用各个CPU核，特别是打包过程的解析、代码生成阶段的过程。</p>
+<h3 id="与ts-loader以及babel-loader对比"><a href="#与ts-loader以及babel-loader对比" class="headerlink" title="与ts-loader以及babel-loader对比"></a>与ts-loader以及babel-loader对比</h3><h5 id="ts-loader"><a href="#ts-loader" class="headerlink" title="ts-loader"></a>ts-loader</h5><p>webpack的ts加载器，将ts编译成js。ts-loader在内部是调用了ts的官方编译器–tsc，所以ts-loader和tsc是共享tsconfig.json文件的</p>
+<p>为了性能的提升，我们一般会设置transpileOnly: true，只做语言的转换，而不做类型检查。esbuild同样完全抛弃了ts的类型检查，只做代码转换。</p>
+<h5 id="babel-loader（搬运官网）"><a href="#babel-loader（搬运官网）" class="headerlink" title="babel-loader（搬运官网）"></a>babel-loader（搬运官网）</h5><p>在webpack中使用其将es6+高版本js代码转译为es5低版本，此过程可能需要经过多次数据转换：</p>
+<ul>
+<li>Webpack 读入源码，此时为字符串形式</li>
+<li>Babel 解析源码，转换为 AST 形式</li>
+<li>Babel 将源码 AST 转换为低版本 AST</li>
+<li>Babel 将低版本 AST generate 为低版本源码，字符串形式</li>
+<li>Webpack 解析低版本源码</li>
+<li>Webpack 将多个模块打包成最终产物</li>
+</ul>
+<p>源码需要经历 <code>string =&gt; AST =&gt; AST =&gt; string =&gt; AST =&gt; string</code> ，在字符串与 AST 之间反复横跳。</p>
+<p>esbuild最大的不同就是能够在多个编译阶段共用相似的AST结构，尽可能减少字符串到AST的结构转换</p>
+<h3 id="esbuild-的缺点"><a href="#esbuild-的缺点" class="headerlink" title="esbuild 的缺点"></a>esbuild 的缺点</h3><p>esbuild 只能将代码转成 es6。</p>
+<p>为了保证 esbuild 的编译效率，esbuild 没有提供 AST 的操作能力。所以一些通过 AST 处理代码的 babel-plugin 没有很好的方法过渡到 esbuild 中（如babel-plugin-import）。so，如果你的项目使用了 babel-plugin-import, 或者一些自定义的 babel-plugin 。在目前来看是没有很好的迁移方案的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>js是单线程串行，esbuild是新开一个进程，然后多线程并行，充分发挥多核优势</li>
+<li>go是纯机器码，肯定要比JIT(即时编译)快</li>
+<li>不使用 AST，优化了构建流程。</li>
+</ol>
+<h2 id="为什么说vite快？为什么说vite慢？"><a href="#为什么说vite快？为什么说vite慢？" class="headerlink" title="为什么说vite快？为什么说vite慢？"></a>为什么说vite快？为什么说vite慢？</h2><p>vite项目的启动确实比webpack快，但如果某个界面是首次进入，且依赖比较多/比较复杂的话，那就会比较慢了</p>
+<p>vite的快：命令行启动快，vite启动时并不会像webpack一样对所有代码进行编译/打包/压缩。官网的说法是，vite通过在一开始将应用中的模块区分为 依赖 和 源码 两类，改进了开发服务器启动时间，以 原生 ESM 方式提供源码，让浏览器接管了打包程序的部分工作，只需要在浏览器请求源码时进行转换并按需提供源码（运行时进行依赖分析，动态打包，动态引入）。而webpack需要在内存中编译、打包、压缩。（<code>这里的启动是指命令行启动完毕，不是指启动完之后首页加载完毕</code>）</p>
+<p>vite的慢：加载依赖项很多，很复杂的页面时，页面打开慢。需要一次性请求太多的资源，而且这些资源有些并不是浏览器可以直接运行的，vite还需要动态的解析（<strong>一系列的动态分析/动态资源引入/动态编译</strong>），然后一些需要打包再返回给浏览器。</p>
+<p>vite启动快的原理，也导致了他在加载依赖项很多，很复杂的页面时，页面打开慢。因为他要进行<strong>一系列的动态分析/动态资源引入/动态编译</strong>。</p>
+<p>总结：</p>
+<ul>
+<li>启动的时候只做第三方模块的预构建，且使用esbuild来进行预构建，速度是毫秒级</li>
+<li>访问页面的时候，在处理路由对应的模块，同样使用esbuild来做转换，所以速度还是非常快</li>
+</ul>
+<h2 id="什么是依赖预编译"><a href="#什么是依赖预编译" class="headerlink" title="什么是依赖预编译"></a>什么是依赖预编译</h2><p>会<strong>在 DevServer 启动前</strong>对需要预编译的依赖进行编译，然后在分析模块的导入（import）时会动态地<strong>应用编译过的依赖</strong>。</p>
+<ul>
+<li>默认情况下，Vite 会将 package.json 中生产依赖 <code>dependencies</code> 的部分启用依赖预编译，即会先对该依赖进行编译，然后将编译后的文件缓存在内存中（node_modules/.vite 文件下），在启动 DevServer 时直接请求该缓存内容。</li>
+<li>在 vite.config.js 文件中配置 <code>optimizeDeps</code> 选项可以选择<strong>需要或不需要</strong>进行预编译的依赖的名称，Vite 则会根据该选项来确定是否对该依赖进行预编译。</li>
+<li>在启动时添加 <code>--force</code> options，可以用来<strong>强制重新</strong>进行依赖预编译。</li>
+</ul>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>通过添加类似如下的配置，让vite在启动之初就对某些资源进行预打包，尽量避免后续的动态打包，示例配置如下<br><code>vite.config.ts</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   optimizeDeps: &#123;</span><br><span class="line">      include: [</span><br><span class="line">        &#39;vue&#39;,</span><br><span class="line">        &#39;map-factory&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;form&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;radio-group&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;radio&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;checkbox&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;checkbox-group&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;switch&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;time-picker&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;date-picker&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;col&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;form-item&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;alert&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;breadcrumb&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;select&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;input&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;breadcrumb-item&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;tag&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;pagination&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;table&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;table-column&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;card&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;row&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;button&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;menu&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;sub-menu&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;menu-item&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;element-plus&#x2F;es&#x2F;components&#x2F;option&#x2F;style&#x2F;index&#39;,</span><br><span class="line">        &#39;@element-plus&#x2F;icons-vue&#39;,</span><br><span class="line">        &#39;pinia&#39;,</span><br><span class="line">        &#39;axios&#39;,</span><br><span class="line">        &#39;vue-request&#39;,</span><br><span class="line">        &#39;vue-router&#39;,</span><br><span class="line">        &#39;@vueuse&#x2F;core&#39;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="插件vite-plugin-optimize-persist"><a href="#插件vite-plugin-optimize-persist" class="headerlink" title="插件vite-plugin-optimize-persist"></a>插件<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vite-plugin-optimize-persist">vite-plugin-optimize-persist</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D vite-plugin-optimize-persist vite-plugin-package-config</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code> 中增加配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; vite.config.ts</span><br><span class="line">import OptimizationPersist from &#39;vite-plugin-optimize-persist&#39;</span><br><span class="line">import PkgConfig from &#39;vite-plugin-package-config&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    PkgConfig(),</span><br><span class="line">    OptimizationPersist()</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首次加载的时候，依然会很慢，这个是正常现象，因为这个插件, 加快vite载入界面速度的原理, 也和上面说的一样，而第一次，这个插件也没法知道，哪些依赖需要预构建，他只是在vite动态引入资源的时候，将这些资源都记录下来，自动写入了package.json中，当再次启动项目的时候，插件会读取之前他写入在package.json中的数据，并告知vite，这样vite就能对这些资源进行预构建了，也就能加快进入界面的速度了，但相应的启动速度就会比原来稍微慢一点</p>
+<h2 id="vite的内部核心流程图"><a href="#vite的内部核心流程图" class="headerlink" title="vite的内部核心流程图"></a>vite的内部核心流程图</h2><p><img src="https://fengqichang666.github.io/images/vite2build.png"></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> --- </span>
     </div>
